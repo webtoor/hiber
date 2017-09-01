@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+</ion-navbar>
+    <ion-list>
+      <ion-item *ngFor="let place of places" tappable  (click)="selectPlace(place)">{{place.description}}</ion-item>
+    </ion-list>
+
+</ion-header>
+<ion-content>
+
+  <div #pleaseConnect id="please-connect">
+    <p>No Internet Connection</p>
+  </div>
+
+  <div #map id="map">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-fab right bottom>
+    <!--<button ion-fab color="danger"><ion-icon name="checkmark"></ion-icon></button>
+    <br>-->
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab id="create-button"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab id="delete-button"><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+
+  <ion-fab left bottom>
+    <button (click)="createPlan();" ion-fab mini color="danger"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
+
+  <ion-item>
+    <!--<ion-input type="text"  [(ngModel)] = "nama.mes">
+    </ion-input>-->
+  </ion-item>
+</ion-content>

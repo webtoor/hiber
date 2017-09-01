@@ -1,0 +1,22 @@
+page-rating {
+  ul {
+    padding: 0px;
+
+    &.rating li {
+      padding: 5px 10px !important;
+      background: none;
+      color: #ffb400;
+
+      ion-icon {
+        font-size: 30px;
+      }
+
+    }
+  }
+  .logo{
+      height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+}

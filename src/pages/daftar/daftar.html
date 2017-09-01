@@ -1,0 +1,34 @@
+<!--
+  Generated template for the DaftarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+  <ion-item  class="marginTop">
+    <ion-label color="primary" floating-label><ion-icon name="person"></ion-icon></ion-label>
+    <ion-input type="text" name="username" placeholder="Username" [(ngModel)]="userData.username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" floating-label><ion-icon name="call"></ion-icon>
+  </ion-label>
+    <ion-input type="number" name="mPhone" placeholder="No Hp" [(ngModel)]="userData.mPhone"></ion-input>
+  </ion-item>
+<ion-item>
+  <ion-label color="primary" floating-label><ion-icon name="mail"></ion-icon></ion-label>
+  <ion-input  type="text" placeholder="Email" [(ngModel)]="userData.email"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color="primary" floating-label><ion-icon name="lock"></ion-icon></ion-label>
+  <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password"></ion-input>
+</ion-item>
+<br>
+<div text-center>
+<button ion-button text-center color="primary" (click)=daftar()>Daftar</button>
+</div>
+</ion-content>
+<ion-footer>
+  <div text-center>
+    Sudah Punya Akun? <a href="#" (click)="login()">Masuk</a>
+  </div>
+</ion-footer>
