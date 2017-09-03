@@ -18,8 +18,7 @@ import { MapPage} from '../map/map';
 export class Plan2Page {
   public userDetails : any;
   responseData:any;
-  planData:any = {"subject":"", "mulai":"","akhir":"","kegunaan":"", "comment":""};
-  today
+  planData:any = {"subject":"","mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : []};
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
@@ -66,23 +65,40 @@ for (var i = 0; i < a.length; ++i) {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlanDuaPage');
     //console.log(this.latlng);
+    var date = new Date().toISOString();
+    var das = date
+    var year = das.split("-")[0]
+    var month = das.split("-")[1]
+    var day = ( das.split("-")[2] ).split("T")[0];
+    this.planData.subject = 'Order_'+year+month+day;
+    this.planData.mulai = new Date().toISOString();
+    this.planData.akhir = new Date().toISOString();
+
   }
-  /*logForm() {
-    console.log(this.todo);
-  }*/
   planForm() {
     console.log(this.planData);
   }
-  mulai() {
-    this.today = new Date().toISOString();
-  }
-  akhir() {
-    this.today = new Date().toISOString();
-  }
+
   cari() {
+    if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
+        this.presentAlert()
+    } else{
+
+      var das = this.planData.mulai
+      var year = das.split("-")[0]
+      var month = das.split("-")[1]
+      var day = ( das.split("-")[2] ).split("T")[0];
+      this.planData.mulai= year +'-'+month+'-'+ day;
+
+      var das = this.planData.akhir
+      var year = das.split("-")[0]
+      var month = das.split("-")[1]
+      var day = ( das.split("-")[2] ).split("T")[0];
+      this.planData.akhir= year +'-'+month+'-'+ day;
+
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
-      message: 'Informasi, this.planData yang telah di unggah dan diterima oleh Penyedia Jasa, tidak bisa dirubah, kecuali atas persetujuan Kedua belah pihak. Pastikan informasi yang anda masukan telah benar',
+      message: 'Informasi, yang telah di unggah dan diterima oleh Penyedia Jasa, tidak bisa dirubah, kecuali atas persetujuan Kedua belah pihak. Pastikan informasi yang anda masukan telah benar',
       buttons: [
         {
           text: 'Oke',
@@ -103,13 +119,18 @@ for (var i = 0; i < a.length; ++i) {
       ]
     });
     confirm.present();
+    }
   }
   aturArea(){
     this.navCtrl.setRoot(MapPage);
   }
 
-  dada(){
-
-
-      }
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Note',
+      subTitle: 'Tidak boleh ada yang kosong!',
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
 }

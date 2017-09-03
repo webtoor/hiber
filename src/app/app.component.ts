@@ -18,7 +18,7 @@ import { PolygonPage } from '../pages/polygon/polygon';
 export class Hiber {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WelcomePage;
+  rootPage: any =  WelcomePage;
 
   pages: Array<{title: string, icon: string,  component: any}>;
   petas: Array<{title: string, icon: string,  component: any}>;

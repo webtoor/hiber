@@ -3,12 +3,8 @@
     <button ion-button menuToggle left>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-searchbar [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+    <ion-searchbar (click)="showAddressModal()" [(ngModel)]="address.place"></ion-searchbar>
 </ion-navbar>
-    <ion-list>
-      <ion-item *ngFor="let place of places" tappable  (click)="selectPlace(place)">{{place.description}}</ion-item>
-    </ion-list>
-
 </ion-header>
 <ion-content>
 

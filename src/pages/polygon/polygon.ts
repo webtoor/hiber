@@ -24,8 +24,7 @@ export class PolygonPage {
   public userDetails : any;
   responseData:any;
   polyData:any = {};
-  public dam = {}
-
+  public dataSet : any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public maps: GoogleMaps, public authService: AuthServiceProvider) {
@@ -62,7 +61,8 @@ export class PolygonPage {
   loadMap(){
     this.authService.postData(this.polygonData, "polygon").then((result) => {
       this.responseData = result;
-      //console.log(this.responseData)
+      this.dataSet = this.responseData.output
+      console.log(this.responseData)
       var datas = this.responseData;
       var lati= datas["latitude"];
       var lati2= datas["longitude"];

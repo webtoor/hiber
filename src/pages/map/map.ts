@@ -1,9 +1,11 @@
-import { NavController, Platform, ViewController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, Platform, ViewController, NavParams, AlertController, ModalController  } from 'ionic-angular';
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
 import { Plan2Page} from '../plan2/plan2';
 import { PenggunaPage } from '../pengguna/pengguna';
+import { AutoCompletePage} from '../auto-complete/auto-complete';
+
 
 
 
@@ -15,7 +17,7 @@ export class MapPage{
 
     @ViewChild('map') mapElement: ElementRef;
     @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
-
+      address;
     latitude: number;
     longitude: number;
     autocompleteService: any;
@@ -27,10 +29,18 @@ export class MapPage{
     drawingManager:any;
     location: any;
     nama:any = {};
+    placedetails: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, private alertCtrl: AlertController) {
+
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, private alertCtrl: AlertController, private modalCtrl: ModalController) {
         this.searchDisabled = true;
         this.saveDisabled = true;
+
+        this.address = {
+          place: ''
+        };
+
 
     }
 
@@ -43,12 +53,13 @@ export class MapPage{
             this.searchDisabled = false;
 
         });
+        this.initPlacedetails();
 
     }
 
-    selectPlace(place){
+    /*selectPlace(place){
 
-        this.places = [];
+        this.address.place = [];
 
 
         let location = {
@@ -74,42 +85,7 @@ export class MapPage{
 
         });
 
-    }
-
-    searchPlace(){
-        this.saveDisabled = true;
-
-        if(this.query.length > 0 && !this.searchDisabled) {
-
-            let config = {
-                types: ['geocode'],
-                input: this.query,
-                componentRestrictions: {country: "id"}
-            }
-
-            this.autocompleteService.getPlacePredictions(config, (predictions, status) => {
-
-                if(status == google.maps.places.PlacesServiceStatus.OK && predictions){
-
-                    this.places = [];
-
-                    predictions.forEach((prediction) => {
-                        this.places.push(prediction);
-
-                    });
-                }
-
-            });
-
-        } else {
-            this.places = [];
-        }
-
-    }
-
-    save(){
-        this.viewCtrl.dismiss(this.location);
-    }
+    }*/
 
     close(){
         this.viewCtrl.dismiss();
@@ -133,5 +109,60 @@ presentAlert() {
   alert.present();
 }
 
+showAddressModal () {
+  let modal = this.modalCtrl.create(AutoCompletePage);
+  let self = this;
+  modal.onDidDismiss(data => {
+    if(data){
+        this.address.place = data.description;
+        // get details
+        this.getPlaceDetail(data.place_id);
+
+    }
+  });
+  modal.present();
+}
+
+private initPlacedetails() {
+    this.placedetails = {
+        address: '',
+        lat: '',
+        lng: '',
+        components: {
+            route: { set: false, short:'', long:'' },                           // calle
+            street_number: { set: false, short:'', long:'' },                   // numero
+            sublocality_level_1: { set: false, short:'', long:'' },             // barrio
+            locality: { set: false, short:'', long:'' },                        // localidad, ciudad
+            administrative_area_level_2: { set: false, short:'', long:'' },     // zona/comuna/partido
+            administrative_area_level_1: { set: false, short:'', long:'' },     // estado/provincia
+            country: { set: false, short:'', long:'' },                         // pais
+            postal_code: { set: false, short:'', long:'' },                     // codigo postal
+            postal_code_suffix: { set: false, short:'', long:'' },              // codigo postal - sufijo
+        }
+    };
+}
+
+private getPlaceDetail(place_id:string):void {
+    var self = this;
+    var request = {
+        placeId: place_id
+    };
+    this.placesService.getDetails(request, (details) => {
+
+        this.zone.run(() => {
+
+            self.placedetails.name = details.name;
+            self.placedetails.lat = details.geometry.location.lat();
+            self.placedetails.lng = details.geometry.location.lng();
+            this.saveDisabled = false;
+
+            this.maps.map.setCenter({lat: self.placedetails.lat, lng: self.placedetails.lng});
+
+            this.location = location;
+
+        });
+
+    });
+}
 
 }

@@ -13,12 +13,13 @@
   <ion-navbar hideBackButton color="primary">
 </ion-navbar>-->
 <ion-navbar color="primary">
-  <button ion-button menuToggle left>
+  <!--<button ion-button menuToggle left>
     <ion-icon name="menu"></ion-icon>
   </button>
   <ion-item>
  <ion-input type="text" [(ngModel)]="planData.subject" name="plan" placeholder="Masukan nama project"></ion-input>
- </ion-item>
+ </ion-item>-->
+ <ion-title>Order</ion-title>
 </ion-navbar>
 </ion-header>
 
@@ -27,11 +28,11 @@
 
   <ion-item>
     <ion-label>Mulai</ion-label>
-    <ion-datetime displayFormat="YYYY-DD-MM" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
+    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Akhir</ion-label>
-      <ion-datetime displayFormat="YYYY-DD-MM" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
       </ion-item>
 
   <ion-item>
@@ -47,7 +48,7 @@
 
   <ion-item>
     <ion-label>Hasil</ion-label>
-    <ion-select [(ngModel)]="planData.hasil" name="hasil">
+    <ion-select [(ngModel)]="planData.hasil" name="hasil" multiple="true">
       <ion-option value="video">Video</ion-option>
       <ion-option value="foto">Foto</ion-option>
       <ion-option value="peta">Peta</ion-option>

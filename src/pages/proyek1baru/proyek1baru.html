@@ -10,11 +10,11 @@
 
 <ion-content>
   <ion-card *ngFor="let item of dataSet">
-    <ion-card-content>
+  <ion-card-content>
      <h2 [innerHTML]="item.subject"></h2>
       <p> Dibuat  : {{item.dtcreated}} </p>
       <p> Type    : {{item.projecttype}} </p>
-      <p> Tanggal : {{item.dtprojectstart}} - {{item.dtprojectend}}  </p>
+      <p> Tanggal : {{item.dtprojectstart}} <> {{item.dtprojectend}}  </p>
       <ion-grid>
         <ion-row>
           <ion-col>

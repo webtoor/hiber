@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="autocomplete.query" autocomplete="on" [showCancelButton]="true" #myInput autofocus (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+</ion-content>
