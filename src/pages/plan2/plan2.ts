@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MenuController, IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 
 /**
@@ -16,19 +18,34 @@ import { MapPage} from '../map/map';
   templateUrl: 'plan2.html',
 })
 export class Plan2Page {
+  posts: any;
   public userDetails : any;
   responseData:any;
-  planData:any = {"subject":"","mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : []};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
+  planData:any = {"subject":"","mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : [], "city" : ""};
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider, public http: Http ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
-  console.log(latlng)
-  var split = latlng.split(",");
-  var convert = split.join(", ");
+  //console.log(latlng)
+  var split1 = latlng.split(",");
+  var convert = split1.join(", ");
   var polygon_lenght = convert.length - 2 ;
   var hasil_polygon = convert.slice(0, polygon_lenght)
   var polygon_string = hasil_polygon.toString();
   this.planData.latlng = polygon_string;
+  var lati = split1[0];
+  var long = split1[1];
+  var apiurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
+  var url2 = "&sensor=true"
+  this.http.get(apiurl+lati+','+long+url2).map(res => res.json()).subscribe(data => {
+        this.posts = data.results[0];
+        var city = this.posts.address_components[4]
+
+        console.log(city)
+      //  console.log(this.posts)
+  this.planData.city = city["long_name"];
+    });
+
+
   //string jadi array
   /*var huruf = "a,b,c";
   var konversi = huruf.split(",");
@@ -103,10 +120,10 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            this.authService.postData(this.planData, "project").then((result) => {
+            /*this.authService.postData(this.planData, "project").then((result) => {
               this.responseData = result;
               console.log(this.responseData);
-            });
+            });*/
             console.log(this.planData);
           }
         },

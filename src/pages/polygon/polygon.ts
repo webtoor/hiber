@@ -34,6 +34,17 @@ export class PolygonPage {
     this.userDetails = data.userData;
     this.polygonData.username = this.userDetails.username;
     this.polygonData.token = this.userDetails.token;
+    /*this.authService.postData(this.polygonData, "polygon").then((result) => {
+    this.responseData = result;
+    var poly = this.responseData;
+    var laty = poly["latitude"];
+    var long = poly["longitude"];
+    this.polyData.lat  = laty.split(',').map(Number);
+    this.polyData.lng = long.split(',').map(Number);
+    console.log(this.responseData)
+
+    });*/
+
     //console.log(this.polygonData)
 
     /*this.authService.postData(this.polygonData, "polygon").then((result) => {
@@ -62,7 +73,7 @@ export class PolygonPage {
     this.authService.postData(this.polygonData, "polygon").then((result) => {
       this.responseData = result;
       this.dataSet = this.responseData.output
-      console.log(this.responseData)
+      //console.log(this.responseData)
       var datas = this.responseData;
       var lati= datas["latitude"];
       var lati2= datas["longitude"];
