@@ -4,6 +4,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { SearchPage } from '../search/search'
 
 
 /**
@@ -122,8 +123,10 @@ for (var i = 0; i < a.length; ++i) {
           handler: () => {
             /*this.authService.postData(this.planData, "project").then((result) => {
               this.responseData = result;
+
               console.log(this.responseData);
             });*/
+            this.navCtrl.push(SearchPage)
             console.log(this.planData);
           }
         },

@@ -19,6 +19,8 @@ import { RatingPage } from '../pages/rating/rating';
 import { WelcomePage } from '../pages/welcome/welcome'
 import { PolygonPage } from '../pages/polygon/polygon';
 import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
+import { SearchPage  } from '../pages/search/search';
+
 
 
 import { Connectivity } from '../providers/connectivity-service/connectivity-service';
@@ -47,7 +49,8 @@ import { HttpModule } from "@angular/http";
     WelcomePage,
     LoginPage,
     PolygonPage,
-    AutoCompletePage
+    AutoCompletePage,
+     SearchPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -71,7 +74,8 @@ import { HttpModule } from "@angular/http";
     WelcomePage,
     LoginPage,
     PolygonPage,
-    AutoCompletePage 
+    AutoCompletePage,
+    SearchPage
   ],
   providers: [
     StatusBar,
