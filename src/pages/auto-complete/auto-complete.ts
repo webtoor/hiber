@@ -1,5 +1,5 @@
 import { Component, NgZone, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Searchbar   } from 'ionic-angular';
 
 /**
  * Generated class for the AutoCompletePage page.
@@ -17,7 +17,7 @@ export class AutoCompletePage {
     autocomplete: any;
     acService = new google.maps.places.AutocompleteService();
     placesService: any;
-    @ViewChild('input') myInput ;
+    @ViewChild('searchbar') searchbar:Searchbar;
 
 
     constructor(public viewCtrl: ViewController,  private zone: NgZone) {
@@ -25,16 +25,13 @@ export class AutoCompletePage {
       this.autocomplete = {
           query: ''
       };
+
     }
-
-    ionViewLoaded() {
-
-   setTimeout(() => {
-     this.myInput.setFocus();
-   },150);
-
-}
-
+    ionViewDidEnter() {
+       setTimeout(() => {
+         this.searchbar.setFocus();
+    });
+  }
     dismiss() {
         this.viewCtrl.dismiss();
     }

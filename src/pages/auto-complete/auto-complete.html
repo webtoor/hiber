@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="autocomplete.query" autocomplete="on" [showCancelButton]="true" #myInput autofocus (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="autocomplete.query" autocomplete="on" [showCancelButton]="true" #searchbar (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>

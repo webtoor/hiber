@@ -20,6 +20,7 @@ import { WelcomePage } from '../pages/welcome/welcome'
 import { PolygonPage } from '../pages/polygon/polygon';
 import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
 import { SearchPage  } from '../pages/search/search';
+import { Keyboard } from "@ionic-native/keyboard"
 
 
 
@@ -50,7 +51,7 @@ import { HttpModule } from "@angular/http";
     LoginPage,
     PolygonPage,
     AutoCompletePage,
-     SearchPage
+    SearchPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -78,6 +79,7 @@ import { HttpModule } from "@angular/http";
     SearchPage
   ],
   providers: [
+    Keyboard,
     StatusBar,
     SplashScreen,
     Connectivity,
