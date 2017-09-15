@@ -25,12 +25,13 @@ export class AutoCompletePage {
       this.autocomplete = {
           query: ''
       };
-
+      this.ionViewDidEnter()
     }
-    ionViewDidEnter() {
+  ionViewDidEnter() {
        setTimeout(() => {
-         this.searchbar.setFocus();
-    });
+         this.searchbar.setFocus()
+        });
+
   }
     dismiss() {
         this.viewCtrl.dismiss();

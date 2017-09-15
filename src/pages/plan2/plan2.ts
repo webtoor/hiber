@@ -33,19 +33,21 @@ export class Plan2Page {
   var hasil_polygon = convert.slice(0, polygon_lenght)
   var polygon_string = hasil_polygon.toString();
   this.planData.latlng = polygon_string;
+  console.log(this.planData.latlng)
   var lati = split1[0];
   var long = split1[1];
   var apiurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
   var url2 = "&sensor=true"
   this.http.get(apiurl+lati+','+long+url2).map(res => res.json()).subscribe(data => {
         this.posts = data.results[0];
-        var city = this.posts.address_components[4]
-
-        console.log(city)
-      //  console.log(this.posts)
-  this.planData.city = city["long_name"];
+        var city = this.posts.formatted_address
+        var city2 = city.split(",");
+        //console.log(city2["3"])
+        //console.log(this.posts.lenght)
+        //var kota = this.posts.address_components
+        //console.log(kota.length)
+        this.planData.city = city2["3"];
     });
-
 
   //string jadi array
   /*var huruf = "a,b,c";
@@ -83,12 +85,19 @@ for (var i = 0; i < a.length; ++i) {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlanDuaPage');
     //console.log(this.latlng);
-    var date = new Date().toISOString();
+    /*var date = new Date().toISOString();
+    console.log(date)
     var das = date
     var year = das.split("-")[0]
     var month = das.split("-")[1]
     var day = ( das.split("-")[2] ).split("T")[0];
-    this.planData.subject = 'Order_'+year+month+day;
+    this.planData.subject = 'Order_'+year+month+day;*/
+    var cek_order = {"username" :  this.planData.username, "token" : this.planData.token  }
+    console.log(cek_order)
+    this.authService.postData(cek_order, "cekorder").then((result) => {
+    this.responseData = result;
+    this.planData.subject = this.responseData['date'];
+    });
     this.planData.mulai = new Date().toISOString();
     this.planData.akhir = new Date().toISOString();
 
