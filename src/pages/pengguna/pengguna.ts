@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { MenuController, NavController, NavParams, App } from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 
@@ -10,7 +10,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-pengguna',
   templateUrl: 'pengguna.html',

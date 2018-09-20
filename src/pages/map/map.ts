@@ -1,4 +1,4 @@
-import { NavController, Platform, ViewController, NavParams, AlertController, ModalController  } from 'ionic-angular';
+import { NavController, Platform, ViewController, NavParams, AlertController, ModalController, ToastController   } from 'ionic-angular';
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
@@ -33,7 +33,7 @@ export class MapPage{
 
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, private alertCtrl: AlertController, private modalCtrl: ModalController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
         this.searchDisabled = true;
         this.saveDisabled = true;
 
@@ -91,22 +91,30 @@ export class MapPage{
         this.viewCtrl.dismiss();
     }
     createPlan(){
-      if (this.maps.pathstr == undefined) {
-          this.presentAlert()
+       // console.log(this.maps.pathstr)
+      if (this.maps.pathstr == "") {
+          this.presentToast()
       }else{
       this.nama.latlng = this.maps.pathstr;
+      console.log(this.nama.latlng)
       this.navCtrl.push(Plan2Page, {
         latlng : this.nama.latlng
       }); }
         //console.log(latlng);
     }
-presentAlert() {
-  let alert = this.alertCtrl.create({
-    title: 'Note',
-    subTitle: 'Buat polygon dahulu',
-    buttons: ['Ok']
+
+presentToast() {
+  let toast = this.toastCtrl.create({
+    message: 'Anda harus membuat polygon dahulu',
+    duration: 3000,
+    position: 'middle'
   });
-  alert.present();
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
 }
 
 showAddressModal () {

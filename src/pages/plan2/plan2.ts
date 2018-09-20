@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { MenuController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
 import { Http, Headers } from '@angular/http';
@@ -13,7 +13,6 @@ import { SearchPage } from '../search/search'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-plan2',
   templateUrl: 'plan2.html',
@@ -34,7 +33,7 @@ export class Plan2Page {
   var polygon_string = hasil_polygon.toString();
   this.planData.latlng = polygon_string;
   console.log(this.planData.latlng)
-  var lati = split1[0];
+  /* var lati = split1[0];
   var long = split1[1];
   var apiurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
   var url2 = "&sensor=true"
@@ -47,7 +46,7 @@ export class Plan2Page {
         //var kota = this.posts.address_components
         //console.log(kota.length)
         this.planData.city = city2["3"];
-    });
+    }); */
 
   //string jadi array
   /*var huruf = "a,b,c";
@@ -130,11 +129,11 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            /*this.authService.postData(this.planData, "project").then((result) => {
+            this.authService.postData(this.planData, "project").then((result) => {
               this.responseData = result;
 
               console.log(this.responseData);
-            });*/
+            });
             this.navCtrl.push(SearchPage)
             console.log(this.planData);
           }

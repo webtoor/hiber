@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
+import { MenuController,NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
 import { DaftarPage } from '../daftar/daftar'
 import { MapPage } from '../map/map'
 import { PenggunaPage } from '../pengguna/pengguna'
@@ -12,7 +12,6 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',

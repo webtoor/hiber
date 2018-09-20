@@ -7,7 +7,6 @@ import { MenuController, IonicPage, NavController, NavParams } from 'ionic-angul
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-proyek1lampau',
   templateUrl: 'proyek1lampau.html',

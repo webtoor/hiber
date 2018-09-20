@@ -1,5 +1,5 @@
 import { Injectable, ViewChild, ElementRef} from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {  ToastController } from 'ionic-angular';
 import { Connectivity } from '../connectivity-service/connectivity-service';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -11,6 +11,8 @@ export class GoogleMaps {
   pleaseConnect: any;
   map: any;
   pathstr:any;
+  all_overlays = [];
+
   mapInitialised: boolean = false;
   mapLoaded: any;
   mapLoadedObserver: any;
@@ -21,7 +23,7 @@ export class GoogleMaps {
 
 
 
-  constructor(public connectivityService: Connectivity, public geolocation: Geolocation) {
+  constructor(public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController) {
 
   }
 
@@ -89,7 +91,7 @@ export class GoogleMaps {
   clearSelection = (shape): void => {
 
     if(shape) {
-      shape.setEditable(false);
+      shape.setEditable(true);
       shape = null;
       this.selectedShape=shape
     }
@@ -107,11 +109,14 @@ export class GoogleMaps {
     this.updateCurSelText(shape);
   }
 
-  deleteSelectedShape() {
+/*   deleteSelectedShape() {
     if (this.selectedShape) {
       this.selectedShape.setMap(null);
     }
-  }
+  } */
+
+
+  
   updateCurSelText(shape){
    this.pathstr = shape.getPath();
     if (shape.getPath()) {
@@ -120,8 +125,11 @@ export class GoogleMaps {
       for (var i = 0; i < shape.getPath().getLength(); i++) {
         this.pathstr += shape.getPath().getAt(i).toUrlValue() + ",";
       }
-      this.pathstr += "";
+    console.log(this.pathstr += "");
+   
     }
+
+ 
 
     //document.getElementById("hasil").innerHTML  = "<b>cursel</b>: " + this.selectedShape.type + " " + this.selectedShape  + " <i>path</i>: " + this.pathstr ;
   //( < HTMLScriptElement > document.getElementById("area")).text = 'asdadasd';
@@ -137,6 +145,30 @@ export class GoogleMaps {
   //console.log(hasil);
   }
 
+  deleteAllShape() {
+    for (var i=0; i < this.all_overlays.length; i++)
+    {
+      this.all_overlays[i].overlay.setMap(null);
+    }
+    this.all_overlays = [];
+    console.log(this.pathstr = "");
+  }
+  
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Anda harus menghapus polygon dahulu',
+      duration: 2000,
+      position: 'middle'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
+
   initMap(): Promise<any> {
 
     this.mapInitialised = true;
@@ -150,7 +182,7 @@ export class GoogleMaps {
         let latLng = new google.maps.LatLng(-6.923668, 107.605011);
         let mapOptions = {
           center: latLng,
-          zoom: 15,
+          zoom: 17,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true
         }
@@ -176,7 +208,7 @@ export class GoogleMaps {
           map: this.map
         });
         google.maps.event.addListener(drawingManager, 'overlaycomplete', (e) => {
-
+          this.all_overlays.push(e);
             this.selectedShape=e.overlay
 
             if (e.type != google.maps.drawing.OverlayType.MARKER) {
@@ -192,13 +224,29 @@ export class GoogleMaps {
             this.setSelection(newShape);
           });
 
+          google.maps.event.addDomListener(document.getElementById('create-plan'), 'click', () => {
+            google.maps.event.addListener(newShape, 'click', ()=> {
+              this.setSelection(newShape);
+            });
+            this.setSelection(newShape);
+
+          });
+
            this.setSelection(newShape);
         }
           });
-          google.maps.event.addDomListener(document.getElementById('create-button'), 'click', () => {
-          drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);});
+ 
+            google.maps.event.addDomListener(document.getElementById('create-button'), 'click', () => {
+              if(!this.pathstr){
+              drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+            }else {
+              this.presentToast();
+            }
+            });
+
+        
           google.maps.event.addListener(this.map, 'click', () => { this.clearSelection(newShape); });
-          google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', () => { this.deleteSelectedShape(); });
+          google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', () => { this.deleteAllShape(); });
 
 
       });
@@ -208,6 +256,8 @@ export class GoogleMaps {
 
 
   }
+
+  
 
   disableMap(): void {
 
@@ -253,5 +303,6 @@ export class GoogleMaps {
     });
 
   }
+
 
 }

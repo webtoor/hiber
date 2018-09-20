@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, MenuController, IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RatingPage } from '../rating/rating';
 
 
@@ -10,7 +10,6 @@ import { RatingPage } from '../rating/rating';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-proyek1berjalan',
   templateUrl: 'proyek1berjalan.html',

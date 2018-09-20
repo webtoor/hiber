@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams } from 'ionic-angular';
 import { MapPage } from '../map/map'
 
 
@@ -9,7 +9,6 @@ import { MapPage } from '../map/map'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-rating',
   templateUrl: 'rating.html',

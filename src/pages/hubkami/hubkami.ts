@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the HubkamiPage page.
@@ -7,7 +7,6 @@ import { MenuController, IonicPage, NavController, NavParams } from 'ionic-angul
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-hubkami',
   templateUrl: 'hubkami.html',

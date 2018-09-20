@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController, NavController, NavParams, ToastController  } from 'ionic-angular';
 import { DaftarPage } from '../daftar/daftar'
 import { LoginPage } from '../login/login'
 import { MapPage } from '../map/map';
@@ -11,17 +11,21 @@ import { MapPage } from '../map/map';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.html',
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public toastCtrl: ToastController) {
      this.menu.swipeEnable(false);
      if(localStorage.getItem('userData')){
        this.navCtrl.setRoot(MapPage);
+     }
+     var day = navParams.get('day');
+     console.log(day)
+     if(day == 1){
+       this.presentToast()
      }
   }
 
@@ -34,5 +38,18 @@ daftar(){
 }
 login(){
   this.navCtrl.push(LoginPage);
+}
+presentToast() {
+  let toast = this.toastCtrl.create({
+    message: 'Berhasil Mendaftar, Silahkan login',
+    duration: 3000,
+    position: 'bottom'
+  });
+
+  toast.onDidDismiss(() => {
+    console.log('Dismissed toast');
+  });
+
+  toast.present();
 }
 }

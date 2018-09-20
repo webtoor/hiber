@@ -36,9 +36,9 @@ export class Hiber {
     ];
 
     // setRoot
-    this.petas = [
+    /*this.petas = [
      { title: 'Peta', icon: 'pin', component: MapPage }
-   ];
+   ];*/
 
   }
 

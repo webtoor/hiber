@@ -1,5 +1,5 @@
 import { Component, NgZone, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Searchbar   } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Searchbar   } from 'ionic-angular';
 
 /**
  * Generated class for the AutoCompletePage page.
@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams, ViewController, Searchbar   } from
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+
 @Component({
   selector: 'page-auto-complete',
   templateUrl: 'auto-complete.html',

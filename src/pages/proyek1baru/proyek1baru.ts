@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, } from '@angular/core';
-import { App, MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { PolygonPage } from '../polygon/polygon'
 
@@ -10,7 +10,6 @@ import { PolygonPage } from '../polygon/polygon'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-proyek1baru',
   templateUrl: 'proyek1baru.html',

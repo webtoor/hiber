@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 
@@ -11,7 +11,6 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-polygon',
   templateUrl: 'polygon.html',
@@ -79,7 +78,7 @@ export class PolygonPage {
       var lati2= datas["longitude"];
       this.polyData.lat  = lati.split(',').map(Number);
       this.polyData.lng = lati2.split(',').map(Number);
-    //  console.log(this.polyData.lat)
+     console.log(this.polyData)
 
 
 
@@ -108,7 +107,7 @@ export class PolygonPage {
         ];*/
 
         var bermudaTriangle = new google.maps.Polygon({
-           paths: polygon,
+           paths: [polygon],
            strokeColor: '#FF0000',
            strokeOpacity: 0.8,
            strokeWeight: 2,

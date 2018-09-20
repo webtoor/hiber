@@ -3,7 +3,8 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 //let apiUrl = "http://localhost/hiber/api/";
-let apiUrl = "http://192.168.43.107/hiber/api/";
+//let apiUrl = "http://192.168.43.107/hiber/api/";
+let apiUrl = "http://webtoor.000webhostapp.com/api/";
 /*
   Generated class for the AuthServiceProvider provider.
 

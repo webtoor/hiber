@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
+import { MenuController, NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { LoginPage } from '../login/login'
+import { WelcomePage } from '../welcome/welcome'
+
 /**
  * Generated class for the DaftarPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-daftar',
   templateUrl: 'daftar.html',
@@ -35,9 +36,12 @@ export class DaftarPage {
        console.log(this.responseData);
        if(this.responseData.userData){
          this.showLoader();
-      localStorage.setItem('userData', JSON.stringify(this.responseData) );
+      //localStorage.setItem('userData', JSON.stringify(this.responseData) );
       this.loading.dismiss();
-      this.navCtrl.pop(); }
+      //this.navCtrl.pop();
+      this.navCtrl.push(WelcomePage, {
+        day: 1
+      }); }
       else{
         this.pesan = result["text"];
         this.presentToast(this.pesan);
@@ -51,6 +55,7 @@ export class DaftarPage {
  else {
   this.presentToast("Harus di isi semua");
  }
+
 
  }
 

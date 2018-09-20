@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { MapPage} from '../map/map';
 
 /**
  * Generated class for the SearchPage page.
@@ -7,7 +8,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
@@ -20,5 +20,7 @@ export class SearchPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
   }
-
+back(){
+  this.navCtrl.setRoot(MapPage);
+}
 }
