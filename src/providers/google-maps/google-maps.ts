@@ -1,5 +1,5 @@
 import { Injectable, ViewChild, ElementRef} from '@angular/core';
-import {  ToastController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { Connectivity } from '../connectivity-service/connectivity-service';
 import { Geolocation } from '@ionic-native/geolocation';
 

@@ -91,8 +91,8 @@ export class MapPage{
         this.viewCtrl.dismiss();
     }
     createPlan(){
-       // console.log(this.maps.pathstr)
-      if (this.maps.pathstr == "") {
+        console.log(this.maps.pathstr)
+      if (this.maps.pathstr == "" || this.maps.pathstr == undefined) {
           this.presentToast()
       }else{
       this.nama.latlng = this.maps.pathstr;
@@ -111,7 +111,7 @@ presentToast() {
   });
 
   toast.onDidDismiss(() => {
-    console.log('Dismissed toast');
+    //console.log('Dismissed toast');
   });
 
   toast.present();
