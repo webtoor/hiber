@@ -19,19 +19,26 @@ export class DaftarPage {
   loading: any;
   pesan:any;
 
-  userData = {"username":"", "mPhone":"","email":"","password":""};
-
+  //userData = {"username":"munshi", "email":"munshi@email.com","password":"rahasia", 	"password_confirmation" : "rahasia", "registerType": "2"};
+  userData = {	
+  "username" : "toor",
+	"email" : "toosr@email.com",
+	"password" : "rahasia",
+	"password_confirmation" : "rahasia",
+	"firstname" : "toor",
+	"lastname" : "toor",
+	"registerType": "2"}
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public menu: MenuController) {
   this.menu.swipeEnable(false);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DaftarPage');
+    //console.log('ionViewDidLoad DaftarPage');
   }
   daftar() {
-
-       if(this.userData.username && this.userData.mPhone && this.userData.email && this.userData.password){
-     this.authService.postData(this.userData, "signup").then((result) => {
+      console.log(this.userData)
+       if(this.userData.username  && this.userData.email && this.userData.password){
+     this.authService.postData(this.userData, "register").then((result) => {
        this.responseData = result;
        console.log(this.responseData);
        if(this.responseData.userData){

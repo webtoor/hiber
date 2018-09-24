@@ -91,7 +91,7 @@ export class MapPage{
         this.viewCtrl.dismiss();
     }
     createPlan(){
-        console.log(this.maps.pathstr)
+       // console.log(this.maps.pathstr)
       if (this.maps.pathstr == "" || this.maps.pathstr == undefined) {
           this.presentToast()
       }else{

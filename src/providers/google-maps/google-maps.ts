@@ -1,7 +1,9 @@
 import { Injectable, ViewChild, ElementRef} from '@angular/core';
+
 import { ToastController } from 'ionic-angular';
 import { Connectivity } from '../connectivity-service/connectivity-service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { MapPage} from '../../pages/map/map';
 
 @Injectable()
 export class GoogleMaps {
@@ -11,6 +13,7 @@ export class GoogleMaps {
   pleaseConnect: any;
   map: any;
   pathstr:any;
+  polyline:any;
   all_overlays = [];
 
   mapInitialised: boolean = false;
@@ -23,7 +26,7 @@ export class GoogleMaps {
 
 
 
-  constructor(public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController) {
+  constructor(public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController){
 
   }
 
@@ -91,7 +94,7 @@ export class GoogleMaps {
   clearSelection = (shape): void => {
 
     if(shape) {
-      shape.setEditable(true);
+      shape.setEditable(false);
       shape = null;
       this.selectedShape=shape
     }
@@ -103,10 +106,10 @@ export class GoogleMaps {
     var shape = shape;
     this.selectedShape=shape;
 
-    //console.log(shape.getPath())
-
-    shape.setEditable(true);
+    shape.setEditable(false);
     this.updateCurSelText(shape);
+    console.log(this.pathstr);
+
   }
 
 /*   deleteSelectedShape() {
@@ -116,20 +119,17 @@ export class GoogleMaps {
   } */
 
 
-  
   updateCurSelText(shape){
-   this.pathstr = shape.getPath();
-    if (shape.getPath()) {
-    this.pathstr = "";
-
-      for (var i = 0; i < shape.getPath().getLength(); i++) {
-        this.pathstr += shape.getPath().getAt(i).toUrlValue() + ",";
-      }
-    console.log(this.pathstr += "");
-   
-    }
-
+    this.pathstr = shape.getPath();
+     if (shape.getPath()) {
+     this.pathstr = "";
  
+       for (var i = 0; i < shape.getPath().getLength(); i++) {
+         this.pathstr += shape.getPath().getAt(i).toUrlValue() + ",";
+       }
+       this.pathstr += "";
+     }
+
 
     //document.getElementById("hasil").innerHTML  = "<b>cursel</b>: " + this.selectedShape.type + " " + this.selectedShape  + " <i>path</i>: " + this.pathstr ;
   //( < HTMLScriptElement > document.getElementById("area")).text = 'asdadasd';
@@ -151,12 +151,13 @@ export class GoogleMaps {
       this.all_overlays[i].overlay.setMap(null);
     }
     this.all_overlays = [];
-    console.log(this.pathstr = "");
+    this.pathstr = null;
+    console.log(this.pathstr);
   }
   
   presentToast() {
     let toast = this.toastCtrl.create({
-      message: 'Anda harus menghapus polygon dahulu',
+      message: 'Hapus polygon terlebih dahulu',
       duration: 2000,
       position: 'middle'
     });
@@ -191,9 +192,15 @@ export class GoogleMaps {
         resolve(true);
 
         let polyOptions = {
-          strokeWeight: 0,
-          fillOpacity: 0.45,
-          editable: true
+         /*  strokeWeight: 2,
+          strokeOpacity: 0.8,
+          fillOpacity: 0.45, */
+          strokeColor: '#000',
+          strokeOpacity: 0.8,
+          strokeWeight: 6,
+          fillColor: 'green',
+          fillOpacity: 0.35,
+          editable: true,
         };
 
         var drawingManager = new google.maps.drawing.DrawingManager({
@@ -219,23 +226,15 @@ export class GoogleMaps {
           // mouses down on it.
           newShape = e.overlay;
           newShape.type = e.type;
-
           google.maps.event.addListener(newShape, 'click', ()=> {
             this.setSelection(newShape);
-          });
-
-          google.maps.event.addDomListener(document.getElementById('create-plan'), 'click', () => {
-            google.maps.event.addListener(newShape, 'click', ()=> {
-              this.setSelection(newShape);
-            });
-            this.setSelection(newShape);
-
           });
 
            this.setSelection(newShape);
         }
           });
- 
+
+          // Create Button
             google.maps.event.addDomListener(document.getElementById('create-button'), 'click', () => {
               if(!this.pathstr){
               drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
@@ -244,9 +243,15 @@ export class GoogleMaps {
             }
             });
 
-        
-          google.maps.event.addListener(this.map, 'click', () => { this.clearSelection(newShape); });
-          google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', () => { this.deleteAllShape(); });
+           /*  google.maps.event.addDomListener(document.getElementById('create-plan'), 'click', () => {
+              if(this.pathstr != null){
+                this.setSelection(newShape);
+              }
+            }); */
+           google.maps.event.addListener(this.map, 'click', () => { this.clearSelection(newShape); }); 
+           google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', () => { 
+            this.deleteAllShape();
+           });
 
 
       });
