@@ -18,15 +18,13 @@ export class DaftarPage {
   responseData:any;
   loading: any;
   pesan:any;
-
-  //userData = {"username":"munshi", "email":"munshi@email.com","password":"rahasia", 	"password_confirmation" : "rahasia", "registerType": "2"};
+  errors:any;
   userData = {	
   "username" : "toor",
-	"email" : "toosr@email.com",
+  "mobilephone" : "",
+	"email" : "toor@email.com",
 	"password" : "rahasia",
-	"password_confirmation" : "rahasia",
-	"firstname" : "toor",
-	"lastname" : "toor",
+	"password_confirmation" : "",
 	"registerType": "2"}
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public menu: MenuController) {
   this.menu.swipeEnable(false);
@@ -37,11 +35,11 @@ export class DaftarPage {
   }
   daftar() {
       console.log(this.userData)
-       if(this.userData.username  && this.userData.email && this.userData.password){
+       if(this.userData.email && this.userData.password){
      this.authService.postData(this.userData, "register").then((result) => {
        this.responseData = result;
-       console.log(this.responseData);
-       if(this.responseData.userData){
+       console.log(this.responseData.error);
+       if(this.responseData['success'] == true){
          this.showLoader();
       //localStorage.setItem('userData', JSON.stringify(this.responseData) );
       this.loading.dismiss();
@@ -50,8 +48,15 @@ export class DaftarPage {
         day: 1
       }); }
       else{
-        this.pesan = result["text"];
-        this.presentToast(this.pesan);
+        this.pesan = this.responseData['message'];
+        this.errors = this.responseData['error'];
+        var pes = "" ;
+        for(var obj in this.errors) { 
+          pes += this.errors[obj].toString() + "\n";
+          console.log(this.errors[obj].toString())
+       }
+       this.presentToast(pes.toString());
+
       }
      }, (err) => {
        this.showLoader();
@@ -77,10 +82,10 @@ export class DaftarPage {
 
    presentToast(msg) {
      let toast = this.toastCtrl.create({
-       message: msg,
-       duration: 3000,
+      message: msg,
+      duration: 3000,
        position: 'bottom',
-       dismissOnPageChange: true
+       dismissOnPageChange: true,
      });
 
      toast.onDidDismiss(() => {
@@ -88,6 +93,8 @@ export class DaftarPage {
      });
 
      toast.present();
+     
+     
    }
 login(){
   this.navCtrl.push(LoginPage);

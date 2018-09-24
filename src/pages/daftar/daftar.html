@@ -10,17 +10,21 @@
     <ion-input type="text" name="username" placeholder="Username" [(ngModel)]="userData.username"></ion-input>
   </ion-item>
   <ion-item>
+    <ion-label color="primary" floating-label><ion-icon name="mail"></ion-icon></ion-label>
+    <ion-input  type="text" placeholder="Email" [(ngModel)]="userData.email"></ion-input>
+  </ion-item>
+  <ion-item>
     <ion-label color="primary" floating-label><ion-icon name="call"></ion-icon>
   </ion-label>
-    <ion-input type="number" name="mPhone" placeholder="No Hp" [(ngModel)]="userData.mPhone"></ion-input>
+    <ion-input type="number" name="mobilephone" placeholder="Mobilephone" [(ngModel)]="userData.mPhone"></ion-input>
   </ion-item>
-<ion-item>
-  <ion-label color="primary" floating-label><ion-icon name="mail"></ion-icon></ion-label>
-  <ion-input  type="text" placeholder="Email" [(ngModel)]="userData.email"></ion-input>
-</ion-item>
 <ion-item>
   <ion-label color="primary" floating-label><ion-icon name="lock"></ion-icon></ion-label>
   <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label color="primary" floating-label><ion-icon name="lock"></ion-icon></ion-label>
+  <ion-input type="password" placeholder="Confirmation password" [(ngModel)]="userData.confirmation_password"></ion-input>
 </ion-item>
 <br>
 <div text-center>
