@@ -69,7 +69,7 @@ export class PolygonPage {
 
   }
   loadMap(){
-    this.authService.postData(this.polygonData, "polygon").then((result) => {
+    this.authService.postData(this.polygonData, "polygon", '').then((result) => {
       this.responseData = result;
       this.dataSet = this.responseData.output
       //console.log(this.responseData)

@@ -17,7 +17,7 @@ let apiUrl = "http://127.0.0.1:8000/";
 */
 @Injectable()
 export class AuthServiceProvider {
-
+  data
   constructor(public http: Http) {
     //console.log('Hello AuthServiceProvider Provider');
   }
@@ -27,8 +27,9 @@ export class AuthServiceProvider {
       let headers = new Headers();
       headers.append('Content-Type','application/json');
       headers.append('Accept','application/json');
-      headers.append('Authorization', 'Bearer' + access_token);
+      headers.append('Authorization', 'Bearer ' + access_token);
       let options = new RequestOptions({ headers:headers});
+      console.log(options)
       this.http.post(apiUrl+type, JSON.stringify(credentials), options).
       subscribe(res =>{
         resolve(res.json());
@@ -38,6 +39,23 @@ export class AuthServiceProvider {
 
     });
 
+  }
+
+  getData(type, access_token){
+    return new Promise(resolve => {
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      headers.append('Accept','application/json');
+      headers.append('Authorization', 'Bearer ' + access_token);
+      let options = new RequestOptions({ headers:headers});
+      console.log(options)
+      this.http.get(apiUrl + type, options)
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        });
+    });
   }
 
 }

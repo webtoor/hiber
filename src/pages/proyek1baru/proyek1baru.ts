@@ -37,7 +37,7 @@ export class Proyek1baruPage {
     console.log('ionViewDidLoad Proyek1baruPage');
   }
   getproyek(){
-    this.authService.postData(this.userPostData , 'proyekbaru').then((result)=>{
+    this.authService.postData(this.userPostData , 'proyekbaru', '').then((result)=>{
     this.responseData = result;
     if(this.responseData.proyekBaru){
     this.dataSet = this.responseData.proyekBaru;

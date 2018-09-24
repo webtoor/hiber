@@ -19,13 +19,14 @@ export class PenggunaPage {
   public userDetails : any;
   public responseData: any;
   public dataSet : any;
-  userPostData = {"user_id":"", "token":""};
+  acces_token : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public menu: MenuController, public authService : AuthServiceProvider) {
      this.menu.swipeEnable(false);
      const data = JSON.parse(localStorage.getItem('userData'));
-     //console.log(userData['email'])
-    this.userDetails = data;
+     this.userDetails = data;
+    //console.log(this.userDetails['access_token'])
+
   }
 
   ionViewDidLoad() {
@@ -54,6 +55,19 @@ export class PenggunaPage {
   }
   logout(){
     //Api Token Logout
+    this.authService.getData("api/logout", this.userDetails['access_token']).then((result) =>{
+      this.responseData = result;
+      console.log(this.responseData)
+      if(this.responseData.feedData){
+    }
+    else{
+      console.log("No access");
+    }
+  
+  
+      }, (err) => {
+        //Connection failed message
+      });
     localStorage.clear();
      setTimeout(()=> this.backToWelcome(), 1000);
   }
