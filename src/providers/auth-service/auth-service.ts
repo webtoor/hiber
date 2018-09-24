@@ -21,12 +21,13 @@ export class AuthServiceProvider {
   constructor(public http: Http) {
     //console.log('Hello AuthServiceProvider Provider');
   }
-  postData(credentials, type){
+  postData(credentials, type, access_token){
 
     return new Promise((resolve, reject) =>{
       let headers = new Headers();
       headers.append('Content-Type','application/json');
       headers.append('Accept','application/json');
+      headers.append('Authorization', 'Bearer' + access_token);
       let options = new RequestOptions({ headers:headers});
       this.http.post(apiUrl+type, JSON.stringify(credentials), options).
       subscribe(res =>{

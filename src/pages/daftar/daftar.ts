@@ -20,12 +20,13 @@ export class DaftarPage {
   pesan:any;
   errors:any;
   userData = {	
-  "username" : "toor",
-  "mobilephone" : "",
-	"email" : "toor@email.com",
-	"password" : "rahasia",
-	"password_confirmation" : "",
-	"registerType": "2"}
+    "username" : "",
+    "phonenumber" : "",
+    "email" : "",
+    "password" : "",
+    "password_confirmation" : "",
+    "registerType": "2"
+}
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public loadingCtrl: LoadingController, private toastCtrl: ToastController, public menu: MenuController) {
   this.menu.swipeEnable(false);
   }
@@ -36,7 +37,7 @@ export class DaftarPage {
   daftar() {
       console.log(this.userData)
        if(this.userData.email && this.userData.password){
-     this.authService.postData(this.userData, "register").then((result) => {
+     this.authService.postData(this.userData, "register", "").then((result) => {
        this.responseData = result;
        console.log(this.responseData.error);
        if(this.responseData['success'] == true){
@@ -93,8 +94,6 @@ export class DaftarPage {
      });
 
      toast.present();
-     
-     
    }
 login(){
   this.navCtrl.push(LoginPage);

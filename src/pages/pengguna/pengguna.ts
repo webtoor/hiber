@@ -24,12 +24,8 @@ export class PenggunaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public menu: MenuController, public authService : AuthServiceProvider) {
      this.menu.swipeEnable(false);
      const data = JSON.parse(localStorage.getItem('userData'));
-     this.responseData = data.userData;
-     console.log(this.responseData);
-     this.userDetails = data.userData;
-     this.userPostData.user_id = this.userDetails.user_id;
-     this.userPostData.token = this.userDetails.token;
-
+     //console.log(userData['email'])
+    this.userDetails = data;
   }
 
   ionViewDidLoad() {

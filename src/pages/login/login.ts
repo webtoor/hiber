@@ -19,8 +19,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 export class LoginPage {
   responseData: any;
   loading: any;
-  pesan: any;
-  userData = { "username": "", "password": "" };
+  userData = { "email": "", "password": "" };
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController) {
     this.menu.swipeEnable(false);
   }
@@ -30,19 +29,18 @@ export class LoginPage {
   }
   login() {
 
-    if (this.userData.username && this.userData.password) {
-      this.authService.postData(this.userData, "login").then((result) => {
+    if (this.userData.email && this.userData.password) {
+      this.authService.postData(this.userData, "login", "").then((result) => {
         this.responseData = result;
         console.log(this.responseData);
-        if (this.responseData.userData) {
+        if (this.responseData["access_token"]) {
           this.showLoader();
           localStorage.setItem('userData', JSON.stringify(this.responseData));
           this.loading.dismiss();
           this.navCtrl.setRoot(MapPage);
         }
-        else {
-          this.pesan = result["text"];
-          this.presentToast(this.pesan);
+        else{
+         this.presentToast('Invalid credentials' + "\n" +  this.responseData['message']);
         }
       }, (err) => {
         this.showLoader();
@@ -51,7 +49,7 @@ export class LoginPage {
       });
     }
     else {
-      this.presentToast("Harus di isi semua");
+      this.presentToast("The email field is required \n The password field is required");
     }
   }
   showLoader() {
