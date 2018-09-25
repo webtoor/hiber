@@ -25,7 +25,7 @@ export class AutoCompletePage {
       this.autocomplete = {
           query: ''
       };
-      this.ionViewDidEnter()
+      //this.ionViewDidEnter()
     }
   ionViewDidEnter() {
        setTimeout(() => {
