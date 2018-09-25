@@ -29,7 +29,7 @@ export class AuthServiceProvider {
       headers.append('Accept','application/json');
       headers.append('Authorization', 'Bearer ' + access_token);
       let options = new RequestOptions({ headers:headers});
-      console.log(options)
+      //console.log(options)
       this.http.post(apiUrl+type, JSON.stringify(credentials), options).
       subscribe(res =>{
         resolve(res.json());
@@ -48,7 +48,7 @@ export class AuthServiceProvider {
       headers.append('Accept','application/json');
       headers.append('Authorization', 'Bearer ' + access_token);
       let options = new RequestOptions({ headers:headers});
-      console.log(options)
+      //console.log(options)
       this.http.get(apiUrl + type, options)
         .map(res => res.json())
         .subscribe(data => {

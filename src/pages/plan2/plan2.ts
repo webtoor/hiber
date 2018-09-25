@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
-import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { SearchPage } from '../search/search'
 
@@ -22,7 +21,7 @@ export class Plan2Page {
   public userDetails : any;
   responseData:any;
   planData:any = {"subject":"","mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : [], "city" : ""};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider, public http: Http ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
   //console.log(latlng)
@@ -93,7 +92,7 @@ for (var i = 0; i < a.length; ++i) {
     this.planData.subject = 'Order_'+year+month+day;*/
     var cek_order = {"username" :  this.planData.username, "token" : this.planData.token  }
     console.log(cek_order)
-    this.authService.postData(cek_order, "cekorder").then((result) => {
+    this.authService.postData(cek_order, "cekorder", "").then((result) => {
     this.responseData = result;
     this.planData.subject = this.responseData['date'];
     });
@@ -129,7 +128,7 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            this.authService.postData(this.planData, "project").then((result) => {
+            this.authService.postData(this.planData, "project", "").then((result) => {
               this.responseData = result;
 
               console.log(this.responseData);

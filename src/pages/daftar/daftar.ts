@@ -39,7 +39,7 @@ export class DaftarPage {
        if(this.userData.email && this.userData.password){
      this.authService.postData(this.userData, "register", "").then((result) => {
        this.responseData = result;
-       console.log(this.responseData.error);
+       console.log(this.responseData);
        if(this.responseData['success'] == true){
          this.showLoader();
       //localStorage.setItem('userData', JSON.stringify(this.responseData) );

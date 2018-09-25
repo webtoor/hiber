@@ -1,5 +1,5 @@
 {
-    "name": "ionic-location-select",
+    "name": "hiber",
     "version": "0.0.1",
     "author": "Ionic Framework",
     "homepage": "http://ionicframework.com/",
@@ -28,7 +28,7 @@
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
         "@types/google-maps": "^3.2.0",
-        "cordova-android": "^6.4.0",
+        "cordova-android": "6.4.0",
         "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-console": "^1.1.0",
         "cordova-plugin-device": "^1.1.7",
@@ -65,7 +65,8 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-wkwebview-inputfocusfix": {}
+            "cordova-plugin-wkwebview-inputfocusfix": {},
+            "cordova-plugin-compat": {}
         },
         "platforms": [
             "android"
