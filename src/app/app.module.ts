@@ -21,9 +21,6 @@ import { PolygonPage } from '../pages/polygon/polygon';
 import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
 import { SearchPage  } from '../pages/search/search';
 import { Keyboard } from "@ionic-native/keyboard"
-
-
-
 import { Connectivity } from '../providers/connectivity-service/connectivity-service';
 import { GoogleMaps } from '../providers/google-maps/google-maps';
 import { Network } from '@ionic-native/network';
@@ -55,7 +52,11 @@ import { HttpModule } from "@angular/http";
   ],
   imports: [
     BrowserModule,HttpModule,
-    IonicModule.forRoot(Hiber),
+    IonicModule.forRoot(Hiber,{
+      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false
+    }),
     Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
