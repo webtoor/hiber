@@ -20,18 +20,17 @@ export class Plan2Page {
   posts: any;
   public userDetails : any;
   responseData:any;
-  planData:any = {"subject":"","mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : [], "city" : ""};
+  planData:any = {"mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : [], "latlng" : ""};
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
-  //console.log(latlng)
   var split1 = latlng.split(",");
   var convert = split1.join(", ");
   var polygon_lenght = convert.length - 2 ;
   var hasil_polygon = convert.slice(0, polygon_lenght)
-  var polygon_string = hasil_polygon.toString();
-  this.planData.latlng = polygon_string;
-  console.log(this.planData.latlng)
+  this.planData.latlng = hasil_polygon.toString();
+
+
   /* var lati = split1[0];
   var long = split1[1];
   var apiurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
@@ -75,29 +74,11 @@ for (var i = 0; i < a.length; ++i) {
   //this.responseData = data.userData;
 
   //console.log(this.responseData);
-  this.userDetails = data.userData;
-  this.planData.username = this.userDetails.username;
-  this.planData.token = this.userDetails.token;
+ 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PlanDuaPage');
-    //console.log(this.latlng);
-    /*var date = new Date().toISOString();
-    console.log(date)
-    var das = date
-    var year = das.split("-")[0]
-    var month = das.split("-")[1]
-    var day = ( das.split("-")[2] ).split("T")[0];
-    this.planData.subject = 'Order_'+year+month+day;*/
-    var cek_order = {"username" :  this.planData.username, "token" : this.planData.token  }
-    console.log(cek_order)
-    this.authService.postData(cek_order, "cekorder", "").then((result) => {
-    this.responseData = result;
-    this.planData.subject = this.responseData['date'];
-    });
-    this.planData.mulai = new Date().toISOString();
-    this.planData.akhir = new Date().toISOString();
 
   }
   planForm() {

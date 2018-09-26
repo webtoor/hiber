@@ -17,28 +17,24 @@ import { PolygonPage } from '../pages/polygon/polygon';
 })
 export class Hiber {
   @ViewChild(Nav) nav: Nav;
-
+  userDetails : any;
   rootPage: any =  WelcomePage;
 
   pages: Array<{title: string, icon: string,  component: any}>;
-  petas: Array<{title: string, icon: string,  component: any}>;
 
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    const data = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = data;
 
     // ngfor navigation push
    this.pages = [
      { title: 'Pengguna', icon: 'contact', component: PenggunaPage },
-     { title: 'Proyek', icon: 'cart', component: Proyek1Page },
+     { title: 'Proyek', icon: 'book', component: Proyek1Page },
      { title: 'Hubungi kami', icon: 'mail', component: HubkamiPage },
      { title: 'Bantuan', icon: 'help-circle', component: BantuanPage }
     ];
-
-    // setRoot
-    /*this.petas = [
-     { title: 'Peta', icon: 'pin', component: MapPage }
-   ];*/
 
   }
 
@@ -59,9 +55,5 @@ export class Hiber {
     // we wouldn't want the back button to show in this scenario
     this.nav.push(page.component);
   }
- openPagesr(peta) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-   this.nav.setRoot(peta.component);
-  }
+
 }

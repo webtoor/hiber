@@ -1,18 +1,18 @@
- <ion-menu [content]="content">
-  <ion-header>
+ <ion-menu [content]="content" >
+  <!-- <ion-header>
     <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <ion-content>
+    <div id="menu">
+      <img src="assets/imgs/menu.png" class="logo"/>
+     <div class="email">{{ userDetails.email }}</div>
+    </div>
     <ion-list>
-      <button menuClose ion-item *ngFor="let s of petas" (click)="openPagesr(s)">
-        <ion-icon name={{s.icon}} item-start></ion-icon>
-        {{s.title}}
-      </button>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name={{p.icon}} item-start></ion-icon>
+        <ion-icon name={{p.icon}} item-start style="margin-right: -10px;"></ion-icon>
         {{p.title}}
       </button>
     </ion-list>
