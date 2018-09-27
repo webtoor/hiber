@@ -4,6 +4,11 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header>
+    <ion-navbar color="primary" >
+      <ion-title>Sign Up</ion-title>
+    </ion-navbar>
+  </ion-header>
 <ion-content padding>
   <ion-item  class="marginTop">
     <ion-label color="primary" floating-label><ion-icon name="person"></ion-icon></ion-label>
@@ -30,9 +35,7 @@
 <div text-center>
 <button ion-button block round text-center color="primary" (click)=daftar()>Create Account</button>
 </div>
+<ion-toolbar style="margin-top:100px;" color="white" text-center>
+    <div style="font-size: 16px;">Sudah Punya Akun? <a href="#" (click)="login()">Login</a></div>
+</ion-toolbar>
 </ion-content>
-<ion-footer>
-  <div text-center>
-    Sudah Punya Akun? <a href="#" (click)="login()">Masuk</a>
-  </div>
-</ion-footer>
