@@ -28,31 +28,31 @@
 
   <ion-item>
     <ion-label>Mulai</ion-label>
-    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
+    <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Akhir</ion-label>
-      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
+      <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
       </ion-item>
 
   <ion-item>
     <ion-label>Kegunaan</ion-label>
     <ion-select [(ngModel)]="planData.kegunaan" name="kegunaan" required>
-      <ion-option value="pemetaan tanaman">Pemetaan Tanaman</ion-option>
-      <ion-option value="lalu-lintas">Lalu-lintas</ion-option>
-      <ion-option value="konstruksi bangunan">Konstruksi Bangunan</ion-option>
-      <ion-option value="Pengawasan">Pengawasan</ion-option>
-      <ion-option value="liburan">Liburan</ion-option>
+      <ion-option value="1">Pemetaan Tanaman</ion-option>
+      <ion-option value="2">Lalu-lintas</ion-option>
+      <ion-option value="3">Konstruksi Bangunan</ion-option>
+      <ion-option value="4">Pengawasan</ion-option>
+      <ion-option value="5">Liburan</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label>Hasil</ion-label>
     <ion-select [(ngModel)]="planData.hasil" name="hasil" multiple="true">
-      <ion-option value="video">Video</ion-option>
-      <ion-option value="foto">Foto</ion-option>
-      <ion-option value="peta">Peta</ion-option>
-      <ion-option value="lain-lain">Lain-lain</ion-option>
+      <ion-option value="1">Video</ion-option>
+      <ion-option value="2">Foto</ion-option>
+      <ion-option value="3">Peta</ion-option>
+      <ion-option value="4">Lain-lain</ion-option>
     </ion-select>
   </ion-item>
 <br>
@@ -102,7 +102,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button block (click)="planForm()">Cari Penyedia Jasa</button>
+        <button ion-button block (click)="cari()">Cari Penyedia Jasa</button>
       </ion-col>
       <!--<ion-col>
       <button ion-button block color="dark" (click)="aturArea()">Atur Area</button>

@@ -30,7 +30,7 @@ export class WelcomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomePage');
+    //console.log('ionViewDidLoad WelcomePage');
   }
 
 daftar(){

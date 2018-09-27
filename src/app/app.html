@@ -8,7 +8,7 @@
   <ion-content>
     <div id="menu">
       <img src="assets/imgs/menu.png" class="logo"/>
-     <div class="email">{{ userDetails.email }}</div>
+     <div class="email" *ngIf="userDetails">{{ userDetails.email }}</div>
     </div>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">

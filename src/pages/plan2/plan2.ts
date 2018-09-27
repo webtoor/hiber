@@ -4,6 +4,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
 import 'rxjs/add/operator/map';
 import { SearchPage } from '../search/search'
+import { WelcomePage } from '../welcome/welcome'
 
 
 /**
@@ -20,7 +21,15 @@ export class Plan2Page {
   posts: any;
   public userDetails : any;
   responseData:any;
-  planData:any = {"mulai":"","akhir":"","kegunaan":"", "comment":"", "hasil" : [], "latlng" : ""};
+  planData:any = {
+    "createdby_id": "",
+    "mulai":"",
+    "akhir":"",
+    "kegunaan":"",
+    "comment":"",
+    "hasil" : [], 
+    "latlng" : []
+};
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
@@ -28,7 +37,7 @@ export class Plan2Page {
   var convert = split1.join(", ");
   var polygon_lenght = convert.length - 2 ;
   var hasil_polygon = convert.slice(0, polygon_lenght)
-  this.planData.latlng = hasil_polygon.toString();
+  this.planData.latlng = hasil_polygon.split(", ");
 
 
   /* var lati = split1[0];
@@ -71,7 +80,8 @@ for (var i = 0; i < a.length; ++i) {
 
 
   const data = JSON.parse(localStorage.getItem('userData'));
-  //this.responseData = data.userData;
+  this.userDetails = data;
+  this.planData.createdby_id = this.userDetails['id'];
 
   //console.log(this.responseData);
  
@@ -84,13 +94,17 @@ for (var i = 0; i < a.length; ++i) {
   planForm() {
     console.log(this.planData);
   }
+  backToWelcome(){
+    this.navCtrl.setRoot(WelcomePage);
+   }
 
   cari() {
     if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
     } else{
+    //console.log(this.planData);
 
-      var das = this.planData.mulai
+   /*    var das = this.planData.mulai
       var year = das.split("-")[0]
       var month = das.split("-")[1]
       var day = ( das.split("-")[2] ).split("T")[0];
@@ -100,7 +114,7 @@ for (var i = 0; i < a.length; ++i) {
       var year = das.split("-")[0]
       var month = das.split("-")[1]
       var day = ( das.split("-")[2] ).split("T")[0];
-      this.planData.akhir= year +'-'+month+'-'+ day;
+      this.planData.akhir= year +'-'+month+'-'+ day; */
 
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
@@ -109,13 +123,16 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            this.authService.postData(this.planData, "project", "").then((result) => {
+            this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
-
               console.log(this.responseData);
+              if(this.responseData['status'] == true){
+                this.navCtrl.push(SearchPage)      
+              }else{
+              /*   localStorage.clear();
+                setTimeout(()=> this.backToWelcome(), 1000); */
+              }
             });
-            this.navCtrl.push(SearchPage)
-            console.log(this.planData);
           }
         },
         {
@@ -135,8 +152,8 @@ for (var i = 0; i < a.length; ++i) {
 
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Note',
-      subTitle: 'Tidak boleh ada yang kosong!',
+      title: 'Harus diisi!',
+      subTitle: '- Mulai<br/>- Akhir<br/>- Kegunaan dan hasil',
       buttons: ['Ok']
     });
     alert.present();
