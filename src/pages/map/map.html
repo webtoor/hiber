@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="navy">
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
@@ -13,7 +13,7 @@
       </ion-buttons>
 
 </ion-navbar>
-<ion-toolbar color="primary" style="margin-top:-10px">
+<ion-toolbar color="navy" style="margin-top:-20px">
   <ion-searchbar (click)="showAddressModal()" [(ngModel)]="address.place" showCancelButton="true" placeholder="Search location"></ion-searchbar>
 </ion-toolbar>
 
@@ -30,10 +30,10 @@
   <ion-fab right bottom>
     <!--<button ion-fab color="danger"><ion-icon name="checkmark"></ion-icon></button>
     <br>-->
-    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="navy"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="top">
-      <button ion-fab id="create-button"><ion-icon name="create"></ion-icon></button>
-      <button ion-fab id="delete-button"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab id="create-button" color="navy"><ion-icon name="create" color="orange"></ion-icon></button>
+      <button ion-fab id="delete-button" color="navy"><ion-icon name="trash" color="orange"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 

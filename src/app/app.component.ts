@@ -45,7 +45,8 @@ export class Hiber {
         setTimeout(() => {
           this.splashScreen.hide();
           }, 100);
-        this.statusBar.styleDefault();
+          this.statusBar.backgroundColorByHexString('#ffa600');
+
         this.splashScreen.hide();
       });
     }

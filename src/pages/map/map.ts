@@ -2,6 +2,7 @@ import { NavController, Platform, ViewController, NavParams, AlertController, Mo
 import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
+import { StatusBar } from '@ionic-native/status-bar';
 import { Plan2Page} from '../plan2/plan2';
 import { PenggunaPage } from '../pengguna/pengguna';
 import { AutoCompletePage} from '../auto-complete/auto-complete';
@@ -33,7 +34,9 @@ export class MapPage{
 
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
+    constructor(public statusBar: StatusBar, public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
+        this.statusBar.backgroundColorByHexString('#ffa600');
+
         this.searchDisabled = true;
         this.saveDisabled = true;
         this.address = {
