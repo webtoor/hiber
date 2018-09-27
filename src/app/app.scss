@@ -19,18 +19,21 @@
   height: 135px;
   //opacity: .7;
   .email{
-    color:white;
-    font-size: 13px;
+    color : white;
+    font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
     margin-left: 20px;
   }
   .logo{
-    color:white;
       height: 75px;
       margin-top: 10px;
       margin-left: 20px;
   }
+}
+#content{
+  background: color($colors,white);
+
 }
 // remove gray line and point bug
 .scroll-content {

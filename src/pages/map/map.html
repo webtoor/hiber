@@ -3,8 +3,8 @@
       <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title text-center>
-          HIBER
+        <ion-title text-center >
+         <div style="color:#ffa600;">HIBER</div>
         </ion-title>
     <ion-buttons end icon-only style="margin-right:-5px;">
         <button ion-button id="create-plan">
@@ -13,7 +13,7 @@
       </ion-buttons>
 
 </ion-navbar>
-<ion-toolbar color="navy" style="margin-top:-20px">
+<ion-toolbar color="navy" style="margin-top:-18px">
   <ion-searchbar (click)="showAddressModal()" [(ngModel)]="address.place" showCancelButton="true" placeholder="Search location"></ion-searchbar>
 </ion-toolbar>
 
@@ -32,8 +32,8 @@
     <br>-->
     <button ion-fab color="navy"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="top">
-      <button ion-fab id="create-button" color="navy"><ion-icon name="create" color="orange"></ion-icon></button>
-      <button ion-fab id="delete-button" color="navy"><ion-icon name="trash" color="orange"></ion-icon></button>
+      <button ion-fab id="create-button" color="navy"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab id="delete-button" color="navy"><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 

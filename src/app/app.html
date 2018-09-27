@@ -5,17 +5,21 @@
     </ion-toolbar>
   </ion-header> -->
 
-  <ion-content>
+  <ion-content >
     <div id="menu">
       <img src="assets/imgs/menu.png" class="logo"/>
      <div class="email" *ngIf="userDetails">{{ userDetails.email }}</div>
     </div>
+    <br/>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name={{p.icon}} item-start style="margin-right: -10px;"></ion-icon>
-        {{p.title}}
+        <ion-icon name={{p.icon}} item-start color="navy" style="margin-right: -10px;"></ion-icon>
+          <div color="navy" style="font-weight:bold;">{{p.title}}</div> 
       </button>
     </ion-list>
+    <ion-toolbar style="margin-top:230px;" color="white">
+      <div style="color:#2A2C43; font-weight:bold; margin-left:20px">v1.0.0</div>
+    </ion-toolbar>
   </ion-content>
 
 </ion-menu>
