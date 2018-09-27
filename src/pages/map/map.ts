@@ -36,7 +36,6 @@ export class MapPage{
     constructor(public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
         this.searchDisabled = true;
         this.saveDisabled = true;
-
         this.address = {
           place: ''
         };
@@ -51,6 +50,8 @@ export class MapPage{
             this.autocompleteService = new google.maps.places.AutocompleteService();
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
+            this.maps.pathstr = null;
+
 
         });
         this.initPlacedetails();
@@ -90,7 +91,7 @@ export class MapPage{
     close(){
         this.viewCtrl.dismiss();
     }
-    createPlan(){
+   /*  createPlan(){
        // console.log(this.maps.pathstr)
       if (this.maps.pathstr == "" || this.maps.pathstr == undefined) {
           this.presentToast()
@@ -101,7 +102,7 @@ export class MapPage{
         latlng : this.nama.latlng
       }); }
         //console.log(latlng);
-    }
+    } */
 
 presentToast() {
   let toast = this.toastCtrl.create({

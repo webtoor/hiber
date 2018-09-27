@@ -33,6 +33,7 @@ export class Plan2Page {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
+  console.log(latlng)
   var split1 = latlng.split(",");
   var convert = split1.join(", ");
   var polygon_lenght = convert.length - 2 ;
@@ -102,7 +103,7 @@ for (var i = 0; i < a.length; ++i) {
     if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
     } else{
-    //console.log(this.planData);
+    console.log(this.planData);
 
    /*    var das = this.planData.mulai
       var year = das.split("-")[0]
@@ -123,16 +124,17 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
+            /* this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
-              if(this.responseData['status'] == true){
+              if(this.responseData['success'] == true){
                 this.navCtrl.push(SearchPage)      
               }else{
-              /*   localStorage.clear();
-                setTimeout(()=> this.backToWelcome(), 1000); */
+                localStorage.clear();
+                setTimeout(()=> this.backToWelcome(), 1000); 
               }
-            });
+            }); */
+            this.navCtrl.push(SearchPage)  
           }
         },
         {

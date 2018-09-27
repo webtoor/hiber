@@ -23,7 +23,7 @@ export class WelcomePage {
        this.navCtrl.setRoot(MapPage);
      }
      var day = navParams.get('day');
-     console.log(day)
+     //console.log(day)
      if(day == 1){
        this.presentToast()
      }

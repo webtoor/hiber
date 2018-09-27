@@ -1,13 +1,14 @@
 import { Injectable, ViewChild, ElementRef} from '@angular/core';
 
-import { ToastController } from 'ionic-angular';
+import { ToastController, NavController, App } from 'ionic-angular';
 import { Connectivity } from '../connectivity-service/connectivity-service';
 import { Geolocation } from '@ionic-native/geolocation';
-import { MapPage} from '../../pages/map/map';
+import { Plan2Page} from '../../pages/plan2/plan2';
 
 @Injectable()
 export class GoogleMaps {
-
+  private navCtrl: NavController;
+  //@ViewChild('create-plan') nav: NavController;
   @ViewChild('area') Element: ElementRef;
   mapElement: any;
   pleaseConnect: any;
@@ -26,7 +27,8 @@ export class GoogleMaps {
 
 
 
-  constructor(public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController){
+  constructor( public app:App, public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController){
+    this.navCtrl = app.getActiveNav();
 
   }
 
@@ -106,7 +108,7 @@ export class GoogleMaps {
     var shape = shape;
     this.selectedShape=shape;
 
-    shape.setEditable(false);
+    shape.setEditable(true);
     this.updateCurSelText(shape);
     console.log(this.pathstr);
 
@@ -155,9 +157,9 @@ export class GoogleMaps {
     console.log(this.pathstr);
   }
   
-  presentToast() {
+  presentToast(msg) {
     let toast = this.toastCtrl.create({
-      message: 'Hapus polygon terlebih dahulu',
+      message: msg,
       duration: 2000,
       position: 'middle'
     });
@@ -239,15 +241,21 @@ export class GoogleMaps {
               if(!this.pathstr){
               drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
             }else {
-              this.presentToast();
+              this.presentToast('Hapus polygon terlebih dahulu');
             }
             });
-
-           /*  google.maps.event.addDomListener(document.getElementById('create-plan'), 'click', () => {
+             google.maps.event.addDomListener(document.getElementById('create-plan'), 'click', () => {
               if(this.pathstr != null){
                 this.setSelection(newShape);
-              }
-            }); */
+                this.navCtrl.push(Plan2Page,{
+                  latlng : this.pathstr
+                });
+              }else{
+                  this.presentToast('Anda harus membuat polygon dahulu');
+                }
+              
+
+            }); 
            google.maps.event.addListener(this.map, 'click', () => { this.clearSelection(newShape); }); 
            google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', () => { 
             this.deleteAllShape();
