@@ -1,15 +1,26 @@
 <ion-header>
   <ion-navbar color="primary">
-    <button ion-button menuToggle left>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-searchbar (click)="showAddressModal()" [(ngModel)]="address.place"></ion-searchbar>
-</ion-navbar>
-</ion-header>
-<ion-content>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title text-center>
+          HIBER
+        </ion-title>
+    <ion-buttons end icon-only style="margin-right:-5px;">
+        <button ion-button (click)="createPlan()" id="create-plan">
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </button>
+      </ion-buttons>
 
+</ion-navbar>
+<ion-toolbar color="primary" style="margin-top:-10px">
+  <ion-searchbar (click)="showAddressModal()" [(ngModel)]="address.place" showCancelButton="true" placeholder="Search location"></ion-searchbar>
+</ion-toolbar>
+
+</ion-header>
+
+<ion-content>
   <div #pleaseConnect id="please-connect">
-    <p>No Internet Connection</p>
   </div>
 
   <div #map id="map">
@@ -27,12 +38,7 @@
   </ion-fab>
 
 
-  <ion-fab left bottom>
+ <!--  <ion-fab left bottom>
     <button (click)="createPlan();" ion-fab mini color="danger" id="create-plan"><ion-icon name="checkmark"></ion-icon></button>
-  </ion-fab>
-
-  <ion-item>
-    <!--<ion-input type="text"  [(ngModel)] = "nama.mes">
-    </ion-input>-->
-  </ion-item>
+  </ion-fab> -->
 </ion-content>
