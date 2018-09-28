@@ -1,5 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MapPage } from '../pages/map/map';
@@ -18,16 +18,23 @@ import { PolygonPage } from '../pages/polygon/polygon';
 export class Hiber {
   @ViewChild(Nav) nav: Nav;
   userDetails : any;
+  emails :any;
   rootPage: any =  WelcomePage;
 
   pages: Array<{title: string, icon: string,  component: any}>;
 
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    const data = JSON.parse(localStorage.getItem('userData'));
-    this.userDetails = data;
-
+    this.userDetails = JSON.parse(localStorage.getItem('userData'));
+    if(this.userDetails){
+    this.emails = this.userDetails.email;
+    }
+    events.subscribe('email', (email) => {
+      this.emails = email;
+      console.log(email);
+    });
+    console.log(this.userDetails)
     // ngfor navigation push
    this.pages = [
      { title: 'Pengguna', icon: 'contact', component: PenggunaPage },

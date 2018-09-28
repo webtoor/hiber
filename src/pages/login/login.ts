@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController,NavController, NavParams, LoadingController, ToastController  } from 'ionic-angular';
+import { MenuController, NavController, NavParams, LoadingController, ToastController, Events  } from 'ionic-angular';
 import { DaftarPage } from '../daftar/daftar'
 import { MapPage } from '../map/map'
 import { PenggunaPage } from '../pengguna/pengguna'
@@ -20,10 +20,13 @@ export class LoginPage {
   responseData: any;
   loading: any;
   userData = { "email": "", "password": "" };
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
     this.menu.swipeEnable(false);
+    
   }
 
+
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
@@ -35,6 +38,9 @@ export class LoginPage {
         console.log(this.responseData);
         if (this.responseData["access_token"]) {
           this.showLoader();
+          //this.events.publish('email', this.userData.email);
+          this.events.publish('email', this.responseData.email);
+
           localStorage.setItem('userData', JSON.stringify(this.responseData));
           this.loading.dismiss();
           this.navCtrl.setRoot(MapPage);
