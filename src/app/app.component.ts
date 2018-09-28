@@ -32,9 +32,9 @@ export class Hiber {
     }
     events.subscribe('email', (email) => {
       this.emails = email;
-      console.log(email);
+      //console.log(email);
     });
-    console.log(this.userDetails)
+    
     // ngfor navigation push
    this.pages = [
      { title: 'Pengguna', icon: 'contact', component: PenggunaPage },
@@ -54,7 +54,6 @@ export class Hiber {
           }, 100);
           this.statusBar.backgroundColorByHexString('#2A2C43');
           this.statusBar.styleBlackTranslucent()
-        this.splashScreen.hide();
       });
     }
 

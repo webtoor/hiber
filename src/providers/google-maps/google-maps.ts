@@ -178,11 +178,11 @@ export class GoogleMaps {
 
     return new Promise((resolve) => {
     var newShape
-    /*let options = { enableHighAccuracy: true, timeout: 2 * 1000, maximumAge: 0 };
-   this.geolocation.getCurrentPosition(options).then((position) => {*/
+    let options = { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 };
+   this.geolocation.getCurrentPosition(options).then((position) => {
 
-  //let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        let latLng = new google.maps.LatLng(-6.923668, 107.605011);
+   let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        //let latLng = new google.maps.LatLng(-6.923668, 107.605011);
         let mapOptions = {
           center: latLng,
           zoom: 17,
@@ -265,7 +265,7 @@ export class GoogleMaps {
       });
 
 
-    //});
+    });
 
 
   }

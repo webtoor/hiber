@@ -167,9 +167,16 @@ private getPlaceDetail(place_id:string):void {
             self.placedetails.lat = details.geometry.location.lat();
             self.placedetails.lng = details.geometry.location.lng();
             this.saveDisabled = false;
+        
+            // MARKER START
+        var marker = new google.maps.Marker({
+            map: this.maps.map,
+            position: {lat: self.placedetails.lat, lng: self.placedetails.lng}
 
-            this.maps.map.setCenter({lat: self.placedetails.lat, lng: self.placedetails.lng});
-
+        });
+        marker.setMap(this.maps.map)
+            // Marker END
+        this.maps.map.setCenter({lat: self.placedetails.lat, lng: self.placedetails.lng})
             this.location = location;
 
         });

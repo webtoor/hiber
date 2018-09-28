@@ -12,7 +12,7 @@
   </button>
   <ion-navbar hideBackButton color="primary">
 </ion-navbar>-->
-<ion-navbar color="primary">
+<ion-navbar color="navy">
   <!--<button ion-button menuToggle left>
     <ion-icon name="menu"></ion-icon>
   </button>
@@ -27,17 +27,17 @@
 <ion-content>
 
   <ion-item>
-    <ion-label>Mulai</ion-label>
+    <ion-label color="navy"><ion-icon name="calendar"></ion-icon><p>Mulai</p></ion-label>
     <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Akhir</ion-label>
+    <ion-label color="navy"><ion-icon name="calendar"></ion-icon><p>Akhir</p></ion-label>
       <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
       </ion-item>
 
   <ion-item>
-    <ion-label>Kegunaan</ion-label>
-    <ion-select [(ngModel)]="planData.kegunaan" name="kegunaan" required>
+      <ion-label color="navy"><ion-icon name="eye"></ion-icon><p>Kegunaan</p></ion-label>
+      <ion-select [(ngModel)]="planData.kegunaan" name="kegunaan" required>
       <ion-option value="1">Pemetaan Tanaman</ion-option>
       <ion-option value="2">Lalu-lintas</ion-option>
       <ion-option value="3">Konstruksi Bangunan</ion-option>
@@ -47,7 +47,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Hasil</ion-label>
+    <ion-label color="navy"><ion-icon name="logo-instagram"></ion-icon><p>Hasil</p></ion-label>
     <ion-select [(ngModel)]="planData.hasil" name="hasil" multiple="true">
       <ion-option value="1">Video</ion-option>
       <ion-option value="2">Foto</ion-option>
@@ -57,7 +57,8 @@
   </ion-item>
 <br>
 <ion-item>
-  <ion-textarea [(ngModel)]="planData.comment" name="comment" placeholder="Masukan Komentar"></ion-textarea>
+    <ion-label color="navy"><ion-icon name="mail"></ion-icon></ion-label>
+  <ion-textarea [(ngModel)]="planData.comment" name="comment" placeholder="Pesan"></ion-textarea>
 </ion-item>
 <!--<ion-list>
   <ion-list-header>
@@ -99,10 +100,10 @@
     </ion-item>
     <button ion-button type="submit">Add Todo</button>
   </form>-->
-  <ion-grid>
+  <ion-grid style="margin-top:50px;">
     <ion-row>
       <ion-col>
-        <button ion-button block (click)="cari()">Cari Penyedia Jasa</button>
+        <button ion-button color="navy" block (click)="cari()">Cari Penyedia Jasa</button>
       </ion-col>
       <!--<ion-col>
       <button ion-button block color="dark" (click)="aturArea()">Atur Area</button>
