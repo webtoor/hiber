@@ -124,17 +124,17 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            /* this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
+             this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
                 this.navCtrl.push(SearchPage)      
               }else{
-                localStorage.clear();
-                setTimeout(()=> this.backToWelcome(), 1000); 
+                 localStorage.clear();
+                setTimeout(()=> this.backToWelcome(), 1000);  
               }
-            }); */
-            this.navCtrl.push(SearchPage)  
+            }); 
+            //this.navCtrl.push(SearchPage)  
           }
         },
         {
