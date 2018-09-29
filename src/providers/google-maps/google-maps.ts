@@ -1,6 +1,6 @@
-import { Injectable, ViewChild, ElementRef} from '@angular/core';
+import { Injectable, ViewChild, ElementRef,  NgZone} from '@angular/core';
 
-import { ToastController, NavController, App } from 'ionic-angular';
+import { ToastController, NavController, App, Platform } from 'ionic-angular';
 import { Connectivity } from '../connectivity-service/connectivity-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Plan2Page} from '../../pages/plan2/plan2';
@@ -27,8 +27,9 @@ export class GoogleMaps {
 
 
 
-  constructor( public app:App, public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController){
+  constructor(public zone: NgZone, public platform: Platform, public app:App, public connectivityService: Connectivity, public geolocation: Geolocation, public toastCtrl: ToastController){
     this.navCtrl = app.getActiveNav();
+
 
   }
 
@@ -178,21 +179,32 @@ export class GoogleMaps {
 
     return new Promise((resolve) => {
     var newShape
-    let options = { enableHighAccuracy: true, timeout: 3000, maximumAge: 0 };
-   this.geolocation.getCurrentPosition(options).then((position) => {
 
-   let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        //let latLng = new google.maps.LatLng(-6.923668, 107.605011);
+    let options = {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true  };
+    this.geolocation.getCurrentPosition(options).then((position) => {
+       
+     
+    let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    
+
+   
+      //let latLng = new google.maps.LatLng(-6.923668, 107.605011);
+    
         let mapOptions = {
           center: latLng,
           zoom: 17,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true
         }
-
+      
         this.map = new google.maps.Map(this.mapElement, mapOptions);
         resolve(true);
 
+      /*   var marker = new google.maps.Marker({
+          map: this.map,
+          animation: google.maps.Animation.DROP,
+          position: latLng
+      }); */
         let polyOptions = {
          /*  strokeWeight: 2,
           strokeOpacity: 0.8,
@@ -262,10 +274,97 @@ export class GoogleMaps {
            });
 
 
-      });
+          }).catch((err) => {
+            let latLng = new google.maps.LatLng(-6.923668, 107.605011);
+    
+            let mapOptions = {
+              center: latLng,
+              zoom: 17,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              disableDefaultUI: true
+            }
+          
+            this.map = new google.maps.Map(this.mapElement, mapOptions);
+            resolve(true);
+    
+          /*   var marker = new google.maps.Marker({
+              map: this.map,
+              animation: google.maps.Animation.DROP,
+              position: latLng
+          }); */
+            let polyOptions = {
+             /*  strokeWeight: 2,
+              strokeOpacity: 0.8,
+              fillOpacity: 0.45, */
+              strokeColor: '#000',
+              strokeOpacity: 0.8,
+              strokeWeight: 6,
+              fillColor: 'green',
+              fillOpacity: 0.35,
+              editable: true,
+            };
+    
+            var drawingManager = new google.maps.drawing.DrawingManager({
+              drawingControl: false,
+              drawingControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_CENTER,
+                drawingModes: [
+                  google.maps.drawing.OverlayType.POLYGON,
+                ]
+              },
+              polygonOptions: polyOptions,
+              map: this.map
+            });
+            google.maps.event.addListener(drawingManager, 'overlaycomplete', (e) => {
+              this.all_overlays.push(e);
+                this.selectedShape=e.overlay
+    
+                if (e.type != google.maps.drawing.OverlayType.MARKER) {
+              // Switch back to non-drawing mode after drawing a shape.
+              drawingManager.setDrawingMode(null);
+    
+              // Add an event listener that selects the newly-drawn shape when the user
+              // mouses down on it.
+              newShape = e.overlay;
+              newShape.type = e.type;
+              google.maps.event.addListener(newShape, 'click', ()=> {
+                this.setSelection(newShape);
+              });
+    
+               this.setSelection(newShape);
+            }
+              });
+    
+              // Create Button
+                google.maps.event.addDomListener(document.getElementById('create-button'), 'click', () => {
+                  if(!this.pathstr){
+                  drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+                }else {
+                  this.presentToast('Hapus polygon terlebih dahulu');
+                }
+                });
+                 google.maps.event.addDomListener(document.getElementById('create-plan'), 'click', () => {
+                  if(this.pathstr != null){
+                    this.setSelection(newShape);
+                    this.navCtrl.push(Plan2Page,{
+                      latlng : this.pathstr
+                    });
+                  }else{
+                      this.presentToast('Anda harus membuat polygon dahulu');
+                    }
+                  
+    
+                }); 
+               google.maps.event.addListener(this.map, 'click', () => { this.clearSelection(newShape); }); 
+               google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', () => { 
+                this.deleteAllShape();
+               });
+        }); 
+   
+    
 
 
-    });
+    });  
 
 
   }

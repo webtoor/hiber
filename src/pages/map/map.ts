@@ -1,12 +1,11 @@
 import { NavController, Platform, ViewController, NavParams, AlertController, ModalController, ToastController   } from 'ionic-angular';
-import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component, ElementRef, ViewChild, NgZone} from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Plan2Page} from '../plan2/plan2';
 import { PenggunaPage } from '../pengguna/pengguna';
 import { AutoCompletePage} from '../auto-complete/auto-complete';
-
 
 
 
@@ -19,6 +18,7 @@ export class MapPage{
     @ViewChild('map') mapElement: ElementRef;
     @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
       address;
+      marker: any;
     latitude: number;
     longitude: number;
     autocompleteService: any;
@@ -36,29 +36,33 @@ export class MapPage{
 
     constructor(public statusBar: StatusBar, public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
         //this.statusBar.backgroundColorByHexString('#ffa600');
-
+    /*     this.geolocation.getCurrentPosition().then((position) => {
+            alert(position.coords.latitude)
+        }).catch((err) => {
+            alert('Error getting location');
+        }); */
+    
         this.searchDisabled = true;
         this.saveDisabled = true;
         this.address = {
           place: ''
         };
-
+     
 
     }
 
     ionViewDidLoad(): void {
-
         let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
 
             this.autocompleteService = new google.maps.places.AutocompleteService();
             this.placesService = new google.maps.places.PlacesService(this.maps.map);
             this.searchDisabled = false;
             this.maps.pathstr = null;
-
+     
 
         });
         this.initPlacedetails();
-
+  
     }
 
     /*selectPlace(place){
@@ -155,6 +159,7 @@ private initPlacedetails() {
 }
 
 private getPlaceDetail(place_id:string):void {
+   
     var self = this;
     var request = {
         placeId: place_id
@@ -167,17 +172,26 @@ private getPlaceDetail(place_id:string):void {
             self.placedetails.lat = details.geometry.location.lat();
             self.placedetails.lng = details.geometry.location.lng();
             this.saveDisabled = false;
-        
+            
+        // Clear Marker
+        if(this.marker){
+        this.marker.setMap(null);
+        }
+
             // MARKER START
-        var marker = new google.maps.Marker({
+        this.marker = new google.maps.Marker({
             map: this.maps.map,
+            animation: google.maps.Animation.DROP,
             position: {lat: self.placedetails.lat, lng: self.placedetails.lng}
 
         });
-        marker.setMap(this.maps.map)
+        //marker.setMap(this.maps.map)
+
             // Marker END
         this.maps.map.setCenter({lat: self.placedetails.lat, lng: self.placedetails.lng})
+
             this.location = location;
+
 
         });
 
