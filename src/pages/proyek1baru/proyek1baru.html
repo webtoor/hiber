@@ -5,12 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-content>
-  <ion-card *ngFor="">
-  <ion-card-content>
-     <h2 [innerHTML]=""></h2>
-      <p> Dibuat  :  </p>
-      <p> Type    :  </p>
-      <p> Tanggal :  </p>
+  <div *ngIf="items;else null" >
+  <ion-card *ngFor="let item of items">
+  <ion-card-content *ngIf = "item.status_id == 1">
+     <div>{{item.order.subject}}</div>
+      <div> Dibuat  : {{item.order.created_at | date: "dd-MM-yyyy HH:mm a"}}  </div>
+      <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
+      <div *ngIf="item.order.projecttype == 2">Liburan</div>
+      <div *ngIf="item.order.projecttype == 3">Lalu-lintas</div>
+      <div *ngIf="item.order.projecttype == 4">Konstruksi Bangunan</div>
+      <div *ngIf="item.order.projecttype == 5">Pengawasan</div>
+      <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
       <ion-grid>
         <ion-row>
           <ion-col>
@@ -30,5 +35,8 @@
       </ion-grid>
     </ion-card-content>
     </ion-card>
-
+    <ng-template #null>
+        
+      </ng-template>
+    </div>
 </ion-content>

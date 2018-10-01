@@ -15,9 +15,13 @@ import { RatingPage } from '../rating/rating';
   templateUrl: 'proyek1berjalan.html',
 })
 export class Proyek1berjalanPage {
-
+  public items : any
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App) {
      this.menu.swipeEnable(false);
+     const data = JSON.parse(localStorage.getItem('order_status'));
+     this.items = data;
+     console.log(this.items)
+
   }
 
   ionViewDidLoad() {

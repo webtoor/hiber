@@ -20,31 +20,36 @@ export class Proyek1baruPage {
   proyekData : any
   public userDetails : any;
   public responseData: any;
-  public dataSet : any;
-  userPostData = {"id":""};
+  public items : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
-     this.menu.swipeEnable(false);
-     const data = JSON.parse(localStorage.getItem('userData'));
-     this.userPostData.id = data.id;
-     //console.log(this.userPostData)
-     //this.getproyek();
+    this.menu.swipeEnable(false);
+    const data = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = data;
+    this.getProject();
+  
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1baruPage');
   }
-  getproyek(){
-  /*   this.authService.postData(this.userPostData , 'proyekbaru', '').then((result)=>{
-    this.responseData = result;
-    if(this.responseData.proyekBaru){
-    this.dataSet = this.responseData.proyekBaru;
-    console.log(this.dataSet);
-  }
-  else{
-    console.log("No access");
-  }
-    }) */
+
+  getProject(){
+    this.authService.getData('api/user/order_status/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+      this.responseData = result;
+      console.log(this.responseData['order']);
+      localStorage.setItem('order_status', JSON.stringify(this.responseData['order']));
+      this.items = this.responseData['order'];
+     /*  for (let index = 0; index < order.length; ++index) {
+        if(this.responseData['order']['order_status']){
+          this.dataSet = (order[index]['status_id']);
+
+        }
+    } */
+      
+    }, (err) => {
+      console.log(err)
+    });
 }
 polygon(id_order:any){
   //this.proyekData =  (document.getElementById('idorder') as HTMLInputElement).value;

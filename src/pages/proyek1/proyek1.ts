@@ -19,16 +19,14 @@ export class Proyek1Page {
   tab1Root = Proyek1baruPage;
   tab2Root = Proyek1berjalanPage;
   tab3Root = Proyek1lampauPage;
-  userPostData = {"id":""};
   responseData : any;
   userDetails : any;
 
   constructor(public authService:AuthServiceProvider,public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
     this.menu.swipeEnable(false);
-    const data = JSON.parse(localStorage.getItem('userData'));
-    this.userDetails = data;
-    console.log(this.userPostData)
-    this.getProject();
+  /*   const data = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = data; */
+    //this.getProject();
   }
 
   ionViewDidLoad() {
@@ -42,11 +40,11 @@ export class Proyek1Page {
        this.navCtrl.setRoot(MapPage)
     }
  }
-  getProject(){
+/*   getProject(){
       this.authService.getData('api/user/order_status/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
-      console.log(this.responseData);
+      console.log(this.responseData['order']);
       }) 
-  }
+  } */
 
 }

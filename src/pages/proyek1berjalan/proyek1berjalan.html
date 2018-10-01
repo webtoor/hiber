@@ -9,13 +9,41 @@
 
 </ion-header>
 <ion-content>
-  <ion-item>
-  <div class="">
-    <h2>1082017_1 </h2>
-    <p>Dibuat : 1-08-2017</p>
-    <p>Pemetaan Halaman</p>
-    <p>Tanggal proyek : 1-08-2017 - 5-08-2017</p>
-    <button ion-button small clear (click)="konfirmasi()">Konfirmasi Hasil</button>
-  </div>
-  </ion-item>
-</ion-content>
+    <div *ngIf="items;else kosong" >
+    <div *ngFor="let item of items">
+      <div *ngIf="item.status_id == 3" >
+      <ion-card>
+        <ion-card-content >
+       <div>{{item.order.subject}}</div>
+        <div> Dibuat  : {{item.order.created_at | date: "dd-MM-yyyy HH:mm a"}}  </div>
+        <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
+        <div *ngIf="item.order.projecttype == 2">Liburan</div>
+        <div *ngIf="item.order.projecttype == 3">Lalu-lintas</div>
+        <div *ngIf="item.order.projecttype == 4">Konstruksi Bangunan</div>
+        <div *ngIf="item.order.projecttype == 5">Pengawasan</div>
+        <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+                <button ion-button small clear (click)="konfirmasi()">Konfirmasi Hasil</button>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+    
+      </ion-card-content>
+    </ion-card>
+      </div>
+    </div>
+    <div *ngIf="items.status_id != 3">
+      Kosong
+    </div>
+    </div>
+    <ng-template #kosong>
+        <ion-card>
+            <ion-card-content >
+        <p>Kosong</p>
+      </ion-card-content>
+    </ion-card>
+      </ng-template>
+  </ion-content>
+  
