@@ -3,7 +3,7 @@ import { MenuController, NavController, NavParams, AlertController } from 'ionic
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
 import 'rxjs/add/operator/map';
-import { SearchPage } from '../search/search'
+import { Proyek1Page } from '../proyek1/proyek1'
 import { WelcomePage } from '../welcome/welcome'
 
 
@@ -124,17 +124,17 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-             this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
+            /*  this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
-                this.navCtrl.push(SearchPage)      
+                this.navCtrl.push(Proyek1Page)      
               }else{
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
               }
-            }); 
-            //this.navCtrl.push(SearchPage)  
+            });  */
+            this.navCtrl.push(Proyek1Page)      
           }
         },
         {

@@ -21,23 +21,21 @@ export class Proyek1baruPage {
   public userDetails : any;
   public responseData: any;
   public dataSet : any;
-  userPostData = {"username":"", "token":""};
+  userPostData = {"id":""};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
      this.menu.swipeEnable(false);
      const data = JSON.parse(localStorage.getItem('userData'));
-     this.userDetails = data.userData;
-     this.userPostData.username = this.userDetails.username;
-     this.userPostData.token = this.userDetails.token;
-     console.log(this.userPostData)
-     this.getproyek();
+     this.userPostData.id = data.id;
+     //console.log(this.userPostData)
+     //this.getproyek();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1baruPage');
   }
   getproyek(){
-    this.authService.postData(this.userPostData , 'proyekbaru', '').then((result)=>{
+  /*   this.authService.postData(this.userPostData , 'proyekbaru', '').then((result)=>{
     this.responseData = result;
     if(this.responseData.proyekBaru){
     this.dataSet = this.responseData.proyekBaru;
@@ -46,16 +44,15 @@ export class Proyek1baruPage {
   else{
     console.log("No access");
   }
-    }
-  )
+    }) */
 }
 polygon(id_order:any){
   //this.proyekData =  (document.getElementById('idorder') as HTMLInputElement).value;
    //console.log(id)
-    let nav = this.app.getRootNav();
+  /*   let nav = this.app.getRootNav();
     nav.push(PolygonPage, {
      id_order : id_order,
-   });
+   }); */
    /*let nav = this.app.getRootNav();
    nav.push(PolygonPage);*/
 }

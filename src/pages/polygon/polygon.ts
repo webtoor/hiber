@@ -19,7 +19,7 @@ export class PolygonPage {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
   map:any;
-  polygonData = {"username" : "", "id_order" : "", "token" : ""};
+  polygonData = { "id_order" : "", "token" : ""};
   public userDetails : any;
   responseData:any;
   polyData:any = {};
@@ -27,12 +27,12 @@ export class PolygonPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public maps: GoogleMaps, public authService: AuthServiceProvider) {
-    var id_order = navParams.get('id_order');
+  /*   var id_order = navParams.get('id_order');
     this.polygonData.id_order = id_order;
     const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data.userData;
     this.polygonData.username = this.userDetails.username;
-    this.polygonData.token = this.userDetails.token;
+    this.polygonData.token = this.userDetails.token; */
     /*this.authService.postData(this.polygonData, "polygon").then((result) => {
     this.responseData = result;
     var poly = this.responseData;
@@ -64,7 +64,7 @@ export class PolygonPage {
   ionViewDidLoad(): void {
 
       let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
-        this.loadMap()
+       // this.loadMap()
       });
 
   }
