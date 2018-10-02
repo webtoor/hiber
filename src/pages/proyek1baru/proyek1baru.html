@@ -6,8 +6,10 @@
 -->
 <ion-content>
   <div *ngIf="items;else null" >
-  <ion-card *ngFor="let item of items">
-  <ion-card-content *ngIf = "item.status_id == 1">
+  <div *ngFor="let item of items">
+  <div *ngIf = "item.status_id == 1">
+      <ion-card >
+      <ion-card-content>
      <div>{{item.order.subject}}</div>
       <div> Dibuat  : {{item.order.created_at | date: "dd-MM-yyyy HH:mm a"}}  </div>
       <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
@@ -29,14 +31,16 @@
               <!--<ion-input [(ngModel)]="proyekData" type="text"></ion-input>-->
 
               <!--<input type="text" value="{{item.id_order}}" id="id_order" #id_order>-->
-            <button ion-button outline small block color="danger" (click)="polygon()" >Lihat</button>
+            <button ion-button outline small block color="danger" (click)="polygon(item.order_id)" >Lihat</button>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
     </ion-card>
-    <ng-template #null>
-        
-      </ng-template>
     </div>
+    </div>
+    </div>
+    <ng-template #null>
+        Kosong
+      </ng-template>
 </ion-content>

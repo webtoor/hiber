@@ -15,8 +15,7 @@ import { PolygonPage } from '../polygon/polygon'
   templateUrl: 'proyek1baru.html',
 })
 export class Proyek1baruPage {
-  //public firstname: string = 'John';
-  @ViewChild('id_order') input:any;
+  @ViewChild('order_id') input:any;
   proyekData : any
   public userDetails : any;
   public responseData: any;
@@ -51,14 +50,12 @@ export class Proyek1baruPage {
       console.log(err)
     });
 }
-polygon(id_order:any){
-  //this.proyekData =  (document.getElementById('idorder') as HTMLInputElement).value;
-   //console.log(id)
-  /*   let nav = this.app.getRootNav();
+polygon(order_id:any){
+    //console.log(order_id)
+
+    let nav = this.app.getRootNav();
     nav.push(PolygonPage, {
-     id_order : id_order,
-   }); */
-   /*let nav = this.app.getRootNav();
-   nav.push(PolygonPage);*/
+     order_id : order_id,
+   });
 }
 }

@@ -10,11 +10,11 @@
 </ion-header>
 <ion-content>
     <div *ngIf="items;else kosong" >
-    <div *ngFor="let item of items">
+    <ng-container *ngFor="let item of items">
       <div *ngIf="item.status_id == 3" >
       <ion-card>
         <ion-card-content >
-       <div>{{item.order.subject}}</div>
+        <div>{{item.order.subject}}</div>
         <div> Dibuat  : {{item.order.created_at | date: "dd-MM-yyyy HH:mm a"}}  </div>
         <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
         <div *ngIf="item.order.projecttype == 2">Liburan</div>
@@ -29,18 +29,16 @@
               </ion-col>
           </ion-row>
         </ion-grid>
-    
       </ion-card-content>
     </ion-card>
       </div>
-    </div>
-    <div *ngIf="items.status_id != 3">
-      Kosong
-    </div>
+      
+    </ng-container>
+   
     </div>
     <ng-template #kosong>
         <ion-card>
-            <ion-card-content >
+            <ion-card-content>
         <p>Kosong</p>
       </ion-card-content>
     </ion-card>

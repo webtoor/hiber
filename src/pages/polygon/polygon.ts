@@ -19,15 +19,16 @@ export class PolygonPage {
   @ViewChild('map') mapElement: ElementRef;
   @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
   map:any;
-  polygonData = { "id_order" : "", "token" : ""};
   public userDetails : any;
   responseData:any;
   polyData:any = {};
   public dataSet : any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public maps: GoogleMaps, public authService: AuthServiceProvider) {
-  /*   var id_order = navParams.get('id_order');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
+    /* var order_id = navParams.get('order_id');
+    console.log(order_id) */
+    /*   var id_order = navParams.get('id_order');
     this.polygonData.id_order = id_order;
     const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data.userData;
@@ -61,15 +62,15 @@ export class PolygonPage {
     });*/
   }
 
-  ionViewDidLoad(): void {
+  ionViewDidLoad() {
 
-      let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
+     /*  let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
        // this.loadMap()
       });
-
+ */
   }
   loadMap(){
-    this.authService.postData(this.polygonData, "polygon", '').then((result) => {
+   /*  this.authService.postData(this.polygonData, "polygon", '').then((result) => {
       this.responseData = result;
       this.dataSet = this.responseData.output
       //console.log(this.responseData)
@@ -98,7 +99,7 @@ export class PolygonPage {
     var polygon = [];
     for(var x = 0; x < lat.length ; x++) {
       polygon.push( {lat: lat[x], lng:lng[x]} ) ;
-    }
+    } */
 
     /*var triangleCoords = [
           {lat: -6.925064, lng: 107.60529},
@@ -106,7 +107,7 @@ export class PolygonPage {
           {lat: -6.919823, lng: 107.610612},
         ];*/
 
-        var bermudaTriangle = new google.maps.Polygon({
+      /*   var bermudaTriangle = new google.maps.Polygon({
            paths: [polygon],
            strokeColor: '#FF0000',
            strokeOpacity: 0.8,
@@ -115,7 +116,7 @@ export class PolygonPage {
            fillOpacity: 0.35
          });
          bermudaTriangle.setMap(this.map);
-       });
-    }
+       }); */
+    } 
 
   }
