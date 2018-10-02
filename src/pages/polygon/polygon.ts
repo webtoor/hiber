@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { GoogleMaps } from '../../providers/google-maps/google-maps';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 
 
@@ -40,12 +39,9 @@ export class PolygonPage {
        this.authService.getData("api/user/polygon/"+ this.order_id, this.userDetails['access_token']).then((result) => {
       this.responseData = result;
       //this.dataSet = this.responseData.output
-      console.log(this.responseData[0]['latitude'])
+      console.log(this.responseData)
      
-
-
-
-    let LatLng = new google.maps.LatLng(this.responseData[0]['latitude'], this.responseData[0]['longitude']);
+    let LatLng = new google.maps.LatLng(this.responseData['polygon'][0]['latitude'], this.responseData['polygon'][0]['longitude']);
 
     let mapOptions = {
       center:LatLng,
@@ -55,12 +51,12 @@ export class PolygonPage {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-      var arr = this.responseData;
+      var arr = this.responseData['polygon'];
       var cords = []
       for (var i = 0; i < arr.length; i++) {
-        cords.push(new google.maps.LatLng(parseFloat(this.responseData[i]['latitude']), parseFloat(this.responseData[i]['longitude'])));
+        cords.push(new google.maps.LatLng(parseFloat(this.responseData['polygon'][i]['latitude']), parseFloat(this.responseData['polygon'][i]['longitude'])));
       }
-      console.log(cords)
+      //console.log(cords)
         new google.maps.Polygon({
            paths: cords,
            map: this.map,

@@ -36,7 +36,7 @@ export class Proyek1Page {
 
   setBackButtonAction(){
     this.navBar.backButtonClick = () => {
-    //Write here wherever you wanna do
+      localStorage.removeItem('order_status')
        this.navCtrl.setRoot(MapPage)
     }
  }

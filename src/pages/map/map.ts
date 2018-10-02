@@ -41,7 +41,7 @@ export class MapPage{
         }).catch((err) => {
             alert('Error getting location');
         }); */
-    
+        //console.log(JSON.parse(localStorage.getItem('order_status')))
         this.searchDisabled = true;
         this.saveDisabled = true;
         this.address = {

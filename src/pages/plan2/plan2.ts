@@ -105,18 +105,6 @@ for (var i = 0; i < a.length; ++i) {
     } else{
     console.log(this.planData);
 
-   /*    var das = this.planData.mulai
-      var year = das.split("-")[0]
-      var month = das.split("-")[1]
-      var day = ( das.split("-")[2] ).split("T")[0];
-      this.planData.mulai= year +'-'+month+'-'+ day;
-
-      var das = this.planData.akhir
-      var year = das.split("-")[0]
-      var month = das.split("-")[1]
-      var day = ( das.split("-")[2] ).split("T")[0];
-      this.planData.akhir= year +'-'+month+'-'+ day; */
-
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
       message: 'Informasi, yang telah di unggah dan diterima oleh Penyedia Jasa, tidak bisa dirubah, kecuali atas persetujuan Kedua belah pihak. Pastikan informasi yang anda masukan telah benar',
@@ -124,7 +112,7 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
-            /*  this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
+              this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
@@ -133,8 +121,8 @@ for (var i = 0; i < a.length; ++i) {
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
               }
-            });  */
-            this.navCtrl.push(Proyek1Page)      
+            });  
+            //this.navCtrl.push(Proyek1Page)      
           }
         },
         {
