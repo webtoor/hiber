@@ -17,106 +17,62 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 })
 export class PolygonPage {
   @ViewChild('map') mapElement: ElementRef;
-  @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
   map:any;
   public userDetails : any;
   responseData:any;
   polyData:any = {};
   public dataSet : any;
+  order_id : any;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
-    /* var order_id = navParams.get('order_id');
-    console.log(order_id) */
-    /*   var id_order = navParams.get('id_order');
-    this.polygonData.id_order = id_order;
+  constructor( public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
+    this.order_id = navParams.get('order_id');
+    console.log(this.order_id) 
     const data = JSON.parse(localStorage.getItem('userData'));
-    this.userDetails = data.userData;
-    this.polygonData.username = this.userDetails.username;
-    this.polygonData.token = this.userDetails.token; */
-    /*this.authService.postData(this.polygonData, "polygon").then((result) => {
-    this.responseData = result;
-    var poly = this.responseData;
-    var laty = poly["latitude"];
-    var long = poly["longitude"];
-    this.polyData.lat  = laty.split(',').map(Number);
-    this.polyData.lng = long.split(',').map(Number);
-    console.log(this.responseData)
-
-    });*/
-
-    //console.log(this.polygonData)
-
-    /*this.authService.postData(this.polygonData, "polygon").then((result) => {
-      this.responseData = result;
-      //console.log(this.responseData)
-      var datas = this.responseData;
-      var lati= datas["latitude"];
-      var lati2= datas["longitude"];
-      this.dam  = lati.split(',').map(Number);
-      this.polyData.lng= lati2.split(',').map(Number);
-      //console.log(this.polyData.lat)
-
-      var haha = this.dam;
-      console.log(haha)
-    });*/
+    this.userDetails = data;
+   
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(): void {
+    this.loadMap();
 
-     /*  let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
-       // this.loadMap()
-      });
- */
-  }
+}
   loadMap(){
-   /*  this.authService.postData(this.polygonData, "polygon", '').then((result) => {
+       this.authService.getData("api/user/polygon/"+ this.order_id, this.userDetails['access_token']).then((result) => {
       this.responseData = result;
-      this.dataSet = this.responseData.output
-      //console.log(this.responseData)
-      var datas = this.responseData;
-      var lati= datas["latitude"];
-      var lati2= datas["longitude"];
-      this.polyData.lat  = lati.split(',').map(Number);
-      this.polyData.lng = lati2.split(',').map(Number);
-     console.log(this.polyData)
+      //this.dataSet = this.responseData.output
+      console.log(this.responseData[0]['latitude'])
+     
 
 
 
-    let LatLng = new google.maps.LatLng(-6.925960, 107.60529);
+    let LatLng = new google.maps.LatLng(this.responseData[0]['latitude'], this.responseData[0]['longitude']);
 
     let mapOptions = {
       center:LatLng,
-      zoom:15,
+      zoom:17,
       MapTypeID: google.maps.MapTypeId.ROADMAP
     };
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    // Ini Buat nampilin polygon ( Masih data statis )
-    var lat =   this.polyData.lat ;
-    var lng=  this.polyData.lng ;
-    var polygon = [];
-    for(var x = 0; x < lat.length ; x++) {
-      polygon.push( {lat: lat[x], lng:lng[x]} ) ;
-    } */
-
-    /*var triangleCoords = [
-          {lat: -6.925064, lng: 107.60529},
-          {lat: -6.92042, lng: 107.601728},
-          {lat: -6.919823, lng: 107.610612},
-        ];*/
-
-      /*   var bermudaTriangle = new google.maps.Polygon({
-           paths: [polygon],
-           strokeColor: '#FF0000',
+      var arr = this.responseData;
+      var cords = []
+      for (var i = 0; i < arr.length; i++) {
+        cords.push(new google.maps.LatLng(parseFloat(this.responseData[i]['latitude']), parseFloat(this.responseData[i]['longitude'])));
+      }
+      console.log(cords)
+        new google.maps.Polygon({
+           paths: cords,
+           map: this.map,
+           strokeColor: '#000',
            strokeOpacity: 0.8,
-           strokeWeight: 2,
-           fillColor: '#FF0000',
-           fillOpacity: 0.35
+           strokeWeight: 6,
+           fillColor: 'green',
+           fillOpacity: 0.35,
          });
-         bermudaTriangle.setMap(this.map);
-       }); */
-    } 
+         this.map.getBounds(cords);
+         cords = []
+       });  
+    }   
 
   }
