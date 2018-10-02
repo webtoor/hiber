@@ -18,10 +18,9 @@ export class PolygonPage {
   @ViewChild('map') mapElement: ElementRef;
   map:any;
   public userDetails : any;
-  responseData:any;
-  polyData:any = {};
-  public dataSet : any;
-  order_id : any;
+  public responseData:any;
+  public outputs : any
+  public order_id : any;
 
   constructor( public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
     this.order_id = navParams.get('order_id');
@@ -36,7 +35,7 @@ export class PolygonPage {
 
 }
   loadMap(){
-       this.authService.getData("api/user/polygon/"+ this.order_id, this.userDetails['access_token']).then((result) => {
+      this.authService.getData("api/user/polygon/"+ this.order_id, this.userDetails['access_token']).then((result) => {
       this.responseData = result;
       //this.dataSet = this.responseData.output
       console.log(this.responseData)
@@ -67,7 +66,19 @@ export class PolygonPage {
            fillOpacity: 0.35,
          });
          this.map.getBounds(cords);
-         cords = []
+         cords = [];
+
+         this.outputs = []
+         for(var j=0; j < this.responseData['output'].length; j++){
+          if(this.responseData['output'][j]['output_id'] == '1'){
+            this.outputs.push('Video')
+          }else if(this.responseData['output'][j]['output_id'] == '2'){
+            this.outputs.push ('Foto')
+          }else if(this.responseData['output'][j]['output_id'] == '3'){
+            this.outputs.push('Peta')
+          }
+         }
+         console.log(this.outputs)
        });  
     }   
 
