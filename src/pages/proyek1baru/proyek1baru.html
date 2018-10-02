@@ -10,7 +10,7 @@
   <div *ngIf = "item.status_id == 1">
       <ion-card >
       <ion-card-content>
-     <div>{{item.order.subject}}</div>
+     <div style="font-weight:bold; margin-bottom:20px;">{{item.order.subject}}</div>
       <div> Dibuat  : {{item.order.created_at | date: "dd-MM-yyyy HH:mm a"}}  </div>
       <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
       <div *ngIf="item.order.projecttype == 2">Liburan</div>
@@ -19,19 +19,15 @@
       <div *ngIf="item.order.projecttype == 5">Pengawasan</div>
       <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
       <ion-grid>
-        <ion-row>
+        <ion-row style="margin-left: -15px; margin-right: -15px">
           <ion-col>
-            <button ion-button outline small block>Status</button>
+            <button ion-button small block color="navy" style="color:orange">Status</button>
           </ion-col>
           <ion-col>
-            <!--<input type="text" value="{{item.id_order}}" id="idorder">-->
-              <!--<ion-input [(ngModel)]="firstname" type="text" value="{{firstname.value}}"></ion-input>-->
-              <!--<ion-input [(ngModel)]="proyekData" type="text" value="{{item.projecttype}}"></ion-input>-->
-              <!--<ion-input [(ngModel)]="proyekData" type="text" value="{{item.projecttype}}"></ion-input>-->
-              <!--<ion-input [(ngModel)]="proyekData" type="text"></ion-input>-->
-
-              <!--<input type="text" value="{{item.id_order}}" id="id_order" #id_order>-->
-            <button ion-button outline small block color="danger" (click)="polygon(item.order_id)" >Lihat</button>
+              <button ion-button outline small block color="navy" style="color:orange" (click)="polygon(item.order_id)" >Detail</button>
+            </ion-col>
+          <ion-col>
+            <button ion-button outline small block color="dark" >Cancel</button>
           </ion-col>
         </ion-row>
       </ion-grid>
