@@ -21,7 +21,7 @@
       <ion-grid>
         <ion-row style="margin-left: -15px; margin-right: -15px">
           <ion-col>
-            <button ion-button small block color="navy" style="color:orange">Status</button>
+            <button ion-button small block color="navy" style="color:orange" (click)="status(item.order_id, item.order.subject)">Status</button>
           </ion-col>
           <ion-col>
               <button ion-button outline small block color="navy" style="color:orange" (click)="polygon(item.order_id)" >Detail</button>

@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'status.html',
 })
 export class StatusPage {
-
+  subject : any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.subject= navParams.get('subject');
+
   }
 
   ionViewDidLoad() {
