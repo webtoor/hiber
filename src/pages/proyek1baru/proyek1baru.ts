@@ -51,12 +51,13 @@ export class Proyek1baruPage {
       console.log(err)
     });
 }
-      polygon(order_id:any){
+      polygon(order_id:any, subject:any){
           //console.log(order_id)
 
           let nav = this.app.getRootNav();
           nav.push(PolygonPage, {
           order_id : order_id,
+          subject : subject
         });
       }
 

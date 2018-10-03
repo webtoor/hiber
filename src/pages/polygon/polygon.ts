@@ -21,9 +21,12 @@ export class PolygonPage {
   public responseData:any;
   public outputs : any
   public order_id : any;
+  subject : any;
 
   constructor( public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
     this.order_id = navParams.get('order_id');
+    this.subject = navParams.get('subject');
+
     console.log(this.order_id) 
     const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data;
