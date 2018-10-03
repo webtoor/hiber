@@ -8,11 +8,42 @@
 
   <ion-navbar color="navy">
     <ion-title>{{subject}}</ion-title>
+    <ion-buttons end icon-only style="margin-right:-5px;">
+        <button ion-button>
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
+  
 
 </ion-header>
 
-
-<ion-content padding>
+<ion-content>
+      <ion-card >
+      <ion-card-content>  
+          <ion-grid>
+        <ion-row style="margin-left: -9px; margin-top: -10px">
+          <ion-col>
+              <div style="font-weight:bold;">
+                Drone12 <ion-icon name="star"></ion-icon>4.3
+              </div>
+            </ion-col>
+          <ion-col>
+            <button ion-button small block color="navy" style="color:orange">GUNAKAN</button>
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-left: -9px; margin-top: -10px; margin-bottom: -20px">
+            <ion-col>
+              </ion-col>
+        <ion-col>
+            <button ion-button clear block small color="primary" >Hubungi</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div>Ahli di Pemetaan </div>
+      <div style="font-weight:bold;">Penawaran IDR Rp. 500,000,000</div>
+    </ion-card-content>
+    </ion-card>
+    
 
 </ion-content>
