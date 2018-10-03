@@ -20,6 +20,8 @@ import { WelcomePage } from '../pages/welcome/welcome'
 import { PolygonPage } from '../pages/polygon/polygon';
 import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
 import { SearchPage  } from '../pages/search/search';
+import { StatusPage  } from '../pages/status/status';
+
 import { Keyboard } from "@ionic-native/keyboard"
 import { Connectivity } from '../providers/connectivity-service/connectivity-service';
 import { GoogleMaps } from '../providers/google-maps/google-maps';
@@ -48,7 +50,8 @@ import { HttpModule } from "@angular/http";
     LoginPage,
     PolygonPage,
     AutoCompletePage,
-    SearchPage
+    SearchPage,
+    StatusPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -77,7 +80,8 @@ import { HttpModule } from "@angular/http";
     LoginPage,
     PolygonPage,
     AutoCompletePage,
-    SearchPage
+    SearchPage,
+    StatusPage
   ],
   providers: [
     Keyboard,
