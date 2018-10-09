@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, } from '@angular/core';
-import { App, MenuController, NavController, NavParams } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { PolygonPage } from '../polygon/polygon'
 import { StatusPage } from '../status/status'
@@ -21,8 +21,9 @@ export class Proyek1baruPage {
   public userDetails : any;
   public responseData: any;
   public items : any;
+  loading:any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
+  constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
     this.menu.swipeEnable(false);
     const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data;
@@ -33,13 +34,23 @@ export class Proyek1baruPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1baruPage');
   }
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
 
+    this.loading.present();
+  }
   getProject(){
+    this.showLoader()
     this.authService.getData('api/user/order_status/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       //console.log(this.responseData['order']);
       localStorage.setItem('order_status', JSON.stringify(this.responseData['order']));
       this.items = this.responseData['order'];
+      this.loading.dismiss()
+
      /*  for (let index = 0; index < order.length; ++index) {
         if(this.responseData['order']['order_status']){
           this.dataSet = (order[index]['status_id']);
@@ -48,7 +59,7 @@ export class Proyek1baruPage {
     } */
       
     }, (err) => {
-      console.log(err)
+      this.loading.dismiss()
     });
 }
       polygon(order_id:any, subject:any){
