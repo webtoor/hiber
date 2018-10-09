@@ -22,6 +22,7 @@ export class Plan2Page {
   public userDetails : any;
   responseData:any;
   planData:any = {
+    "subject" : "",
     "createdby_id": "",
     "mulai":"",
     "akhir":"",
@@ -100,7 +101,7 @@ for (var i = 0; i < a.length; ++i) {
    }
 
   cari() {
-    if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
+    if ((this.planData.subject == "") || (this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
     } else{
     console.log(this.planData);

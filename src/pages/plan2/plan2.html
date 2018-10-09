@@ -25,7 +25,10 @@
 
 
 <ion-content>
-
+    <ion-item>
+        <ion-label color="navy"><ion-icon name=create></ion-icon><p>Nama Project</p></ion-label>
+        <ion-input type="text" [(ngModel)]="planData.subject" name="subject"></ion-input>
+      </ion-item>
   <ion-item>
     <ion-label color="navy"><ion-icon name="calendar"></ion-icon><p>Mulai</p></ion-label>
     <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
@@ -39,10 +42,10 @@
       <ion-label color="navy"><ion-icon name="eye"></ion-icon><p>Kegunaan</p></ion-label>
       <ion-select [(ngModel)]="planData.kegunaan" name="kegunaan" required>
       <ion-option value="1">Pemetaan Tanaman</ion-option>
-      <ion-option value="2">Lalu-lintas</ion-option>
-      <ion-option value="3">Konstruksi Bangunan</ion-option>
-      <ion-option value="4">Pengawasan</ion-option>
-      <ion-option value="5">Liburan</ion-option>
+      <ion-option value="2">Liburan</ion-option>
+      <ion-option value="3">Lalu-lintas</ion-option>
+      <ion-option value="4">Konstruksi Bangunan</ion-option>
+      <ion-option value="5">Pengawasan</ion-option>
     </ion-select>
   </ion-item>
 
