@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController  } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 
 
@@ -22,8 +22,10 @@ export class PolygonPage {
   public outputs : any
   public order_id : any;
   subject : any;
+  loading:any
 
-  constructor( public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
+
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
     this.order_id = navParams.get('order_id');
     this.subject = navParams.get('subject');
 
@@ -37,7 +39,17 @@ export class PolygonPage {
     this.loadMap();
 
 }
+
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
+
+    this.loading.present();
+  }
   loadMap(){
+      this.showLoader()
       this.authService.getData("api/user/polygon/"+ this.order_id, this.userDetails['access_token']).then((result) => {
       this.responseData = result;
       //this.dataSet = this.responseData.output
@@ -82,7 +94,11 @@ export class PolygonPage {
           }
          }
          console.log(this.outputs)
-       });  
+         this.loading.dismiss()
+
+        }, (err) => {
+          this.loading.dismiss()
+        });
     }   
 
   }
