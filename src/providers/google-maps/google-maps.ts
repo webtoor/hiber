@@ -186,7 +186,7 @@ export class GoogleMaps {
      
     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     
-
+      //console.log(position.coords.latitude, position.coords.longitude)
    
       //let latLng = new google.maps.LatLng(-6.923668, 107.605011);
     
