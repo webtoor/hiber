@@ -19,7 +19,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 export class LoginPage {
   responseData: any;
   loading: any;
-  userData = { "email": "", "password": "" };
+  userData = { "email": "", "password": "" ,"user_role" : "2" };
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
     this.menu.swipeEnable(false);
     
