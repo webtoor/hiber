@@ -27,7 +27,7 @@ export class Proyek1baruPage {
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
     this.menu.swipeEnable(false);
-    const data = JSON.parse(localStorage.getItem('userData'));
+    const data = JSON.parse(localStorage.getItem('userHiber'));
     this.userDetails = data;
     this.getProject();
   

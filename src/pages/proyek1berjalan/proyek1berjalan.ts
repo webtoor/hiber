@@ -18,7 +18,7 @@ export class Proyek1berjalanPage {
   public items : any
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App) {
      this.menu.swipeEnable(false);
-     const data = JSON.parse(localStorage.getItem('order_status'));
+     const data = JSON.parse(localStorage.getItem('order_show'));
      this.items = data;
      console.log(this.items)
 

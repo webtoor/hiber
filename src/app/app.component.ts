@@ -26,7 +26,7 @@ export class Hiber {
 
   constructor(public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    this.userDetails = JSON.parse(localStorage.getItem('userData'));
+    this.userDetails = JSON.parse(localStorage.getItem('userHiber'));
     if(this.userDetails){
     this.emails = this.userDetails.email;
     }
