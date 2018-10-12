@@ -21,9 +21,10 @@ export class Proyek1Page {
   tab3Root = Proyek1lampauPage;
   responseData : any;
   userDetails : any;
-
+  plan2 : any;
   constructor(public authService:AuthServiceProvider,public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
     this.menu.swipeEnable(false);
+    this.plan2 = navParams.get('plan2');
   /*   const data = JSON.parse(localStorage.getItem('userData'));
     this.userDetails = data; */
     //this.getProject();
@@ -31,7 +32,9 @@ export class Proyek1Page {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProyekPage');
-    this.setBackButtonAction()
+    if(this.plan2 == '1'){
+      this.setBackButtonAction()
+    }
   }
 
   setBackButtonAction(){

@@ -117,7 +117,9 @@ for (var i = 0; i < a.length; ++i) {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
-                this.navCtrl.push(Proyek1Page)      
+                this.navCtrl.push(Proyek1Page, {
+                  plan2 : '1',
+                });      
               }else{
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
