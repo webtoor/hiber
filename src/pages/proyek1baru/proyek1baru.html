@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-content>
-  <div *ngIf="items;else null" >
+  <div *ngIf="items != 0;else kosong" >
   <div *ngFor="let item of items">
   <div *ngIf = "item.status_id == 1">
       <ion-card >
@@ -36,7 +36,11 @@
     </div>
     </div>
     </div>
-    <ng-template #null>
-        Kosong
-      </ng-template>
+    <ng-template #kosong>
+      <ion-card>
+          <ion-card-content>
+            <p text-center style="font-weight:bold">Belum Ada Order</p>
+          </ion-card-content>
+  </ion-card>
+    </ng-template>
 </ion-content>

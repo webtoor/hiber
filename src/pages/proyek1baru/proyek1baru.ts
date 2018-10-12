@@ -53,11 +53,12 @@ export class Proyek1baruPage {
     this.authService.getData('api/user/order_status/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
-      if(this.responseData['status']){
+      if(this.responseData['success'] == true){
         localStorage.setItem('order_status', JSON.stringify(this.responseData['order']));
         this.items = this.responseData['order'];
         this.loading.dismiss()
       }else{
+        this.loading.dismiss()
         localStorage.clear();
         setTimeout(()=> this.backToWelcome(), 1000);  
       }

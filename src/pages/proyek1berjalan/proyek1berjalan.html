@@ -9,9 +9,9 @@
 
 </ion-header>
 <ion-content>
-    <div *ngIf="items;else kosong" >
+    <div *ngIf="items != 0;else kosong" >
     <ng-container *ngFor="let item of items">
-      <div *ngIf="item.status_id == 3" >
+      <div *ngIf="item.status_id == 2" >
       <ion-card>
         <ion-card-content >
         <div style="font-weight:bold; margin-bottom:20px;">{{item.order.subject}}</div>
@@ -39,7 +39,7 @@
     <ng-template #kosong>
         <ion-card>
             <ion-card-content>
-        <p>Kosong</p>
+        <p text-center style="font-weight:bold">Belum Ada Order</p>
       </ion-card-content>
     </ion-card>
       </ng-template>
