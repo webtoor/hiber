@@ -23,7 +23,7 @@ export class PenggunaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public menu: MenuController, public authService : AuthServiceProvider) {
      this.menu.swipeEnable(false);
-     const data = JSON.parse(localStorage.getItem('userData'));
+     const data = JSON.parse(localStorage.getItem('userHiber'));
      this.userDetails = data;
     //console.log(this.userDetails['access_token'])
 
