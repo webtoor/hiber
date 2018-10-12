@@ -3,6 +3,8 @@ import { App, MenuController, NavController, NavParams, LoadingController } from
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { PolygonPage } from '../polygon/polygon'
 import { StatusPage } from '../status/status'
+import { WelcomePage } from '../welcome/welcome'
+
 
 
 
@@ -42,22 +44,23 @@ export class Proyek1baruPage {
 
     this.loading.present();
   }
+
+  backToWelcome(){
+    this.navCtrl.setRoot(WelcomePage);
+   }
   getProject(){
     this.showLoader()
     this.authService.getData('api/user/order_status/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
-      //console.log(this.responseData['order']);
-      localStorage.setItem('order_status', JSON.stringify(this.responseData['order']));
-      this.items = this.responseData['order'];
-      this.loading.dismiss()
-
-     /*  for (let index = 0; index < order.length; ++index) {
-        if(this.responseData['order']['order_status']){
-          this.dataSet = (order[index]['status_id']);
-
-        }
-    } */
-      
+      console.log(this.responseData);
+      if(this.responseData['status']){
+        localStorage.setItem('order_status', JSON.stringify(this.responseData['order']));
+        this.items = this.responseData['order'];
+        this.loading.dismiss()
+      }else{
+        localStorage.clear();
+        setTimeout(()=> this.backToWelcome(), 1000);  
+      }
     }, (err) => {
       this.loading.dismiss()
     });

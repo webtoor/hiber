@@ -19,7 +19,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 export class LoginPage {
   responseData: any;
   loading: any;
-  userData = { "email": "", "password": "" ,"user_role" : "2" };
+  userData = { "email": "", "password": "" };
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
     this.menu.swipeEnable(false);
     
@@ -33,7 +33,7 @@ export class LoginPage {
   login() {
 
     if (this.userData.email && this.userData.password) {
-      this.authService.postData(this.userData, "login", "").then((result) => {
+      this.authService.postData(this.userData, "login_user", "").then((result) => {
         this.responseData = result;
         console.log(this.responseData);
         if (this.responseData["access_token"]) {
