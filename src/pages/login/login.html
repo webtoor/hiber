@@ -12,11 +12,11 @@
 <ion-content padding>
   <ion-item  class="marginTop">
     <ion-label color="navy" floating-label><ion-icon name="mail"></ion-icon></ion-label>
-    <ion-input type="text" name="email" placeholder="Email" [(ngModel)]="userData.email"></ion-input>
+    <ion-input type="text" name="email" placeholder="Email" [(ngModel)]="userHiber.email"></ion-input>
   </ion-item>
 <ion-item class="marginTop">
   <ion-label color="navy" floating-label><ion-icon name="lock"></ion-icon></ion-label>
-  <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password"></ion-input>
+  <ion-input type="password" placeholder="Password" [(ngModel)]="userHiber.password"></ion-input>
 </ion-item>
 <div text-center style="margin-top:40px">
 <button ion-button block round text-center color="navy" (click)=login() style="height:40px">Login</button>

@@ -19,7 +19,7 @@ export class WelcomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public toastCtrl: ToastController) {
      this.menu.swipeEnable(false);
-     if(localStorage.getItem('userData')){
+     if(localStorage.getItem('userHiber')){
        this.navCtrl.setRoot(MapPage);
      }
      var day = navParams.get('day');

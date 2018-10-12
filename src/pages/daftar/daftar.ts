@@ -19,7 +19,7 @@ export class DaftarPage {
   loading: any;
   pesan:any;
   errors:any;
-  userData = {	
+  userHiber = {	
     "username" : "",
     "phonenumber" : "",
     "email" : "",
@@ -35,14 +35,14 @@ export class DaftarPage {
     //console.log('ionViewDidLoad DaftarPage');
   }
   daftar() {
-      console.log(this.userData)
-       if(this.userData.email && this.userData.password){
-     this.authService.postData(this.userData, "register", "").then((result) => {
+      console.log(this.userHiber)
+       if(this.userHiber.email && this.userHiber.password){
+     this.authService.postData(this.userHiber, "register", "").then((result) => {
        this.responseData = result;
        console.log(this.responseData);
        if(this.responseData['success'] == true){
          this.showLoader();
-      //localStorage.setItem('userData', JSON.stringify(this.responseData) );
+      //localStorage.setItem('userHiber', JSON.stringify(this.responseData) );
       this.loading.dismiss();
       //this.navCtrl.pop();
       this.navCtrl.push(WelcomePage, {

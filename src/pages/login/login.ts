@@ -19,7 +19,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 export class LoginPage {
   responseData: any;
   loading: any;
-  userData = { "email": "", "password": "" };
+  userHiber = { "email": "", "password": "" };
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
     this.menu.swipeEnable(false);
     
@@ -32,16 +32,16 @@ export class LoginPage {
   }
   login() {
 
-    if (this.userData.email && this.userData.password) {
-      this.authService.postData(this.userData, "login_user", "").then((result) => {
+    if (this.userHiber.email && this.userHiber.password) {
+      this.authService.postData(this.userHiber, "login_user", "").then((result) => {
         this.responseData = result;
         console.log(this.responseData);
         if (this.responseData["access_token"]) {
           this.showLoader();
-          //this.events.publish('email', this.userData.email);
+          //this.events.publish('email', this.userHiber.email);
           this.events.publish('email', this.responseData.email);
 
-          localStorage.setItem('userData', JSON.stringify(this.responseData));
+          localStorage.setItem('userHiber', JSON.stringify(this.responseData));
           this.loading.dismiss();
           this.navCtrl.setRoot(MapPage);
         }
