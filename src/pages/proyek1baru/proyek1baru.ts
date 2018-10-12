@@ -50,11 +50,11 @@ export class Proyek1baruPage {
    }
   getProject(){
     this.showLoader()
-    this.authService.getData('api/user/order_status/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+    this.authService.getData('api/user/order_show/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
       if(this.responseData['success'] == true){
-        localStorage.setItem('order_status', JSON.stringify(this.responseData['order']));
+        localStorage.setItem('order_show', JSON.stringify(this.responseData['order']));
         this.items = this.responseData['order'];
         this.loading.dismiss()
       }else{

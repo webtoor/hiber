@@ -91,6 +91,8 @@ export class PolygonPage {
             this.outputs.push ('Foto')
           }else if(this.responseData['output'][j]['output_id'] == '3'){
             this.outputs.push('Peta')
+          }else if(this.responseData['output'][j]['output_id'] == '4'){
+            this.outputs.push('Lain-lain')
           }
          }
          console.log(this.outputs)
