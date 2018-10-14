@@ -19,14 +19,12 @@ export class WelcomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public toastCtrl: ToastController) {
      this.menu.swipeEnable(false);
-     if(localStorage.getItem('userHiber')){
-       this.navCtrl.setRoot(MapPage);
-     }
-     var day = navParams.get('day');
-     //console.log(day)
-     if(day == 1){
-       this.presentToast()
-     }
+
+    var day = navParams.get('day');
+    //console.log(day)
+    if(day == 1){
+      this.presentToast()
+    }
   }
 
   ionViewDidLoad() {

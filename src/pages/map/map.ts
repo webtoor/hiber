@@ -3,7 +3,7 @@ import { Component, ElementRef, ViewChild, NgZone} from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Plan2Page} from '../plan2/plan2';
+import { WelcomePage} from '../welcome/welcome';
 import { PenggunaPage } from '../pengguna/pengguna';
 import { AutoCompletePage} from '../auto-complete/auto-complete';
 
@@ -35,12 +35,9 @@ export class MapPage{
 
 
     constructor(public statusBar: StatusBar, public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
-        //this.statusBar.backgroundColorByHexString('#ffa600');
-    /*     this.geolocation.getCurrentPosition().then((position) => {
-            alert(position.coords.latitude)
-        }).catch((err) => {
-            alert('Error getting location');
-        }); */
+        if(!localStorage.getItem('userHiber')){
+            this.navCtrl.setRoot(WelcomePage);
+          }
         //console.log(JSON.parse(localStorage.getItem('order_status')))
         this.searchDisabled = true;
         this.saveDisabled = true;

@@ -19,13 +19,14 @@ export class Hiber {
   @ViewChild(Nav) nav: Nav;
   userDetails : any;
   emails :any;
-  rootPage: any =  WelcomePage;
+  rootPage: any =  MapPage;
 
   pages: Array<{title: string, icon: string,  component: any}>;
 
 
   constructor(public events: Events, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+  
     this.userDetails = JSON.parse(localStorage.getItem('userHiber'));
     if(this.userDetails){
     this.emails = this.userDetails.email;

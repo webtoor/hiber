@@ -46,7 +46,8 @@ export class Proyek1baruPage {
   }
 
   backToWelcome(){
-    this.navCtrl.setRoot(WelcomePage);
+    let nav = this.app.getRootNav();
+    nav.setRoot(WelcomePage);
    }
   getProject(){
     this.showLoader()
