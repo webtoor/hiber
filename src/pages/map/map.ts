@@ -35,9 +35,6 @@ export class MapPage{
 
 
     constructor(public statusBar: StatusBar, public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
-        if(!localStorage.getItem('userHiber')){
-            this.navCtrl.setRoot(WelcomePage);
-          }
         //console.log(JSON.parse(localStorage.getItem('order_status')))
         this.searchDisabled = true;
         this.saveDisabled = true;
@@ -47,7 +44,11 @@ export class MapPage{
      
 
     }
-
+    ionViewDidEnter() {
+        if(!localStorage.getItem('userHiber')){
+          this.navCtrl.setRoot(WelcomePage);
+        }  
+      }
     ionViewDidLoad(): void {
         let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
 
