@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, } from '@angular/core';
-import { App, MenuController, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { PolygonPage } from '../polygon/polygon'
 import { StatusPage } from '../status/status'
@@ -24,8 +24,9 @@ export class Proyek1baruPage {
   public responseData: any;
   public items : any;
   loading:any
+  cancels : { "status" : "4"}
 
-  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
+  constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
     this.menu.swipeEnable(false);
     const data = JSON.parse(localStorage.getItem('userHiber'));
     this.userDetails = data;
@@ -86,4 +87,36 @@ export class Proyek1baruPage {
       subject : subject
     });
     }
+
+    cancel(order_id:any){
+    let confirm = this.alertCtrl.create({
+      title: 'Konfirmasi',
+      message: 'Informasi, yang telah di unggah dan diterima oleh Penyedia Jasa, tidak bisa dirubah, kecuali atas persetujuan Kedua belah pihak. Pastikan informasi yang anda masukan telah benar',
+      buttons: [
+        {
+          text: 'Oke',
+          handler: () => {
+              this.authService.putData(this.cancels, "api/user/order_status/" + order_id, this.userDetails['access_token']).then((result) => {
+              this.responseData = result;
+              console.log(this.responseData);
+              if(this.responseData['success'] == true){
+                   
+              }else{
+                 localStorage.clear();
+                setTimeout(()=> this.backToWelcome(), 1000);  
+              }
+            });  
+            //this.navCtrl.push(Proyek1Page)      
+          }
+        },
+        {
+          text: 'Kembali',
+          handler: () => {
+            console.log('Kembali clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 }

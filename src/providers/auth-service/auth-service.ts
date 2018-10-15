@@ -57,4 +57,24 @@ export class AuthServiceProvider {
     });
   }
 
+  putData(credentials, type, access_token){
+
+    return new Promise((resolve, reject) =>{
+      let headers = new Headers();
+      headers.append('Content-Type','application/json');
+      headers.append('Accept','application/json');
+      headers.append('Authorization', 'Bearer ' + access_token);
+      let options = new RequestOptions({ headers:headers});
+      //console.log(options)
+      this.http.put(apiUrl+type, JSON.stringify(credentials), options).
+      subscribe(res =>{
+        resolve(res.json());
+      }, (err) =>{
+        reject(err);
+      });
+
+    });
+
+  }
+
 }
