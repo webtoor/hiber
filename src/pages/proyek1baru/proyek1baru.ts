@@ -24,7 +24,7 @@ export class Proyek1baruPage {
   public responseData: any;
   public items : any;
   loading:any
-  cancels : { "status" : "4"}
+  cancels :any =  { "status" : "4"}
 
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
     this.menu.swipeEnable(false);
@@ -88,10 +88,11 @@ export class Proyek1baruPage {
     });
     }
 
-    cancel(order_id:any){
+    cancel(order_id:any, subject:any){
+      console.log(this.cancels)
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
-      message: 'Apakah anda yakin untuk membatalkan pesanan ini?',
+      message: 'Apakah anda yakin untuk membatalkan order ' + subject + '?',
       buttons: [
         {
           text: 'Oke',
@@ -100,7 +101,7 @@ export class Proyek1baruPage {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
-                   
+                this.getProject();
               }else{
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
