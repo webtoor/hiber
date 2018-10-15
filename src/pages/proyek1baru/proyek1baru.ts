@@ -91,7 +91,7 @@ export class Proyek1baruPage {
     cancel(order_id:any){
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
-      message: 'Informasi, yang telah di unggah dan diterima oleh Penyedia Jasa, tidak bisa dirubah, kecuali atas persetujuan Kedua belah pihak. Pastikan informasi yang anda masukan telah benar',
+      message: 'Apakah anda yakin untuk membatalkan pesanan ini?',
       buttons: [
         {
           text: 'Oke',
