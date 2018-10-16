@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, MenuController, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
+import { WelcomePage } from '../welcome/welcome'
 
 /**
  * Generated class for the Proyek1lampauPage page.
@@ -12,13 +14,50 @@ import { MenuController, IonicPage, NavController, NavParams } from 'ionic-angul
   templateUrl: 'proyek1lampau.html',
 })
 export class Proyek1lampauPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
+  public userDetails : any;
+  public responseData: any;
+  public items : any;
+  loading:any
+  constructor(public authService:AuthServiceProvider, public app: App, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
      this.menu.swipeEnable(false);
+     const data = JSON.parse(localStorage.getItem('userHiber'));
+     this.userDetails = data;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1lampauPage');
+    this.getHistory();
   }
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
+
+    this.loading.present();
+  }
+
+  backToWelcome(){
+    let nav = this.app.getRootNav();
+    nav.setRoot(WelcomePage);
+   }
+
+  getHistory(){
+    this.showLoader()
+    this.authService.getData('api/user/order_history/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+      this.responseData = result;
+      console.log(this.responseData);
+      if(this.responseData['success'] == true){
+        this.items = this.responseData['order'];
+        this.loading.dismiss()
+      }else{
+        this.loading.dismiss()
+        localStorage.clear();
+        setTimeout(()=> this.backToWelcome(), 1000);  
+      }
+    }, (err) => {
+      this.loading.dismiss()
+    });
+}
 
 }

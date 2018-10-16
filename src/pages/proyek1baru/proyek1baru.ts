@@ -107,7 +107,6 @@ export class Proyek1baruPage {
                 setTimeout(()=> this.backToWelcome(), 1000);  
               }
             });  
-            //this.navCtrl.push(Proyek1Page)      
           }
         },
         {
