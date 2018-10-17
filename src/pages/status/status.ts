@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { App, MenuController, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
+import { Proyek1Page } from '../proyek1/proyek1'
+
 /**
  * Generated class for the StatusPage page.
  *
@@ -16,7 +18,6 @@ import { WelcomePage } from '../welcome/welcome'
 })
 export class StatusPage {
   subject : any;
-  proyekData : any
   public userDetails : any;
   public responseData: any;
   public items : any;
@@ -72,11 +73,11 @@ export class StatusPage {
     });
   }
 
-  gunakan(order_id:any, subject:any){
+  gunakan(order_id:any, username :any){
     console.log(this.gunakans)
   let confirm = this.alertCtrl.create({
     title: 'Konfirmasi',
-    message: 'Apakah anda yakin untuk membatalkan order ' + subject + '?',
+    message: 'Anda setuju untuk menggunakan jasa ' +  username +  '?',
     buttons: [
       {
         text: 'Oke',
@@ -85,6 +86,9 @@ export class StatusPage {
             this.responseData = result;
             console.log(this.responseData);
             if(this.responseData['success'] == true){
+              this.navCtrl.push(Proyek1Page, {
+                status : 1,
+              });
             }else{
                localStorage.clear();
               setTimeout(()=> this.backToWelcome(), 1000);  
