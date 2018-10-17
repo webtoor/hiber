@@ -30,7 +30,7 @@
               </div>
             </ion-col>
           <ion-col>
-            <button ion-button small block color="navy" style="color:orange">GUNAKAN</button>
+            <button ion-button small block color="navy" style="color:orange" (click)="gunakan(item.order_id)">GUNAKAN</button>
           </ion-col>
         </ion-row>
         <ion-row style="margin-left: -9px; margin-top: -10px; margin-bottom: -20px">
@@ -41,8 +41,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <div>Ahli di Pemetaan </div>
-      <div style="font-weight:bold;">Penawaran IDR Rp. {{item.offered_price}}</div>
+      <div style="font-weight:bold;">Penawaran IDR {{item.offered_price  | currency:"Rp." :true:"1.2"}}</div>
     </ion-card-content>
     </ion-card>
     </div>
