@@ -19,13 +19,14 @@
 </ion-header>
 
 <ion-content>
+    <div *ngFor="let item of items">
       <ion-card >
       <ion-card-content>  
           <ion-grid>
         <ion-row style="margin-left: -9px; margin-top: -10px">
           <ion-col>
               <div style="font-weight:bold;">
-                Drone12 <ion-icon name="star"></ion-icon>4.3
+                {{item.user.username}} <ion-icon name="star"></ion-icon>4.3
               </div>
             </ion-col>
           <ion-col>
@@ -41,9 +42,10 @@
         </ion-row>
       </ion-grid>
       <div>Ahli di Pemetaan </div>
-      <div style="font-weight:bold;">Penawaran IDR Rp. 500,000,000</div>
+      <div style="font-weight:bold;">Penawaran IDR Rp. {{item.offered_price}}</div>
     </ion-card-content>
     </ion-card>
+    </div>
     
 
 </ion-content>
