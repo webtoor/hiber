@@ -42,10 +42,22 @@ export class RatingPage {
   rate(){
     this.User.writter = this.userDetails['id'];
     console.log(this.User);
-  /*   let nav = this.app.getRootNav();
-    nav.push(Proyek1Page, {
-      finish : 1
-    }); */
+    this.authService.postData(this.User,'api/user/order_feedback/' + this.order_id, this.userDetails['access_token']).then((result)=>{
+      this.responseData = result;
+      console.log(this.responseData);
+      if(this.responseData['success'] == true){
+         let nav = this.app.getRootNav();
+            nav.push(Proyek1Page, {
+              finish : 1
+            }); 
+      }else{
+        localStorage.clear();
+        setTimeout(()=> this.backToWelcome(), 1000);  
+      }
+    }, (err) => {
+       console.log('error')
+    });
+
   }
 
   showLoader() {
