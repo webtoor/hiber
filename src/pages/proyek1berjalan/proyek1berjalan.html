@@ -9,7 +9,7 @@
 
 </ion-header>
 <ion-content>
-    <div *ngIf="items != 0 && status == 0;else kosong" >
+    <div *ngIf="items != 0 && status > 0;else kosong" >
     <ng-container *ngFor="let item of items">
       <div *ngIf="item.status_id == 2;" >
       <ion-card>

@@ -25,7 +25,7 @@ export class Proyek1baruPage {
   public items : any;
   loading:any
   cancels :any =  { "status" : "4", "provider_id" : ""}
-
+  statuss : any;
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
     this.menu.swipeEnable(false);
     const data = JSON.parse(localStorage.getItem('userHiber'));
@@ -36,6 +36,7 @@ export class Proyek1baruPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1baruPage');
+
   }
   showLoader() {
     this.loading = this.loadingCtrl.create({
@@ -58,6 +59,11 @@ export class Proyek1baruPage {
       if(this.responseData['success'] == true){
         localStorage.setItem('order_show', JSON.stringify(this.responseData['order']));
         this.items = this.responseData['order'];
+        for(var index in this.items) { 
+          if(this.items[index]['status_id'] == '1')
+            this.statuss = this.items[index]['status_id'];
+          console.log(this.statuss);
+      }
         this.loading.dismiss()
       }else{
         this.loading.dismiss()
