@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { App, MenuController, NavController, NavParams } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MapPage } from '../map/map'
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
+import { WelcomePage } from '../welcome/welcome'
 
 
 /**
@@ -14,17 +16,64 @@ import { MapPage } from '../map/map'
   templateUrl: 'rating.html',
 })
 export class RatingPage {
-  User = {"rating" : ""}
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public app: App) {
+  User = {
+    "writter" : "",
+    "for" : "",
+    "order_id" : "",
+    "rating" : "",
+    "comment" : "",
+  };
+  public userDetails : any;
+  public responseData: any;
+  public items : any;
+  loading:any
+  order_id:any;
+  constructor(public authService:AuthServiceProvider, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public app: App, public loadingCtrl: LoadingController) {
      this.menu.swipeEnable(false);
+     this.order_id = navParams.get('order_ids');
+     const user = JSON.parse(localStorage.getItem('userHiber'));
+     this.userDetails = user;
+     this.getRating();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RatingPage');
+  
   }
   rate(){
     console.log(this.User);
     let nav = this.app.getRootNav();
     nav.setRoot(MapPage);
   }
+
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
+
+    this.loading.present();
+  }
+
+  backToWelcome(){
+    let nav = this.app.getRootNav();
+    nav.setRoot(WelcomePage);
+   }
+  getRating(){
+    this.showLoader()
+    this.authService.getData('api/user/get_rating/' + this.order_id, this.userDetails['access_token']).then((result)=>{
+      this.responseData = result;
+      console.log(this.responseData);
+      if(this.responseData['success'] == true){
+        this.items = this.responseData['data'];
+        this.loading.dismiss()
+      }else{
+        this.loading.dismiss()
+        localStorage.clear();
+        setTimeout(()=> this.backToWelcome(), 1000);  
+      }
+    }, (err) => {
+      this.loading.dismiss()
+    });
+}
 }

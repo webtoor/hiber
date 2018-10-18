@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, } from '@angular/core';
+import { Component } from '@angular/core';
 import { App, MenuController, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { PolygonPage } from '../polygon/polygon'
@@ -62,7 +62,7 @@ export class Proyek1baruPage {
         for(var index in this.items) { 
           if(this.items[index]['status_id'] == '1')
             this.statuss = this.items[index]['status_id'];
-          console.log(this.statuss);
+            //console.log(this.statuss);
       }
         this.loading.dismiss()
       }else{

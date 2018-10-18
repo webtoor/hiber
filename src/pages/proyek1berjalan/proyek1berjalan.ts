@@ -21,7 +21,7 @@ export class Proyek1berjalanPage {
   public responseData: any;
   public items : any;
   loading:any
-  finish :any =  { "status" : "3"}
+  finish :any =  { "status" : "3", "provider_id" : ""}
   status : any
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App, public authService:AuthServiceProvider) {
      this.menu.swipeEnable(false);
@@ -38,7 +38,7 @@ export class Proyek1berjalanPage {
     for(var index in this.items) { 
       if(this.items[index]['status_id'] == '2')
         this.status = this.items[index]['status_id'];
-      console.log(status);
+      //console.log(status);
   }
   }
 
@@ -68,7 +68,9 @@ export class Proyek1berjalanPage {
               console.log(this.responseData);
               if(this.responseData['success'] == true){
                 let nav = this.app.getRootNav();
-                nav.push(RatingPage);
+                nav.push(RatingPage, {
+                  order_ids : order_id
+                });
               }else{
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  

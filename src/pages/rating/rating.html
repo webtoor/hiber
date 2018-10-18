@@ -15,8 +15,11 @@
           starIconName="star"
           nullable="false" text-center>
   </rating>
+  <ng-container *ngFor="let item of items">
+  <div text-center style="color: #2A2C43">Mohon masukan untuk user <b>{{item.user.username}}</b></div>
+  </ng-container>
   <ion-item>
-    <ion-textarea placeholder="Saran dan Komentar"></ion-textarea>
+    <ion-textarea placeholder="Saran dan Komentar" [(ngModel)]="User.comment"></ion-textarea>
   </ion-item>
   <br>
   <div text-center>
