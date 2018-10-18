@@ -22,19 +22,24 @@ export class Proyek1berjalanPage {
   public items : any;
   loading:any
   finish :any =  { "status" : "3"}
-
+  status : any
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App, public authService:AuthServiceProvider) {
      this.menu.swipeEnable(false);
      const data = JSON.parse(localStorage.getItem('order_show'));
      this.items = data;
      const user = JSON.parse(localStorage.getItem('userHiber'));
      this.userDetails = user;
-     console.log(this.items)
+     //console.log(this.items)
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1berjalanPage');
+    for(var index in this.items) { 
+      if(this.items[index]['status_id'] == '2')
+        this.status = this.items[index]['status_id'];
+      console.log(status);
+  }
   }
 
   showLoader() {
@@ -50,7 +55,7 @@ export class Proyek1berjalanPage {
     let nav = this.app.getRootNav();
     nav.setRoot(WelcomePage);
    }
-  konfirmasi(subject : any) {
+  konfirmasi(subject : any, order_id:any) {
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
       message: 'Informasi, Anda akan mengkonfirmasi proyek '+  subject +' telah selesai dikerjakan dengan baik. Pilih "Selesai" jika benar. "Belum" untuk menghubungi pekerja proyek',
@@ -58,16 +63,14 @@ export class Proyek1berjalanPage {
         {
           text: 'Selesai',
           handler: () => {
-            this.authService.getData('api/user/order_show/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+            this.authService.putData(this.finish, "api/user/order_status/" + order_id, this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
-                this.loading.dismiss()
                 let nav = this.app.getRootNav();
                 nav.push(RatingPage);
               }else{
-                this.loading.dismiss()
-                localStorage.clear();
+                 localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
               }
             });  

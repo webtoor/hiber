@@ -24,7 +24,7 @@ export class Proyek1baruPage {
   public responseData: any;
   public items : any;
   loading:any
-  cancels :any =  { "status" : "4"}
+  cancels :any =  { "status" : "4", "provider_id" : ""}
 
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public authService:AuthServiceProvider, public app: App) {
     this.menu.swipeEnable(false);
