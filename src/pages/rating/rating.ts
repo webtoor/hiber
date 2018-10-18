@@ -19,7 +19,6 @@ export class RatingPage {
   User = {
     "writter" : "",
     "for" : "",
-    "order_id" : "",
     "rating" : "",
     "comment" : "",
   };
@@ -41,11 +40,12 @@ export class RatingPage {
   
   }
   rate(){
+    this.User.writter = this.userDetails['id'];
     console.log(this.User);
-    let nav = this.app.getRootNav();
+  /*   let nav = this.app.getRootNav();
     nav.push(Proyek1Page, {
       finish : 1
-    });
+    }); */
   }
 
   showLoader() {
@@ -65,9 +65,10 @@ export class RatingPage {
     this.showLoader()
     this.authService.getData('api/user/get_rating/' + this.order_id, this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
-      console.log(this.responseData);
+      //console.log(this.responseData);
       if(this.responseData['success'] == true){
         this.items = this.responseData['data'];
+        this.User.for = this.items[0]['proposal_by']
         this.loading.dismiss()
       }else{
         this.loading.dismiss()
