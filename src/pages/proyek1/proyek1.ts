@@ -24,15 +24,21 @@ export class Proyek1Page {
   userDetails : any;
   plan2 : any;
   status: any;
+  finish : any;
   constructor(public authService:AuthServiceProvider,public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
     this.menu.swipeEnable(false);
     this.plan2 = navParams.get('plan2');
     this.status = navParams.get('status');
+    this.finish= navParams.get('finish');
+
  
   }
   ionViewDidEnter() {
     if(this.status == '1'){
       this.tabRef.select(1);
+    }
+    if(this.finish == '1'){
+      this.tabRef.select(2);
     }
    }
   ionViewDidLoad() {
@@ -41,6 +47,9 @@ export class Proyek1Page {
       this.setBackButtonAction()
     }
     if(this.status == '1'){
+      this.setBackButtonAction()
+    }
+    if(this.finish == '1'){
       this.setBackButtonAction()
     }
   }

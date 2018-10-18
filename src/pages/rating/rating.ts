@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { App, MenuController, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { MapPage } from '../map/map'
+import { Proyek1Page } from '../proyek1/proyek1'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
 
@@ -43,7 +43,9 @@ export class RatingPage {
   rate(){
     console.log(this.User);
     let nav = this.app.getRootNav();
-    nav.setRoot(MapPage);
+    nav.push(Proyek1Page, {
+      finish : 1
+    });
   }
 
   showLoader() {

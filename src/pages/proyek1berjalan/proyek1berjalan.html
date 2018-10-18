@@ -15,7 +15,7 @@
       <ion-card>
         <ion-card-content >
         <div style="font-weight:bold; margin-bottom:20px;">{{item.order.subject}}</div>
-        <div> Dibuat  : {{item.order.created_at | date: "dd-MM-yyyy HH:mm a"}}  </div>
+        <div> Dibuat  : {{item.order.created_at | date: "dd-MMM-yyyy HH:mm a"}}  </div>
         <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
         <div *ngIf="item.order.projecttype == 2">Liburan</div>
         <div *ngIf="item.order.projecttype == 3">Lalu-lintas</div>
@@ -39,7 +39,7 @@
     <ng-template #kosong>
         <ion-card>
             <ion-card-content>
-        <p text-center style="font-weight:bold">Belum Ada Order</p>
+        <p text-center style="font-weight:bold">Belum ada Order yang dikerjakan</p>
       </ion-card-content>
     </ion-card>
       </ng-template>
