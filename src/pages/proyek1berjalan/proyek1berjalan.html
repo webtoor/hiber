@@ -23,9 +23,9 @@
         <div *ngIf="item.order.projecttype == 5">Pengawasan</div>
         <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
         <ion-grid>
-          <ion-row style="margin-left: -15px">
+          <ion-row style="margin-left: -20px">
             <ion-col>
-                <button ion-button small clear (click)="konfirmasi()">Konfirmasi Hasil</button>
+                <button ion-button small clear (click)="konfirmasi(item.order.subject, item.order_id)">Konfirmasi Hasil</button>
               </ion-col>
           </ion-row>
         </ion-grid>

@@ -14,7 +14,7 @@ import { MapPage } from '../map/map'
   templateUrl: 'rating.html',
 })
 export class RatingPage {
-  user:any;
+  User = {"rating" : ""}
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public app: App) {
      this.menu.swipeEnable(false);
   }
@@ -23,7 +23,7 @@ export class RatingPage {
     console.log('ionViewDidLoad RatingPage');
   }
   rate(){
-    console.log(this.user);
+    console.log(this.User);
     let nav = this.app.getRootNav();
     nav.setRoot(MapPage);
   }

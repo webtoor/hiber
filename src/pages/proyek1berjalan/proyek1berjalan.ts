@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { App, MenuController, NavController, NavParams, AlertController } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { RatingPage } from '../rating/rating';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
+import { WelcomePage } from '../welcome/welcome'
 
 
 
@@ -15,11 +17,18 @@ import { RatingPage } from '../rating/rating';
   templateUrl: 'proyek1berjalan.html',
 })
 export class Proyek1berjalanPage {
-  public items : any
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App) {
+  public userDetails : any;
+  public responseData: any;
+  public items : any;
+  loading:any
+  finish :any =  { "status" : "3"}
+
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App, public authService:AuthServiceProvider) {
      this.menu.swipeEnable(false);
      const data = JSON.parse(localStorage.getItem('order_show'));
      this.items = data;
+     const user = JSON.parse(localStorage.getItem('userHiber'));
+     this.userDetails = user;
      console.log(this.items)
 
   }
@@ -27,17 +36,41 @@ export class Proyek1berjalanPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1berjalanPage');
   }
-  konfirmasi() {
+
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
+
+    this.loading.present();
+  }
+
+  backToWelcome(){
+    let nav = this.app.getRootNav();
+    nav.setRoot(WelcomePage);
+   }
+  konfirmasi(subject : any) {
     let confirm = this.alertCtrl.create({
       title: 'Konfirmasi',
-      message: 'Informasi, Anda akan mengkonfirmasi proyek "1082017_1" telah selesai dikerjakan dengan baik. Pilih "Selesai" jika benar. "Belum" untuk menghubungi pekerja proyek',
+      message: 'Informasi, Anda akan mengkonfirmasi proyek '+  subject +' telah selesai dikerjakan dengan baik. Pilih "Selesai" jika benar. "Belum" untuk menghubungi pekerja proyek',
       buttons: [
         {
           text: 'Selesai',
           handler: () => {
-            /*console.log('Oke clicked');*/
-            let nav = this.app.getRootNav();
-            nav.push(RatingPage);
+            this.authService.getData('api/user/order_show/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+              this.responseData = result;
+              console.log(this.responseData);
+              if(this.responseData['success'] == true){
+                this.loading.dismiss()
+                let nav = this.app.getRootNav();
+                nav.push(RatingPage);
+              }else{
+                this.loading.dismiss()
+                localStorage.clear();
+                setTimeout(()=> this.backToWelcome(), 1000);  
+              }
+            });  
           }
         },
         {
