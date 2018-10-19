@@ -77,10 +77,11 @@ export class RatingPage {
     this.showLoader()
     this.authService.getData('api/user/get_rating/' + this.order_id, this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
-      //console.log(this.responseData);
+      //console.log(this.responseData['data']);
       if(this.responseData['success'] == true){
-        this.items = this.responseData['data'];
-        this.User.for = this.items[0]['proposal_by']
+        this.items = this.responseData['data']['user']['username'];
+        console.log(this.items)
+        this.User.for = this.responseData['data']['provider_id'];
         this.loading.dismiss()
       }else{
         this.loading.dismiss()
