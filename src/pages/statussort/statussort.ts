@@ -24,17 +24,17 @@ export class StatussortPage {
 
   rating() {
     this.viewCtrl.dismiss({
-      kode : 'rating'
+      kode : '2'
     });
   }
   termurah() {
     this.viewCtrl.dismiss({
-      kode : 'termurah'
+      kode : '3'
     });
   }
   termahal() {
     this.viewCtrl.dismiss({
-      kode : 'termahal'
+      kode : '4'
     });
   }
 }
