@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ViewController, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the StatussortPage page.
@@ -8,18 +8,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+/* @IonicPage() */
 @Component({
   selector: 'page-statussort',
   templateUrl: 'statussort.html',
 })
 export class StatussortPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatussortPage');
   }
 
+  rating() {
+    this.viewCtrl.dismiss({
+      kode : 'rating'
+    });
+  }
+  termurah() {
+    this.viewCtrl.dismiss({
+      kode : 'termurah'
+    });
+  }
+  termahal() {
+    this.viewCtrl.dismiss({
+      kode : 'termahal'
+    });
+  }
 }

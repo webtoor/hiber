@@ -21,6 +21,8 @@ import { PolygonPage } from '../pages/polygon/polygon';
 import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
 import { SearchPage  } from '../pages/search/search';
 import { StatusPage  } from '../pages/status/status';
+import { StatussortPage } from '../pages/statussort/statussort';
+
 
 import { Keyboard } from "@ionic-native/keyboard"
 import { Connectivity } from '../providers/connectivity-service/connectivity-service';
@@ -51,7 +53,8 @@ import { HttpModule } from "@angular/http";
     PolygonPage,
     AutoCompletePage,
     SearchPage,
-    StatusPage
+    StatusPage,
+    StatussortPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -81,7 +84,8 @@ import { HttpModule } from "@angular/http";
     PolygonPage,
     AutoCompletePage,
     SearchPage,
-    StatusPage
+    StatusPage,
+    StatussortPage
   ],
   providers: [
     Keyboard,

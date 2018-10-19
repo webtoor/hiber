@@ -8,7 +8,6 @@ import { Proyek1Page } from '../pages/proyek1/proyek1';
 import { PenggunaPage } from '../pages/pengguna/pengguna';
 import { HubkamiPage } from '../pages/hubkami/hubkami';
 import { BantuanPage } from '../pages/bantuan/bantuan';
-import { PolygonPage } from '../pages/polygon/polygon';
 
 
 

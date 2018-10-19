@@ -3,6 +3,8 @@ import { App, MenuController, NavController, NavParams, LoadingController, Alert
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
 import { Proyek1Page } from '../proyek1/proyek1'
+import { StatussortPage } from '../statussort/statussort'
+
 
 /**
  * Generated class for the StatusPage page.
@@ -24,6 +26,7 @@ export class StatusPage {
   loading:any;
   order_id:any;
   gunakans :any =  { "status" : "2", "provider_id" : ""}
+  filter : any = {"kode" : "1"}
 
   constructor(public popoverCtrl: PopoverController, public menu: MenuController,public loadingCtrl: LoadingController, public authService:AuthServiceProvider, public app: App, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
     this.subject= navParams.get('subject');
@@ -41,7 +44,10 @@ export class StatusPage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+    let popover = this.popoverCtrl.create(StatussortPage);
+    popover.onDidDismiss(data => {
+      console.log(data);
+    });
     popover.present({
       ev: myEvent
     });
@@ -63,7 +69,7 @@ export class StatusPage {
 
   getProposal(){
     this.showLoader()
-    this.authService.getData('api/user/order_proposal/' + this.order_id, this.userDetails['access_token']).then((result)=>{
+    this.authService.postData(this.filter,'api/user/order_proposal/' + this.order_id, this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       //console.log(this.responseData);
       if(this.responseData['success'] == true){
