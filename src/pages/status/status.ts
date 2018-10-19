@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, MenuController, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, LoadingController, AlertController, PopoverController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
 import { Proyek1Page } from '../proyek1/proyek1'
@@ -25,7 +25,7 @@ export class StatusPage {
   order_id:any;
   gunakans :any =  { "status" : "2", "provider_id" : ""}
 
-  constructor(public menu: MenuController,public loadingCtrl: LoadingController, public authService:AuthServiceProvider, public app: App, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public popoverCtrl: PopoverController, public menu: MenuController,public loadingCtrl: LoadingController, public authService:AuthServiceProvider, public app: App, public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
     this.subject= navParams.get('subject');
     this.order_id = navParams.get('order_id');
 
@@ -38,6 +38,13 @@ export class StatusPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
     this.getProposal();
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 
   showLoader() {

@@ -8,7 +8,7 @@
 
   <ion-navbar color="navy">
     <ion-title>{{subject}}</ion-title>
-    <ion-buttons end icon-only style="margin-right:-5px;">
+    <ion-buttons end icon-only style="margin-right:-5px;" (click)="presentPopover($event)">
         <button ion-button>
           <ion-icon name="more"></ion-icon>
         </button>
