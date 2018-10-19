@@ -23,15 +23,18 @@ export class StatussortPage {
   }
 
   rating() {
+    // Rating
     this.viewCtrl.dismiss({
       kode : '2'
     });
   }
+  // Termurah
   termurah() {
     this.viewCtrl.dismiss({
       kode : '3'
     });
   }
+  //Tertinggi
   termahal() {
     this.viewCtrl.dismiss({
       kode : '4'

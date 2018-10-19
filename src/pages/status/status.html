@@ -26,8 +26,10 @@
           <ion-grid>
         <ion-row style="margin-left: -9px; margin-top: -10px">
           <ion-col>
-              <div style="font-weight:bold;">
-                {{item.user.username}} <ion-icon name="star"></ion-icon>{{item.user_feedback.total_rating}}
+              <div *ngIf="item.user" style="font-weight:bold;">
+                {{item.user.username}} 
+                <a *ngIf="item.user_feedback"><ion-icon name="star" ></ion-icon>{{item.user_feedback.total_rating}}</a>
+                <a *ngIf="item.total_rating || item.total_rating == 0"><ion-icon name="star" ></ion-icon>{{item.total_rating}}</a>
               </div>
             </ion-col>
           <ion-col>
@@ -42,10 +44,13 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <div style="font-weight:bold;">Penawaran IDR {{item.offered_price  | currency:"Rp." :true:"1.0"}}</div>
+     <div *ngIf="item.offered_price" style="font-weight:bold;">Penawaran IDR {{item.offered_price  | currency:"Rp." :true:"1.0"}}</div>
+     <div *ngIf="item.proposal" style="font-weight:bold;">Penawaran IDR {{item.proposal.offered_price  | currency:"Rp." :true:"1.0"}}</div>
+
     </ion-card-content>
     </ion-card>
-    </div>
+    </div>       
+
   </ng-container>
   <ng-template #kosong>
       <ion-card>

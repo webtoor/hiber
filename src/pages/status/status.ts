@@ -46,9 +46,11 @@ export class StatusPage {
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(StatussortPage);
     popover.onDidDismiss(data => {
-      console.log(data['kode']);
+      console.log(data);
+      if(data){
       this.filter = data['kode']
       this.getProposal();
+    }
     });
     popover.present({
       ev: myEvent
@@ -73,7 +75,7 @@ export class StatusPage {
     this.showLoader()
     this.authService.getData('api/user/order_proposal/' + this.order_id + '/' + this.filter, this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
-      //console.log(this.responseData);
+      console.log(this.responseData);
       if(this.responseData['success'] == true){
         //localStorage.setItem('order_show', JSON.stringify(this.responseData['order']));
         this.items = this.responseData['data'];
