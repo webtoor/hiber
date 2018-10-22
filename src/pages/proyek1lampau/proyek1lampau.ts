@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { App, MenuController, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { App, MenuController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
-
+import { ProfilproviderPage } from '../profilprovider/profilprovider'
 /**
  * Generated class for the Proyek1lampauPage page.
  *
@@ -59,5 +59,11 @@ export class Proyek1lampauPage {
       this.loading.dismiss()
     });
 }
-
+    provider_id(id_provider:any){
+      console.log(id_provider)
+      let nav = this.app.getRootNav();
+      nav.push(ProfilproviderPage, {
+      id : id_provider,
+    });
+    }
 }
