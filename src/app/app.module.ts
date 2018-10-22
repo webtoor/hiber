@@ -22,6 +22,8 @@ import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
 import { SearchPage  } from '../pages/search/search';
 import { StatusPage  } from '../pages/status/status';
 import { StatussortPage } from '../pages/statussort/statussort';
+import { ProfilproviderPage } from '../pages/profilprovider/profilprovider';
+
 
 
 import { Keyboard } from "@ionic-native/keyboard"
@@ -54,7 +56,8 @@ import { HttpModule } from "@angular/http";
     AutoCompletePage,
     SearchPage,
     StatusPage,
-    StatussortPage
+    StatussortPage,
+    ProfilproviderPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -85,7 +88,8 @@ import { HttpModule } from "@angular/http";
     AutoCompletePage,
     SearchPage,
     StatusPage,
-    StatussortPage
+    StatussortPage,
+    ProfilproviderPage
   ],
   providers: [
     Keyboard,
