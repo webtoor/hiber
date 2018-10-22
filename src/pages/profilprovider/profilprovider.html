@@ -6,13 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>profilprovider</ion-title>
+  <ion-navbar color="navy">
+    <ion-title *ngIf="items">
+      {{items.username}}
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<div *ngIf="items"></div>
 </ion-content>

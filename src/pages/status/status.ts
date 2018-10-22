@@ -73,10 +73,11 @@ export class StatusPage {
 
   getProposal(){
     this.showLoader()
+    console.log(this.order_id)
     this.authService.getData('api/user/order_proposal/' + this.order_id + '/' + this.filter, this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
-      if(this.responseData['success'] == true){
+      if(this.responseData['success'] == true || this.responseData['success'] == false){
         //localStorage.setItem('order_show', JSON.stringify(this.responseData['order']));
         this.items = this.responseData['data'];
         this.loading.dismiss()
