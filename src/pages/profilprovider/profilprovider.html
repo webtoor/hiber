@@ -7,14 +7,36 @@
 <ion-header>
 
   <ion-navbar color="navy">
-    <ion-title *ngIf="items">
+    <!-- <ion-title *ngIf="items">
       {{items.username}}
-    </ion-title>
+    </ion-title> -->
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<div *ngIf="items"></div>
+    <ion-grid>
+        <ion-row style="margin-left: -15px; margin-right: -15px">
+          <ion-col style="margin-top: -15px;">
+              <ion-list>
+                  <ion-item>
+                        <img src="assets/imgs/menu.png" class="logo"/>
+            
+                  </ion-item>
+                </ion-list>
+          </ion-col>
+          <ion-col style="margin-left: -400px;">
+              <ion-list>
+                  <ion-item-group>
+                    <div *ngIf="items">
+                        <ion-item><p>Username<a style="margin-left: 10px;">:</a>  {{items.username}}</p></ion-item>
+                        <ion-item><p>Nama<a style="margin-left: 37px;">:</a>       {{items.firstname}} {{items.lastname}}</p></ion-item>
+                        <ion-item><p>No Hp<a style="margin-left: 35px;">:</a>    {{items.phonenumber}}</p></ion-item>
+                  </div>
+                </ion-item-group>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
 </ion-content>
