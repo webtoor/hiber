@@ -10,7 +10,7 @@
       <ion-card >
       <ion-card-content>
      <ion-grid>
-      <ion-row style="margin-left: -9px; margin-top: -10px">
+      <ion-row style="margin-left: -9px;">
         <ion-col>
           <div style="font-weight:bold;">{{item.order.subject}}</div>
           </ion-col>
@@ -23,7 +23,8 @@
           </div>
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid >
+    <div style="margin-bottom: 10px">
       <div> Dibuat  : {{item.order.created_at | date: "dd-MMM-yyyy HH:mm a"}}  </div>
       <div *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</div>
       <div *ngIf="item.order.projecttype == 2">Liburan</div>
@@ -32,6 +33,7 @@
       <div *ngIf="item.order.projecttype == 5">Pengawasan</div>
       <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
       <div *ngIf="item.status_id == 3" (click)="provider_id(item.user.id)">Dikerjakan oleh : <a>{{item.user.username}}</a></div>
+    </div>
     </ion-card-content>
     </ion-card>
     </div>
