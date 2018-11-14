@@ -16,6 +16,7 @@ export class GoogleMaps {
   pathstr:any;
   polyline:any;
   all_overlays = [];
+  area : any;
 
   mapInitialised: boolean = false;
   mapLoaded: any;
@@ -131,6 +132,8 @@ export class GoogleMaps {
          this.pathstr += shape.getPath().getAt(i).toUrlValue() + ",";
        }
        this.pathstr += "";
+       this.area = google.maps.geometry.spherical.computeArea(shape.getPath());
+       console.log(this.area.toFixed(2));
      }
 
 
