@@ -23,6 +23,8 @@ export class Proyek1berjalanPage {
   loading:any
   finish :any =  { "status" : "3", "provider_id" : ""}
   status : any
+  cancels :any =  { "status" : "4", "provider_id" : ""}
+
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App, public authService:AuthServiceProvider) {
      this.menu.swipeEnable(false);
      const data = JSON.parse(localStorage.getItem('order_show'));
@@ -89,4 +91,39 @@ export class Proyek1berjalanPage {
     confirm.present();
   }
 
+  cancel(subject:any,order_id:any, ){
+    console.log(this.cancels)
+  let confirm = this.alertCtrl.create({
+    title: 'Konfirmasi',
+    message: 'Apakah anda yakin untuk membatalkan order ' + subject + '?',
+    buttons: [
+      {
+        text: 'Oke',
+        handler: () => {
+            this.authService.putData(this.cancels, "api/user/order_status/" + order_id, this.userDetails['access_token']).then((result) => {
+            this.responseData = result;
+            console.log(this.responseData);
+            if(this.responseData['success'] == true){
+              this.showLoader()
+              localStorage.removeItem('order_show');
+              this.navCtrl.setRoot(this.navCtrl.getActive().component);
+              this.loading.dismiss()
+
+            }else{
+               localStorage.clear();
+              setTimeout(()=> this.backToWelcome(), 1000);  
+            }
+          });  
+        }
+      },
+      {
+        text: 'Kembali',
+        handler: () => {
+          console.log('Kembali clicked');
+        }
+      }
+    ]
+  });
+  confirm.present();
+}
 }
