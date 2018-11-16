@@ -3,6 +3,7 @@ import { App, MenuController, NavController, NavParams, AlertController, Loading
 import { RatingPage } from '../rating/rating';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
+import { ProfilproviderPage } from '../profilprovider/profilprovider'
 
 
 
@@ -125,5 +126,13 @@ export class Proyek1berjalanPage {
     ]
   });
   confirm.present();
+}
+
+provider_id(id_provider:any){
+  console.log(id_provider)
+  let nav = this.app.getRootNav();
+  nav.push(ProfilproviderPage, {
+  id : id_provider,
+});
 }
 }
