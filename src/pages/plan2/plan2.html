@@ -31,13 +31,12 @@
       </ion-item>
   <ion-item>
     <ion-label color="navy"><ion-icon name="calendar"></ion-icon><p>Mulai</p></ion-label>
-    <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
+    <ion-datetime displayFormat="DD-MMM-YYYY" (ionChange) = "startDate(planData.mulai)" min="2018" max="2025-10-31" [(ngModel)]="planData.mulai" name="mulai" required></ion-datetime>
     </ion-item>
-    <ion-item>
-    <ion-label color="navy"><ion-icon name="calendar"></ion-icon><p>Akhir</p></ion-label>
-      <ion-datetime displayFormat="DD-MMM-YYYY" min="2016" max="2025-10-31" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
+    <ion-item *ngIf="planData.mulai"> 
+          <ion-label color="navy"><ion-icon name="calendar"></ion-icon><p>Akhir</p></ion-label>
+          <ion-datetime displayFormat="DD-MMM-YYYY" min="{{planData.mulai}}" max="2025-10-31" [(ngModel)]="planData.akhir" name="akhir" required></ion-datetime>
       </ion-item>
-
   <ion-item>
       <ion-label color="navy"><ion-icon name="eye"></ion-icon><p>Kegunaan</p></ion-label>
       <ion-select [(ngModel)]="planData.kegunaan" name="kegunaan" required>

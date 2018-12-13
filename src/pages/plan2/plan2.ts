@@ -40,8 +40,6 @@ export class Plan2Page {
   var polygon_lenght = convert.length - 2 ;
   var hasil_polygon = convert.slice(0, polygon_lenght)
   this.planData.latlng = hasil_polygon.split(", ");
-
-
   /* var lati = split1[0];
   var long = split1[1];
   var apiurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
@@ -99,7 +97,10 @@ for (var i = 0; i < a.length; ++i) {
   backToWelcome(){
     this.navCtrl.setRoot(WelcomePage);
    }
-
+  startDate(mulai){
+    //console.log(mulai)
+    this.planData.akhir = mulai;
+  }
   cari() {
     if ((this.planData.subject == "") || (this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
