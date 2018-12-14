@@ -102,7 +102,7 @@ for (var i = 0; i < a.length; ++i) {
     this.planData.akhir = mulai;
   }
   cari() {
-    if ((this.planData.subject == "") || (this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
+    if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
     } else{
     console.log(this.planData);
