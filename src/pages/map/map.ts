@@ -36,12 +36,13 @@ export class MapPage{
 
     constructor(public statusBar: StatusBar, public navCtrl: NavController, public navParams: NavParams, public zone: NgZone, public maps: GoogleMaps, public platform: Platform, public geolocation: Geolocation, public viewCtrl: ViewController, public alertCtrl: AlertController, private modalCtrl: ModalController, public toastCtrl: ToastController) {
         //console.log(JSON.parse(localStorage.getItem('userHiber')))
+     
         this.searchDisabled = true;
         this.saveDisabled = true;
         this.address = {
           place: ''
         };
-     
+
 
     }
     ionViewDidEnter() {

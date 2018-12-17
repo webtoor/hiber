@@ -28,21 +28,23 @@ export class Proyek1berjalanPage {
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController, public menu: MenuController, public app: App, public authService:AuthServiceProvider) {
      this.menu.swipeEnable(false);
-     const data = JSON.parse(localStorage.getItem('order_show'));
+  /*    const data = JSON.parse(localStorage.getItem('order_show'));
      this.items = data;
+     console.log(this.items) */
      const user = JSON.parse(localStorage.getItem('userHiber'));
      this.userDetails = user;
-     //console.log(this.items)
+     
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Proyek1berjalanPage');
-    for(var index in this.items) { 
+  /*   for(var index in this.items) { 
       if(this.items[index]['status_id'] == '2')
         this.status = this.items[index]['status_id'];
-      //console.log(status);
-  }
+      //console.log(this.items);
+  } */
+  this.getProjectBerjalan();
   }
 
   showLoader() {
@@ -58,6 +60,24 @@ export class Proyek1berjalanPage {
     let nav = this.app.getRootNav();
     nav.setRoot(WelcomePage);
    }
+
+   getProjectBerjalan(){
+    this.showLoader()
+    this.authService.getData('api/user/order_berjalan/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+      this.responseData = result;
+      console.log(this.responseData);
+      if(this.responseData['success'] == true){
+        this.items = this.responseData['order_berjalan'];
+        this.loading.dismiss()
+      }else{
+        this.loading.dismiss()
+        localStorage.clear();
+        setTimeout(()=> this.backToWelcome(), 1000);  
+      }
+    }, (err) => {
+      this.loading.dismiss()
+    });
+}
   konfirmasi(subject : any, order_id:any) {
     let confirm = this.alertCtrl.create({
       title: 'Informasi',

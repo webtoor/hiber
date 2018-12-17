@@ -54,14 +54,16 @@ export class Proyek1Page {
     }
   }
 
-  ionViewWillLeave() {
+   ionViewWillLeave() {
     console.log('ionViewWillLeave ProyekPage');
-    localStorage.removeItem('order_show')
+    localStorage.removeItem('order_baru')
+    localStorage.removeItem('order_berjalan')
+  } 
 
-  }
   setBackButtonAction(){
     this.navBar.backButtonClick = () => {
-      localStorage.removeItem('order_show')
+      localStorage.removeItem('order_baru')
+      localStorage.removeItem('order_berjalan')
        this.navCtrl.setRoot(MapPage)
     }
  }
