@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { App, MenuController, NavController, NavParams, LoadingController, AlertController, PopoverController } from 'ionic-angular';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
-import { WelcomePage } from '../welcome/welcome'
-import { Proyek1Page } from '../proyek1/proyek1'
-import { StatussortPage } from '../statussort/statussort'
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { WelcomePage } from '../welcome/welcome';
+import { Proyek1Page } from '../proyek1/proyek1';
+import { StatussortPage } from '../statussort/statussort';
+import { HubungiProviderPage } from '../hubungi-provider/hubungi-provider';
 
 
 /**
@@ -124,5 +125,12 @@ export class StatusPage {
       ]
     });
     confirm.present();
+}
+hubungi(username:any, email:any, phonenumber:any){
+this.navCtrl.push(HubungiProviderPage, {
+  username : username,
+  email: email,
+  phonenumber: phonenumber
+});
 }
 }

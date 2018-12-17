@@ -23,6 +23,7 @@ import { SearchPage  } from '../pages/search/search';
 import { StatusPage  } from '../pages/status/status';
 import { StatussortPage } from '../pages/statussort/statussort';
 import { ProfilproviderPage } from '../pages/profilprovider/profilprovider';
+import { HubungiProviderPage } from '../pages/hubungi-provider/hubungi-provider';
 
 
 
@@ -57,7 +58,8 @@ import { HttpModule } from "@angular/http";
     SearchPage,
     StatusPage,
     StatussortPage,
-    ProfilproviderPage
+    ProfilproviderPage,
+    HubungiProviderPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -89,7 +91,8 @@ import { HttpModule } from "@angular/http";
     SearchPage,
     StatusPage,
     StatussortPage,
-    ProfilproviderPage
+    ProfilproviderPage,
+    HubungiProviderPage
   ],
   providers: [
     Keyboard,

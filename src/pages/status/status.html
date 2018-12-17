@@ -40,13 +40,11 @@
             <ion-col>
               </ion-col>
         <ion-col>
-            <button ion-button clear block small color="primary" >Hubungi</button>
+            <button ion-button clear block small color="primary" (click)="hubungi(item.user.username, item.user.email, item.user.phonenumber)" >Hubungi</button>
           </ion-col>
         </ion-row>
       </ion-grid>
      <div *ngIf="item.offered_price" style="font-weight:bold;">Penawaran IDR {{item.offered_price  | currency:"Rp." :true:"1.0"}}</div>
-    <!--  <div *ngIf="item.proposal" style="font-weight:bold;">Penawaran IDR {{item.proposal.offered_price  | currency:"Rp." :true:"1.0"}}</div>  -->
-
     </ion-card-content>
     </ion-card>
     </div>       
