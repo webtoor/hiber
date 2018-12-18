@@ -130,7 +130,7 @@ hubungi(username:any, email:any, phonenumber:any){
 this.navCtrl.push(HubungiProviderPage, {
   username : username,
   email: email,
-  phonenumber: phonenumber
+  phone: phonenumber
 });
 }
 }
