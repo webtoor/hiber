@@ -81,7 +81,7 @@ export class Proyek1berjalanPage {
   konfirmasi(subject : any, order_id:any) {
     let confirm = this.alertCtrl.create({
       title: 'Informasi',
-      message: 'Anda akan mengkonfirmasi proyek '+  subject +' telah selesai dikerjakan dengan baik. Pilih "Selesai" jika benar. "Belum" untuk menghubungi pekerja proyek',
+      message: 'Anda akan mengkonfirmasi proyek '+  subject +' telah selesai dikerjakan dengan baik. Pilih "Selesai" jika benar. "Belum" jika belum selesai',
       buttons: [
         {
           text: 'Selesai',
