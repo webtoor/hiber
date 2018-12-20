@@ -43,7 +43,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <div style="margin-left: -13px;"><button ion-button clear small color="primary" (click)="riwayat_project(item.user.id)" >Riwayat Project</button></div> 
+      <div style="margin-left: -13px;"><button ion-button clear small color="primary" (click)="riwayat_project(item.user.id, item.user.username)" >Riwayat Project</button></div> 
      <div *ngIf="item.offered_price" style="font-weight:bold;">Penawaran IDR {{item.offered_price  | currency:"Rp." :true:"1.0"}}</div>
     </ion-card-content>
     </ion-card>

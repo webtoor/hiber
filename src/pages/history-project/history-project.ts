@@ -20,8 +20,11 @@ export class HistoryProjectPage {
   public responseData: any;
   items:any;
   loading:any;
+  username:any;
   constructor(public app: App, public loadingCtrl: LoadingController, public authService: AuthServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
   this.provider_id = navParams.get('provider_id');
+  this.username = navParams.get('username');
+  console.log(this.username)
   console.log(this.provider_id)
   const data = JSON.parse(localStorage.getItem('userHiber'));
   this.userDetails = data;

@@ -136,9 +136,10 @@ export class StatusPage {
     });
   }
 
-  riwayat_project(id:any){
+  riwayat_project(id:any, username:any){
     this.navCtrl.push(HistoryProjectPage, {
       provider_id: id,
+      username: username,
     });
   }
 
