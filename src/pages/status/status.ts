@@ -5,6 +5,7 @@ import { WelcomePage } from '../welcome/welcome';
 import { Proyek1Page } from '../proyek1/proyek1';
 import { StatussortPage } from '../statussort/statussort';
 import { HubungiProviderPage } from '../hubungi-provider/hubungi-provider';
+import { HistoryProjectPage } from '../history-project/history-project';
 
 
 /**
@@ -136,7 +137,9 @@ export class StatusPage {
   }
 
   riwayat_project(id:any){
-    console.log(id)
+    this.navCtrl.push(HistoryProjectPage, {
+      provider_id: id,
+    });
   }
 
 }
