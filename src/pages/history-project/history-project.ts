@@ -21,6 +21,7 @@ export class HistoryProjectPage {
   items:any;
   loading:any;
   username:any;
+  rate;
   constructor(public app: App, public loadingCtrl: LoadingController, public authService: AuthServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
   this.provider_id = navParams.get('provider_id');
   this.username = navParams.get('username');
