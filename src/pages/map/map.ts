@@ -1,4 +1,4 @@
-import { NavController, Platform, ViewController, NavParams, AlertController, ModalController, ToastController   } from 'ionic-angular';
+import { NavController, Platform, ViewController, NavParams, AlertController, ModalController,FabContainer, ToastController  } from 'ionic-angular';
 import { Component, ElementRef, ViewChild, NgZone} from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '../../providers/google-maps/google-maps';
@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { WelcomePage} from '../welcome/welcome';
 import { PenggunaPage } from '../pengguna/pengguna';
 import { AutoCompletePage} from '../auto-complete/auto-complete';
+import introJs from 'intro.js/intro.js';
 
 
 
@@ -17,6 +18,8 @@ export class MapPage{
 
     @ViewChild('map') mapElement: ElementRef;
     @ViewChild('pleaseConnect') pleaseConnect: ElementRef;
+    @ViewChild('fab')fab : FabContainer;
+
       address;
       marker: any;
     latitude: number;
@@ -45,10 +48,51 @@ export class MapPage{
 
 
     }
+    ngAfterViewInit(): void {
+        this.intro(); 
+      }
+      
+    intro() {
+        let intro = introJs.introJs();
+        intro.setOptions({
+        steps: [
+          {
+            intro: "PANDUAN",
+          },
+          {
+            element: '#step1',
+            intro: "This is a tooltip.",
+            position: 'top'
+      
+          },
+          {
+            element: '#create-button',
+            intro: "Ini adalah tombol untuk membuat area",
+            position: 'top'
+          },
+          {
+            element: '#delete-button',
+            intro: "Ini adalah tombol untuk menghapus area",
+            position: 'top'
+          },
+          {
+            element: '#create-plan',
+            intro: "Klik tombol ini setelah membuat area",
+          },
+          {
+            intro: "SAYA MENGERTI",
+          },
+        ],
+        exitOnOverlayClick : false,        
+        });
+        intro.start();
+      }
     ionViewDidEnter() {
         if(!localStorage.getItem('userHiber')){
           this.navCtrl.setRoot(WelcomePage);
         }  
+        this.fab.toggleList();
+
       }
     ionViewDidLoad(): void {
         let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {

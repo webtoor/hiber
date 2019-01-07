@@ -41,3 +41,11 @@ page-map {
     }
 
 }
+
+ion-app, ion-nav, ion-tab, ion-tabs, .app-root, .ion-page{
+    &.introjs-fixParent{
+        contain: layout size style;
+    }
+}
+
+
