@@ -48,9 +48,6 @@ export class MapPage{
 
 
     }
-    ngAfterViewInit(): void {
-        this.intro(); 
-      }
       
     intro() {
         let intro = introJs.introJs();
@@ -91,8 +88,12 @@ export class MapPage{
         if(!localStorage.getItem('userHiber')){
           this.navCtrl.setRoot(WelcomePage);
         }  
-        this.fab.toggleList();
 
+        if(localStorage.getItem('Intro') == '1'){
+            this.intro(); 
+            this.fab.toggleList();
+            localStorage.setItem('Intro', '1');
+        }
       }
     ionViewDidLoad(): void {
         let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {

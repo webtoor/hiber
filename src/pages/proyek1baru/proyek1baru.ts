@@ -125,4 +125,13 @@ export class Proyek1baruPage {
     });
     confirm.present();
   }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.getProject();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 }

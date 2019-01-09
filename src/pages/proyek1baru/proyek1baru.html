@@ -5,6 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    
   <div *ngIf="items != 0 ;else kosong" >
   <div *ngFor="let item of items">
   <div *ngIf = "item.status_id == 1">
