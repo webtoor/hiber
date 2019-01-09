@@ -155,4 +155,12 @@ provider_id(id_provider:any){
   id : id_provider,
 });
 }
+doRefresh(refresher) {
+  console.log('Begin async operation', refresher);
+  this.getProjectBerjalan();
+  setTimeout(() => {
+    console.log('Async operation has ended');
+    refresher.complete();
+  }, 2000);
+}
 }
