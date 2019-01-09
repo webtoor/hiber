@@ -25,6 +25,7 @@ import { StatussortPage } from '../pages/statussort/statussort';
 import { ProfilproviderPage } from '../pages/profilprovider/profilprovider';
 import { HubungiProviderPage } from '../pages/hubungi-provider/hubungi-provider';
 import { HistoryProjectPage } from '../pages/history-project/history-project';
+import { IntroPage } from '../pages/intro/intro';
 
 
 import { Keyboard } from "@ionic-native/keyboard"
@@ -60,7 +61,8 @@ import { HttpModule } from "@angular/http";
     StatussortPage,
     ProfilproviderPage,
     HubungiProviderPage,
-    HistoryProjectPage
+    HistoryProjectPage,
+    IntroPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -94,7 +96,8 @@ import { HttpModule } from "@angular/http";
     StatussortPage,
     ProfilproviderPage,
     HubungiProviderPage,
-    HistoryProjectPage
+    HistoryProjectPage,
+    IntroPage
   ],
   providers: [
     Keyboard,

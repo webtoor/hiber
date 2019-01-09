@@ -3,6 +3,7 @@ import { MenuController, NavController, NavParams, ToastController  } from 'ioni
 import { DaftarPage } from '../daftar/daftar'
 import { LoginPage } from '../login/login'
 import { MapPage } from '../map/map';
+import { IntroPage } from '../intro/intro';
 
 
 /**
@@ -27,7 +28,11 @@ export class WelcomePage {
     }
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    if(localStorage.getItem('Welcome') != '1'){
+      this.navCtrl.setRoot(IntroPage);
+      localStorage.setItem('Welcome', '1');
+  }
     //console.log('ionViewDidLoad WelcomePage');
   }
 
