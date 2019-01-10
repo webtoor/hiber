@@ -58,7 +58,7 @@ export class MapPage{
           },
           {
             element: '#step1',
-            intro: "This is a tooltip.",
+            intro: "Klik tombol ini untuk memilih menu membuat area atau hapus area.",
             position: 'top'
       
           },
@@ -77,7 +77,7 @@ export class MapPage{
             intro: "Klik tombol ini setelah membuat area",
           },
           {
-            intro: "SAYA MENGERTI",
+            intro: "BAIK. SAYA MENGERTI",
           },
         ],
         exitOnOverlayClick : false,        
@@ -89,7 +89,7 @@ export class MapPage{
           this.navCtrl.setRoot(WelcomePage);
         }  
 
-        if(localStorage.getItem('Intro') == '1'){
+        if(localStorage.getItem('Intro') != '1'){
             this.intro(); 
             this.fab.toggleList();
             localStorage.setItem('Intro', '1');
