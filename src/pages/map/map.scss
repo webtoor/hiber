@@ -46,6 +46,14 @@ ion-app, ion-nav, ion-tab, ion-tabs, ion-navbar, .app-root, .ion-page{
 }
 .customHighlightClass{
     background-color: rgb(15, 221, 228);
-    border: 0;
   }
+.customTooltipClass{
+    font-weight: bold;
+}
+.customTooltipClass .introjs-tooltipbuttons, .introjs-tooltiptext {
+    text-align: center;
+}
 
+.customTooltipClass .introjs-tooltip{
+    margin-bottom: 100px;
+}

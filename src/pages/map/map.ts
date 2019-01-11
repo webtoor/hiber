@@ -57,7 +57,6 @@ export class MapPage{
         steps: [
           {
             intro: "PANDUAN",
-            position : 'left',
           },
           {
             element: '#step1',
@@ -87,10 +86,11 @@ export class MapPage{
         nextLabel : 'Next',
         prevLabel : 'Back',
         exitOnOverlayClick : false, 
-        showProgress :false,
-        showBullets : true,
+        showProgress :true,
+        showBullets : false,
         showStepNumbers : false,
         highlightClass: 'customHighlightClass',
+        tooltipClass: 'customTooltipClass'
         });
         intro.start();
       }
