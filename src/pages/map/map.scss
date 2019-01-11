@@ -1,8 +1,6 @@
 page-map {
 
-  ion-list {
-    margin: 0 !important;
-  }
+
 
   #please-connect {
     position: absolute;
@@ -39,10 +37,9 @@ page-map {
     font-weight: bold;
     font-family: Righteous;
     }
-
 }
 
-ion-app, ion-nav, ion-tab, ion-tabs, .app-root, .ion-page{
+ion-app, ion-nav, ion-tab, ion-tabs, ion-navbar, .app-root, .ion-page{
     &.introjs-fixParent{
         contain: layout size style;
     }

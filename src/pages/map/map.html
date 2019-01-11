@@ -1,24 +1,23 @@
 <ion-header>
-  <ion-navbar color="navy">
+  <ion-navbar color="navy" >
       <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
+          <ion-icon name="menu" ></ion-icon>
         </button>
-        <ion-title text-center >
+        <ion-title text-center>
          <div id="logo">HIBER</div>
         </ion-title>
-    <ion-buttons end icon-only style="margin-right:-5px;">
-        <button ion-button id="create-plan">
-          <ion-icon name="checkbox-outline"></ion-icon>
-        </button>
-      </ion-buttons>
-
+        <ion-buttons end icon-only style="margin-right:-5px;" id="navs" data-tooltipClass="forLastStep">
+            <button ion-button id="create-plan" >
+              <ion-icon name="checkbox-outline"></ion-icon>
+            </button>
+          </ion-buttons>
 </ion-navbar>
+
 <ion-toolbar color="navy" style="margin-top:-18px">
   <ion-searchbar (click)="showAddressModal()" [(ngModel)]="address.place" showCancelButton="true" placeholder="Search location"></ion-searchbar>
 </ion-toolbar>
 
 </ion-header>
-
 <ion-content>
 
   <div #pleaseConnect id="please-connect">
@@ -29,7 +28,7 @@
      
   </div>
   
-  <ion-fab right bottom id="step1" #fab >
+  <ion-fab right bottom id="step1" #fab>
     <button ion-fab color="navy"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="top">
       <button ion-fab id="create-button" color="navy"><ion-icon name="create"></ion-icon></button>

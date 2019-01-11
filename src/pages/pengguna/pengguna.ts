@@ -68,7 +68,8 @@ export class PenggunaPage {
       }, (err) => {
         //Connection failed message
       });
-    localStorage.clear();
+    //localStorage.clear();
+    localStorage.removeItem('userHiber');
      setTimeout(()=> this.backToWelcome(), 1000);
   }
 }

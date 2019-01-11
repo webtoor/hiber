@@ -7,6 +7,8 @@ import { WelcomePage} from '../welcome/welcome';
 import { PenggunaPage } from '../pengguna/pengguna';
 import { AutoCompletePage} from '../auto-complete/auto-complete';
 import introJs from 'intro.js/intro.js';
+import { isRightSide } from 'ionic-angular/umd/util/util';
+import { map } from 'rxjs/operator/map';
 
 
 
@@ -55,32 +57,39 @@ export class MapPage{
         steps: [
           {
             intro: "PANDUAN",
+            position : 'left',
           },
           {
             element: '#step1',
             intro: "Klik tombol ini untuk memilih menu membuat area atau hapus area.",
-            position: 'top'
+            position: 'left'
       
           },
           {
             element: '#create-button',
             intro: "Ini adalah tombol untuk membuat area",
-            position: 'top'
+            position: 'left'
           },
           {
             element: '#delete-button',
             intro: "Ini adalah tombol untuk menghapus area",
-            position: 'top'
+            position: 'left'
           },
           {
-            element: '#create-plan',
+            element: '#navs',
             intro: "Klik tombol ini setelah membuat area",
+            position: 'left'
           },
           {
             intro: "BAIK. SAYA MENGERTI",
           },
         ],
-        exitOnOverlayClick : false,        
+        nextLabel : 'Next',
+        prevLabel : 'Back',
+        exitOnOverlayClick : false, 
+        showProgress :false,
+        showBullets : true,
+        showStepNumbers : false,
         });
         intro.start();
       }
@@ -89,7 +98,7 @@ export class MapPage{
           this.navCtrl.setRoot(WelcomePage);
         }  
 
-        if(localStorage.getItem('Intro') != '1'){
+        if(localStorage.getItem('Intro') == '1'){
             this.intro(); 
             this.fab.toggleList();
             localStorage.setItem('Intro', '1');
