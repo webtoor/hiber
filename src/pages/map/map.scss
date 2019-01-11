@@ -44,5 +44,8 @@ ion-app, ion-nav, ion-tab, ion-tabs, ion-navbar, .app-root, .ion-page{
         contain: layout size style;
     }
 }
-
+.customHighlightClass{
+    background-color: rgb(15, 221, 228);
+    border: 0;
+  }
 

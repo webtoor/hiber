@@ -90,6 +90,7 @@ export class MapPage{
         showProgress :false,
         showBullets : true,
         showStepNumbers : false,
+        highlightClass: 'customHighlightClass',
         });
         intro.start();
       }
@@ -98,7 +99,7 @@ export class MapPage{
           this.navCtrl.setRoot(WelcomePage);
         }  
 
-        if(localStorage.getItem('Intro') == '1'){
+        if(localStorage.getItem('Intro') != '1'){
             this.intro(); 
             this.fab.toggleList();
             localStorage.setItem('Intro', '1');
