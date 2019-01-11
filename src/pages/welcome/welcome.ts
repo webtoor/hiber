@@ -31,7 +31,7 @@ export class WelcomePage {
   ionViewDidEnter() {
     if(localStorage.getItem('Welcome') != '1'){
       this.navCtrl.setRoot(IntroPage);
-      //localStorage.setItem('Welcome', '1');
+      localStorage.setItem('Welcome', '1');
   } 
     //console.log('ionViewDidLoad WelcomePage');
   }

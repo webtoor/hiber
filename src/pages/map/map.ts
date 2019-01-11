@@ -96,14 +96,16 @@ export class MapPage{
       }
     ionViewDidEnter() {
         if(!localStorage.getItem('userHiber')){
-          this.navCtrl.setRoot(WelcomePage);
-        }  
-
-        if(localStorage.getItem('Intro') != '1'){
-            this.intro(); 
-            this.fab.toggleList();
-            localStorage.setItem('Intro', '1');
-        }
+            this.navCtrl.setRoot(WelcomePage);
+          }else if(localStorage.getItem('userHiber')){
+                if(localStorage.getItem('Intro') != '1'){
+                  this.intro(); 
+                  this.fab.toggleList();
+                  localStorage.setItem('Intro', '1');
+              }  
+          } 
+      
+      
       }
     ionViewDidLoad(): void {
         let mapLoaded = this.maps.init(this.mapElement.nativeElement, this.pleaseConnect.nativeElement).then(() => {
@@ -116,7 +118,6 @@ export class MapPage{
 
         });
         this.initPlacedetails();
-  
     }
 
     /*selectPlace(place){

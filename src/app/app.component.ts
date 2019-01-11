@@ -3,7 +3,6 @@ import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MapPage } from '../pages/map/map';
-import { WelcomePage } from '../pages/welcome/welcome';
 import { Proyek1Page } from '../pages/proyek1/proyek1';
 import { PenggunaPage } from '../pages/pengguna/pengguna';
 import { HubkamiPage } from '../pages/hubkami/hubkami';
