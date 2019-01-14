@@ -263,7 +263,8 @@ export class GoogleMaps {
               if(this.pathstr != null){
                 this.setSelection(newShape);
                 this.navCtrl.push(Plan2Page,{
-                  latlng : this.pathstr
+                  latlng : this.pathstr,
+                  area : this.area.toFixed(2),
                 });
               }else{
                   this.presentToast('Anda harus membuat polygon dahulu');

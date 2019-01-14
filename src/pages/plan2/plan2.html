@@ -25,6 +25,10 @@
 
 
 <ion-content>
+  <ion-item>
+      <ion-label color="navy"><ion-icon name=md-tennisball></ion-icon><p>Luas Area</p></ion-label>
+      <ion-input type="text" disabled="true" value="{{area}} Meter" style="margin-top:20px;"></ion-input>
+  </ion-item>
     <ion-item>
         <ion-label color="navy"><ion-icon name=create></ion-icon><p>Nama Project</p></ion-label>
         <ion-input type="text" [(ngModel)]="planData.subject" name="subject" style="margin-top:20px;"></ion-input>
