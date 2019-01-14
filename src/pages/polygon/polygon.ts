@@ -23,6 +23,7 @@ export class PolygonPage {
   public order_id : any;
   subject : any;
   loading:any
+  area:any;
 
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider) {
@@ -71,7 +72,7 @@ export class PolygonPage {
         cords.push(new google.maps.LatLng(parseFloat(this.responseData['polygon'][i]['latitude']), parseFloat(this.responseData['polygon'][i]['longitude'])));
       }
       //console.log(cords)
-        new google.maps.Polygon({
+        var polygons = new google.maps.Polygon({
            paths: cords,
            map: this.map,
            strokeColor: '#000',
@@ -96,6 +97,21 @@ export class PolygonPage {
           }
          }
          console.log(this.outputs)
+      /*    var pathLeft = [new google.maps.LatLng(55.874, -4.292),
+          new google.maps.LatLng(55.875, -4.292),
+          new google.maps.LatLng(55.875, -4.290),
+          new google.maps.LatLng(55.876, -4.290),
+          new google.maps.LatLng(55.876, -4.291),
+          new google.maps.LatLng(55.874, -4.291)] */
+
+   /*    var polygonLeft = new google.maps.Polygon({
+          paths : pathLeft,
+          map: this.map
+      }); */
+
+      var luasArea = google.maps.geometry.spherical.computeArea(polygons.getPath());
+      this.area = luasArea.toFixed(2)
+      console.log(this.area)
          this.loading.dismiss()
 
         }, (err) => {
