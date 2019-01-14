@@ -70,9 +70,11 @@ export class Proyek1lampauPage {
     doRefresh(refresher) {
       console.log('Begin async operation', refresher);
       this.getHistory();
-      setTimeout(() => {
+      refresher.complete();
+
+     /*  setTimeout(() => {
         console.log('Async operation has ended');
         refresher.complete();
-      }, 2000);
+      }, 2000); */
     }
 }

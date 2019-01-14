@@ -4,6 +4,7 @@ import { RatingPage } from '../rating/rating';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
 import { ProfilproviderPage } from '../profilprovider/profilprovider'
+import { PolygonPage } from '../polygon/polygon'
 
 
 
@@ -155,12 +156,21 @@ provider_id(id_provider:any){
   id : id_provider,
 });
 }
+
+detail(order_id:any, subject:any){
+  //console.log(order_id)
+
+  let nav = this.app.getRootNav();
+  nav.push(PolygonPage, {
+  order_id : order_id,
+  subject : subject
+});
+}
 doRefresh(refresher) {
   console.log('Begin async operation', refresher);
   this.getProjectBerjalan();
-  setTimeout(() => {
-    console.log('Async operation has ended');
-    refresher.complete();
-  }, 2000);
+  refresher.complete();
+
+
 }
 }

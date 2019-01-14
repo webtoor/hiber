@@ -36,7 +36,7 @@ export class Plan2Page {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
   this.area = navParams.get('area');
-  console.log(latlng)
+  console.log(this.area)
   var split1 = latlng.split(",");
   var convert = split1.join(", ");
   var polygon_lenght = convert.length - 2 ;

@@ -129,9 +129,11 @@ export class Proyek1baruPage {
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
     this.getProject();
-    setTimeout(() => {
+    refresher.complete();
+
+  /*   setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
-    }, 2000);
+    }, 2000); */
   }
 }
