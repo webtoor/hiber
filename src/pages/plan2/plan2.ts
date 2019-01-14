@@ -21,6 +21,7 @@ export class Plan2Page {
   posts: any;
   public userDetails : any;
   responseData:any;
+  area:any;
   planData:any = {
     "subject" : "",
     "createdby_id": "",
@@ -34,6 +35,7 @@ export class Plan2Page {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
+  this.area = navParams.get('area');
   console.log(latlng)
   var split1 = latlng.split(",");
   var convert = split1.join(", ");
