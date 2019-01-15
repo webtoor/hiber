@@ -19,7 +19,6 @@ import { RatingPage } from '../pages/rating/rating';
 import { WelcomePage } from '../pages/welcome/welcome'
 import { PolygonPage } from '../pages/polygon/polygon';
 import { AutoCompletePage  } from '../pages/auto-complete/auto-complete';
-import { SearchPage  } from '../pages/search/search';
 import { StatusPage  } from '../pages/status/status';
 import { StatussortPage } from '../pages/statussort/statussort';
 import { ProfilproviderPage } from '../pages/profilprovider/profilprovider';
@@ -56,7 +55,6 @@ import { HttpModule } from "@angular/http";
     LoginPage,
     PolygonPage,
     AutoCompletePage,
-    SearchPage,
     StatusPage,
     StatussortPage,
     ProfilproviderPage,
@@ -91,7 +89,6 @@ import { HttpModule } from "@angular/http";
     LoginPage,
     PolygonPage,
     AutoCompletePage,
-    SearchPage,
     StatusPage,
     StatussortPage,
     ProfilproviderPage,
