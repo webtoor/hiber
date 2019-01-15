@@ -37,6 +37,7 @@ export class StatusPage {
     this.menu.swipeEnable(false);
     const data = JSON.parse(localStorage.getItem('userHiber'));
     this.userDetails = data;
+    this.filter = '1';
 
   }
 
