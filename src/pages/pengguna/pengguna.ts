@@ -70,6 +70,7 @@ export class PenggunaPage {
       });
     //localStorage.clear();
     localStorage.removeItem('userHiber');
+    localStorage.removeItem('Welcome');
      setTimeout(()=> this.backToWelcome(), 1000);
   }
 }
