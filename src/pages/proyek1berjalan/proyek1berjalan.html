@@ -28,14 +28,14 @@
         <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
         <div > Dikerjakan oleh  :<a (click)="provider_id(item.user.id)"> {{item.user.username}}</a>  </div>
         <ion-grid>
-          <ion-row>
-            <ion-col text-center style="margin-left: -10px">
+          <ion-row style="margin-left: -15px; margin-right: -15px">
+            <ion-col>
                 <button ion-button block small color="navy" style="color:orange"  (click)="konfirmasi(item.order.subject, item.order_id)">Konfirmasi Hasil</button>
               </ion-col>
-              <ion-col text-center style="margin-right: -10px">
+              <ion-col>
                   <button ion-button outline small block color="navy" style="color:orange" (click)="detail(item.order_id, item.order.subject)" >Detail</button>
                 </ion-col>
-              <ion-col text-center style="margin-right: -10px">
+              <ion-col>
                 <button ion-button outline block small color="navy" style="color:#2A2C43" (click)="cancel(item.order.subject, item.order_id)">Cancel</button>
               </ion-col>
           </ion-row>
