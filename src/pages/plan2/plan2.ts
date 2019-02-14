@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, NavParams, AlertController } from 'ionic-angular';
+import { MenuController, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
 import 'rxjs/add/operator/map';
@@ -18,6 +18,7 @@ import { WelcomePage } from '../welcome/welcome'
   templateUrl: 'plan2.html',
 })
 export class Plan2Page {
+  loading: any;
   posts: any;
   public userDetails : any;
   responseData:any;
@@ -32,7 +33,7 @@ export class Plan2Page {
     "hasil" : [], 
     "latlng" : []
 };
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
+  constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
   this.area = navParams.get('area');
@@ -103,6 +104,15 @@ for (var i = 0; i < a.length; ++i) {
     //console.log(mulai)
     this.planData.akhir = mulai;
   }
+
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
+
+    this.loading.present();
+  }
   cari() {
     if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
@@ -116,14 +126,17 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
+            this.showLoader();
               this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
+                this.loading.dismiss()
                 this.navCtrl.push(Proyek1Page, {
                   plan2 : '1',
                 });      
               }else{
+                this.loading.dismiss()
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
               }
