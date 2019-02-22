@@ -1,5 +1,5 @@
 import { Component, NgZone, ViewChild} from '@angular/core';
-import { NavController, NavParams, ViewController, Searchbar   } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Searchbar  } from 'ionic-angular';
 
 /**
  * Generated class for the AutoCompletePage page.
@@ -40,7 +40,6 @@ export class AutoCompletePage {
     chooseItem(item: any) {
       this.viewCtrl.dismiss(item);
     }
-
     updateSearch() {
       if (this.autocomplete.query.length > 0) {
         let self = this;
