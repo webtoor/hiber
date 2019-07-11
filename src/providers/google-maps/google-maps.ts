@@ -67,7 +67,7 @@ export class GoogleMaps {
           script.id = "googleMaps";
 
           if (this.apiKey) {
-            script.src = 'http://maps.google.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit&libraries=places,drawing';
+            script.src = 'http://maps.google.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit&libraries=places,drawing,geometry';
           } else {
             script.src = 'http://maps.google.com/maps/api/js?callback=mapInit';
           }
@@ -263,7 +263,8 @@ export class GoogleMaps {
               if(this.pathstr != null){
                 this.setSelection(newShape);
                 this.navCtrl.push(Plan2Page,{
-                  latlng : this.pathstr
+                  latlng : this.pathstr,
+                  area : this.area.toFixed(2),
                 });
               }else{
                   this.presentToast('Anda harus membuat polygon dahulu');
@@ -350,7 +351,8 @@ export class GoogleMaps {
                   if(this.pathstr != null){
                     this.setSelection(newShape);
                     this.navCtrl.push(Plan2Page,{
-                      latlng : this.pathstr
+                      latlng : this.pathstr,
+                      area : this.area.toFixed(2),
                     });
                   }else{
                       this.presentToast('Anda harus membuat polygon dahulu');

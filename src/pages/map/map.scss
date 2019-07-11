@@ -1,8 +1,6 @@
 page-map {
 
-  ion-list {
-    margin: 0 !important;
-  }
+
 
   #please-connect {
     position: absolute;
@@ -39,5 +37,23 @@ page-map {
     font-weight: bold;
     font-family: Righteous;
     }
+}
 
+ion-app, ion-nav, ion-tab, ion-tabs, ion-navbar, .app-root, .ion-page{
+    &.introjs-fixParent{
+        contain: layout size style;
+    }
+}
+.customHighlightClass{
+    background-color: rgb(15, 221, 228);
+  }
+.customTooltipClass{
+    font-weight: bold;
+}
+.customTooltipClass .introjs-tooltipbuttons, .introjs-tooltiptext {
+    text-align: center;
+}
+
+.customTooltipClass .introjs-tooltip{
+    margin-bottom: 100px;
 }

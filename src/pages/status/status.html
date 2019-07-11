@@ -29,7 +29,6 @@
               <div *ngIf="item.user" style="font-weight:bold;">
                 {{item.user.username}} 
                 <a *ngIf="item.user_feedback"><ion-icon name="star" ></ion-icon>{{item.user_feedback.total_rating}}</a>
-                <!-- <a *ngIf="item.total_rating || item.total_rating == 0"><ion-icon name="star" ></ion-icon>{{item.total_rating}}</a> -->
               </div>
             </ion-col>
           <ion-col>
@@ -40,13 +39,12 @@
             <ion-col>
               </ion-col>
         <ion-col>
-            <button ion-button clear block small color="primary" >Hubungi</button>
+            <button ion-button clear block small color="primary" (click)="hubungi(item.user.username, item.user.email, item.user.phonenumber)" >Hubungi</button>
           </ion-col>
         </ion-row>
       </ion-grid>
+      <div style="margin-left: -13px;"><button ion-button clear small color="primary" (click)="riwayat_project(item.user.id, item.user.username)" >Riwayat Project</button></div> 
      <div *ngIf="item.offered_price" style="font-weight:bold;">Penawaran IDR {{item.offered_price  | currency:"Rp." :true:"1.0"}}</div>
-    <!--  <div *ngIf="item.proposal" style="font-weight:bold;">Penawaran IDR {{item.proposal.offered_price  | currency:"Rp." :true:"1.0"}}</div>  -->
-
     </ion-card-content>
     </ion-card>
     </div>       

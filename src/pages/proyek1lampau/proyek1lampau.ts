@@ -66,4 +66,15 @@ export class Proyek1lampauPage {
       id : id_provider,
     });
     }
+
+    doRefresh(refresher) {
+      console.log('Begin async operation', refresher);
+      this.getHistory();
+      refresher.complete();
+
+     /*  setTimeout(() => {
+        console.log('Async operation has ended');
+        refresher.complete();
+      }, 2000); */
+    }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, NavParams, AlertController } from 'ionic-angular';
+import { MenuController, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { MapPage} from '../map/map';
 import 'rxjs/add/operator/map';
@@ -18,9 +18,11 @@ import { WelcomePage } from '../welcome/welcome'
   templateUrl: 'plan2.html',
 })
 export class Plan2Page {
+  loading: any;
   posts: any;
   public userDetails : any;
   responseData:any;
+  area:any;
   planData:any = {
     "subject" : "",
     "createdby_id": "",
@@ -31,17 +33,16 @@ export class Plan2Page {
     "hasil" : [], 
     "latlng" : []
 };
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
+  constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public menu: MenuController, public authService: AuthServiceProvider ) {
   this.menu.swipeEnable(false);
   var latlng = navParams.get('latlng');
-  console.log(latlng)
+  this.area = navParams.get('area');
+  console.log(this.area)
   var split1 = latlng.split(",");
   var convert = split1.join(", ");
   var polygon_lenght = convert.length - 2 ;
   var hasil_polygon = convert.slice(0, polygon_lenght)
   this.planData.latlng = hasil_polygon.split(", ");
-
-
   /* var lati = split1[0];
   var long = split1[1];
   var apiurl = "http://maps.googleapis.com/maps/api/geocode/json?latlng="
@@ -99,9 +100,21 @@ for (var i = 0; i < a.length; ++i) {
   backToWelcome(){
     this.navCtrl.setRoot(WelcomePage);
    }
+  startDate(mulai){
+    //console.log(mulai)
+    this.planData.akhir = mulai;
+  }
 
+  showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Loading..',
+    });
+
+    this.loading.present();
+  }
   cari() {
-    if ((this.planData.subject == "") || (this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
+    if ((this.planData.mulai == "") || (this.planData.akhir == "") || (this.planData.kegunaan == "") || (this.planData.hasil == "")   ) {
         this.presentAlert()
     } else{
     console.log(this.planData);
@@ -113,14 +126,17 @@ for (var i = 0; i < a.length; ++i) {
         {
           text: 'Oke',
           handler: () => {
+            this.showLoader();
               this.authService.postData(this.planData, "api/user/order", this.userDetails['access_token']).then((result) => {
               this.responseData = result;
               console.log(this.responseData);
               if(this.responseData['success'] == true){
+                this.loading.dismiss()
                 this.navCtrl.push(Proyek1Page, {
                   plan2 : '1',
                 });      
               }else{
+                this.loading.dismiss()
                  localStorage.clear();
                 setTimeout(()=> this.backToWelcome(), 1000);  
               }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, MenuController, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { App, MenuController, ToastController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Proyek1Page } from '../proyek1/proyek1'
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { WelcomePage } from '../welcome/welcome'
@@ -27,7 +27,7 @@ export class RatingPage {
   public items : any;
   loading:any
   order_id:any;
-  constructor(public authService:AuthServiceProvider, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public app: App, public loadingCtrl: LoadingController) {
+  constructor(private toastCtrl: ToastController,public authService:AuthServiceProvider, public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public app: App, public loadingCtrl: LoadingController) {
      this.menu.swipeEnable(false);
      this.order_id = navParams.get('order_ids');
      const user = JSON.parse(localStorage.getItem('userHiber'));
@@ -42,6 +42,7 @@ export class RatingPage {
   rate(){
     this.User.writter = this.userDetails['id'];
     console.log(this.User);
+    if (this.User.rating && this.User.comment) {
     this.authService.postData(this.User,'api/user/order_feedback/' + this.order_id, this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
@@ -57,7 +58,24 @@ export class RatingPage {
     }, (err) => {
        console.log('error')
     });
+  }else{
+      this.presentToast("Rating dan Saran/Kritik harap diisi!!");
+    }
+  }
 
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
   showLoader() {

@@ -5,7 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-content>
-  <div *ngIf="items != 0 && statuss > 0 ;else kosong" >
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    
+  <div *ngIf="items != 0 ;else kosong" >
   <div *ngFor="let item of items">
   <div *ngIf = "item.status_id == 1">
       <ion-card >
@@ -39,7 +43,7 @@
     <ng-template #kosong>
       <ion-card>
           <ion-card-content>
-            <p text-center style="font-weight:bold">Belum Ada Order</p>
+            <p text-center style="font-weight:bold">Belum Ada Project Baru</p>
           </ion-card-content>
   </ion-card>
     </ng-template>

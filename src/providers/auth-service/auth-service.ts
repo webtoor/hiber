@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 
 //let apiUrl = "http://192.168.43.107:8000/";
  //let apiUrl = "http://hiber.herokuapp.com/"
-//let apiUrl = "http://127.0.0.1:8000/";
-let apiUrl = "http://hiber.eidaramata.com/public/"
+let apiUrl = "http://127.0.0.1:8000/";
+//let apiUrl = "http://hiber.eidaramata.com/public/"
 
 
 /*

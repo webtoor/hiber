@@ -53,17 +53,17 @@ export class Proyek1baruPage {
    }
   getProject(){
     this.showLoader()
-    this.authService.getData('api/user/order_show/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
+    this.authService.getData('api/user/order_baru/' + this.userDetails['id'], this.userDetails['access_token']).then((result)=>{
       this.responseData = result;
       console.log(this.responseData);
       if(this.responseData['success'] == true){
-        localStorage.setItem('order_show', JSON.stringify(this.responseData['order']));
-        this.items = this.responseData['order'];
-        for(var index in this.items) { 
+        //localStorage.setItem('order_show', JSON.stringify(this.responseData['order']));
+        this.items = this.responseData['order_baru'];
+       /*  for(var index in this.items) { 
           if(this.items[index]['status_id'] == '1')
             this.statuss = this.items[index]['status_id'];
             //console.log(this.statuss);
-      }
+      } */
         this.loading.dismiss()
       }else{
         this.loading.dismiss()
@@ -124,5 +124,16 @@ export class Proyek1baruPage {
       ]
     });
     confirm.present();
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.getProject();
+    refresher.complete();
+
+  /*   setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000); */
   }
 }

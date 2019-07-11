@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams } from 'ionic-angular';
+import { MapPage} from '../map/map';
 
 /**
  * Generated class for the BantuanPage page.
@@ -19,6 +20,11 @@ export class BantuanPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BantuanPage');
+  }
+
+  tutorial(){
+    localStorage.removeItem('Intro');
+    this.navCtrl.setRoot(MapPage);
   }
 
 }

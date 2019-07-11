@@ -58,17 +58,20 @@ export class PenggunaPage {
     this.authService.getData("api/logout", this.userDetails['access_token']).then((result) =>{
       this.responseData = result;
       console.log(this.responseData)
-      if(this.responseData.feedData){
+      if(this.responseData['success'] == true){
+        localStorage.clear();
     }
     else{
       console.log("No access");
-    }
-  
-  
+    }  
       }, (err) => {
         //Connection failed message
       });
     localStorage.clear();
+/*  localStorage.removeItem('userHiber');
+    localStorage.removeItem('Welcome');
+    localStorage.removeItem('Intro'); */
+
      setTimeout(()=> this.backToWelcome(), 1000);
   }
 }

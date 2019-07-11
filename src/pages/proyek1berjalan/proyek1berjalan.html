@@ -9,7 +9,11 @@
 
 </ion-header>
 <ion-content>
-    <div *ngIf="items != 0 && status > 0;else kosong" >
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+    
+    <div *ngIf="items != 0;else kosong" >
     <ng-container *ngFor="let item of items">
       <div *ngIf="item.status_id == 2;" >
       <ion-card>
@@ -24,12 +28,15 @@
         <div>Tanggal : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}</div>
         <div > Dikerjakan oleh  :<a (click)="provider_id(item.user.id)"> {{item.user.username}}</a>  </div>
         <ion-grid>
-          <ion-row>
-            <ion-col text-center style="margin-left: -10px">
-                <button ion-button outline block small  (click)="konfirmasi(item.order.subject, item.order_id)">Konfirmasi Hasil</button>
+          <ion-row style="margin-left: -15px; margin-right: -15px">
+            <ion-col>
+                <button ion-button block small color="navy" style="color:orange"  (click)="konfirmasi(item.order.subject, item.order_id)">Konfirmasi Hasil</button>
               </ion-col>
-              <ion-col text-center style="margin-right: -10px">
-                <button ion-button outline block small color="orange" (click)="cancel(item.order.subject, item.order_id)">Cancel</button>
+              <ion-col>
+                  <button ion-button outline small block color="navy" style="color:orange" (click)="detail(item.order_id, item.order.subject)" >Detail</button>
+                </ion-col>
+              <ion-col>
+                <button ion-button outline block small color="navy" style="color:#2A2C43" (click)="cancel(item.order.subject, item.order_id)">Cancel</button>
               </ion-col>
           </ion-row>
         </ion-grid>

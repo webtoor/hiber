@@ -1,0 +1,71 @@
+<!--
+  Generated template for the HistoryProjectPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navy">
+    <ion-title>{{username}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ng-container *ngIf="items != 0;else kosong">
+        <div *ngFor="let item of items">
+  <ion-card >
+    <ion-card-content>  
+      <ion-item>
+        <b>
+            {{item.order.subject}}
+        </b>
+      </ion-item>
+      <ion-item>
+        Jenis : 
+          <a *ngIf="item.order.projecttype == 1">Pemetaan Tanaman</a>
+          <a *ngIf="item.order.projecttype == 2">Liburan</a>
+          <a *ngIf="item.order.projecttype == 3">Lalu-lintas</a>
+          <a *ngIf="item.order.projecttype == 4">Konstruksi Bangunan</a>
+          <a *ngIf="item.order.projecttype == 5">Pengawasan</a>
+      </ion-item>
+
+     <ion-item style="margin-top:-10px;" *ngFor="let itz of item.output; let i = index;">
+       Hasil {{i+1}} : 
+        <a *ngIf="itz.output_id == 1">Video</a>
+        <a *ngIf="itz.output_id == 2">Foto</a>
+        <a *ngIf="itz.output_id == 3">Peta</a>
+        <a *ngIf="itz.output_id == 4">dan lain-lain</a>
+     </ion-item>
+
+     <ion-item style="margin-top:-10px;">
+        Waktu Pengerjaan : {{item.order.dtprojectstart | date: "dd MMM yyyy" }} - {{item.order.dtprojectend | date: "dd MMM yyyy" }}
+      </ion-item>
+      <ion-item style="margin-top:-10px;">
+          Rating : <a *ngIf="item.order_feedback">  
+              <div style="margin-top:-35px; margin-left:25px">
+                  <rating
+                  readOnly="true"
+                  max="{{item.order_feedback.rating}}"
+                  emptyStarIconName="star"
+                  halfStarIconName="star-half"
+                  starIconName="star"
+                  nullable="false">
+                  </rating>
+              </div> </a>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+    </div>       
+
+  </ng-container>
+  <ng-template #kosong>
+      <ion-card>
+          <ion-card-content>
+            <p text-center style="font-weight:bold">Belum Ada Riwayat Project</p>
+          </ion-card-content>
+  </ion-card>
+    </ng-template>
+</ion-content>
