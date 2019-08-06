@@ -35,6 +35,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Ionic2RatingModule } from 'ionic2-rating';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { HttpModule } from "@angular/http";
+import { FCM } from '@ionic-native/fcm';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { HttpModule } from "@angular/http";
     Network,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    FCM
   ]
 })
 export class AppModule {}

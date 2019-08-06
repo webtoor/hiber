@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, NavParams, LoadingController, ToastController, Events  } from 'ionic-angular';
+import { MenuController, NavController, AlertController, NavParams, LoadingController, ToastController, Events  } from 'ionic-angular';
 import { DaftarPage } from '../daftar/daftar'
 import { MapPage } from '../map/map'
 import { PenggunaPage } from '../pengguna/pengguna'
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
+import { FCM } from '@ionic-native/fcm';
 
 /**
  * Generated class for the LoginPage page.
@@ -19,20 +20,29 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 export class LoginPage {
   responseData: any;
   loading: any;
-  userHiber = { "email": "", "password": "" };
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
+  userHiber = { "email": "", "password": "", "device_token" : "" };
+  constructor(public alertCtrl : AlertController, public fcm: FCM, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
     this.menu.swipeEnable(false);
     
   }
 
 
- 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    this.pushSetup();
+  }
+/*   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  } */
+
+  pushSetup(){
+    this.fcm.getToken().then(token => {
+
+      this.userHiber.device_token = token;
+    });
   }
   login() {
 
-    if (this.userHiber.email && this.userHiber.password) {
+    if (this.userHiber.email && this.userHiber.password && this.userHiber.device_token) {
       this.authService.postData(this.userHiber, "login_user", "").then((result) => {
         this.responseData = result;
         console.log(this.responseData);
