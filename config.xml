@@ -93,6 +93,6 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.4.0" />
-    <engine name="android" spec="6.4.0" />
     <plugin name="cordova-plugin-autostart" spec="^2.3.0" />
+    <engine name="android" spec="6.4.0" />
 </widget>

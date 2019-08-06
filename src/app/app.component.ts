@@ -65,7 +65,7 @@ export class Hiber {
         if(data.wasTapped){
           console.log("Received in background");
           if(data.action == 'bidprovider'){
-            this.nav.setRoot(StatusPage, {
+            this.nav.push(StatusPage, {
               order_id : data.order_id,
               subject : data.subject
             });
