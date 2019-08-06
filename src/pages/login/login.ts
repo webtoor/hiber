@@ -48,7 +48,6 @@ export class LoginPage {
         console.log(this.responseData);
         if (this.responseData["access_token"]) {
           this.showLoader();
-          //this.events.publish('email', this.userHiber.email);
           this.events.publish('email', this.responseData.email);
 
           localStorage.setItem('userHiber', JSON.stringify(this.responseData));

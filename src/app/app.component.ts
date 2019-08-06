@@ -66,8 +66,8 @@ export class Hiber {
           console.log("Received in background");
           if(data.action == 'bidprovider'){
             this.nav.setRoot(StatusPage, {
-              order_id : "6",
-              subject : "Test1"
+              order_id : data.order_id,
+              subject : data.subject
             });
           }
         } else {
@@ -81,8 +81,8 @@ export class Hiber {
                   text: 'LIHAT',
                   handler: () => {
                     this.nav.push(StatusPage, {
-                      order_id : "6",
-                      subject : "Test1"
+                      order_id : data.order_id,
+                      subject : data.subject
                     });
                   }
                 }
