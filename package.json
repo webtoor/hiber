@@ -22,6 +22,7 @@
         "@angular/platform-browser": "^5.0.0",
         "@angular/platform-browser-dynamic": "^5.0.0",
         "@angular/tsc-wrapped": "^4.4.6",
+        "@ionic-native/autostart": "^4.20.0",
         "@ionic-native/core": "4.3.2",
         "@ionic-native/fcm": "^4.20.0",
         "@ionic-native/geolocation": "^4.3.2",
@@ -32,6 +33,7 @@
         "@ionic/storage": "2.0.1",
         "@types/google-maps": "^3.2.0",
         "cordova-android": "6.4.0",
+        "cordova-plugin-autostart": "^2.3.0",
         "cordova-plugin-console": "^1.1.0",
         "cordova-plugin-device": "^1.1.7",
         "cordova-plugin-fcm-with-dependecy-updated": "^2.4.0",
@@ -71,7 +73,8 @@
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
             },
-            "cordova-plugin-fcm-with-dependecy-updated": {}
+            "cordova-plugin-fcm-with-dependecy-updated": {},
+            "cordova-plugin-autostart": {}
         },
         "platforms": [
             "android"
