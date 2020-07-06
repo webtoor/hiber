@@ -34,6 +34,7 @@
         "@types/google-maps": "^3.2.0",
         "cordova-android": "6.4.0",
         "cordova-plugin-autostart": "^2.3.0",
+        "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-console": "^1.1.0",
         "cordova-plugin-device": "^1.1.7",
         "cordova-plugin-fcm-with-dependecy-updated": "^2.4.0",

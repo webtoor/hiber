@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MenuController, NavController, AlertController, NavParams, LoadingController, ToastController, Events  } from 'ionic-angular';
 import { DaftarPage } from '../daftar/daftar'
 import { MapPage } from '../map/map'
-import { PenggunaPage } from '../pengguna/pengguna'
 
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service'
 import { FCM } from '@ionic-native/fcm';
@@ -23,7 +22,7 @@ export class LoginPage {
   userHiber = { "email": "", "password": "", "device_token" : "" };
   constructor(public alertCtrl : AlertController, public fcm: FCM, public navCtrl: NavController, public navParams: NavParams, public authService: AuthServiceProvider, public menu: MenuController, private toastCtrl: ToastController, public loadingCtrl: LoadingController, public events: Events) {
     this.menu.swipeEnable(false);
-    
+
   }
 
 
